@@ -12,6 +12,8 @@ PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 eval "$(rbenv init -)"
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 export PATH=~/miniconda3/bin:$PATH
 
 # >>> conda initialize >>>
