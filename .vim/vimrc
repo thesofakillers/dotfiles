@@ -7,6 +7,7 @@ filetype off
 "Load plugins here (vim-plug or pathogen or vundle)
 call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " Turn on syntax highlighting
