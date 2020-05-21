@@ -20,7 +20,7 @@ NOCOLOR="\033[0m"
 
 PS1=""
 # Current directory
-PS1+="\[${BLACK}\]\u\[${WHITE}\] in \[${BROWN}\]\W"
+PS1+="\[${GREEN}\]\u\[${WHITE}\] in \[${BROWN}\]\W"
 
 # Skip to the next line
 PS1+="\n"
@@ -32,4 +32,4 @@ else
 fi
 
 export CLICOLOR=1
-export LSCOLORS=Cxfxcxdxbxegedabagacad
+export LSCOLORS=exfxfeaeBxxehehbadacea
