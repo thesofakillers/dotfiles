@@ -4,8 +4,10 @@ set nocompatible
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
-"Load plugins here (pathogen or vundle)
-execute pathogen#infect()
+"Load plugins here (vim-plug or pathogen or vundle)
+call plug#begin('~/.vim/plugged')
+Plug 'altercation/vim-colors-solarized'
+call plug#end()
 
 " Turn on syntax highlighting
 syntax on
