@@ -8,7 +8,14 @@ filetype off
 call plug#begin('~/.vim/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Chiel92/vim-autoformat'
 call plug#end()
+
+" vim-autoformat settings
+noremap :af<CR> :Autoformat<CR>
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
 
 " Turn on syntax highlighting
 syntax on
