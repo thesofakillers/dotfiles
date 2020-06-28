@@ -5,4 +5,4 @@ where they need to be relative to your `~`.
 
 ## Vim
 
-I don't use neovim (yet), instead opting for vim8. I use [pathogen](https://github.com/tpope/vim-pathogen) for packages. 
+I don't use neovim (yet), instead opting for vim8. I use [vim-plugged](https://github.com/junegunn/vim-plug) for packages. 
