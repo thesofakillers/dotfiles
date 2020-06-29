@@ -11,6 +11,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " vim-autoformat settings
