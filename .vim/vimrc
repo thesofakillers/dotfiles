@@ -16,6 +16,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug '907th/vim-auto-save'
 call plug#end()
 
 " vim-autoformat settings
@@ -29,6 +30,13 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
+
+" autosave settings
+let g:auto_save = 0
+augroup ft_markdown
+  au!
+  au FileType tex let b:auto_save = 1
+augroup END:
 
 " Turn on syntax highlighting
 syntax on
