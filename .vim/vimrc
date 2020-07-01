@@ -14,6 +14,8 @@ Plug 'tpope/vim-repeat'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'lervag/vimtex'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 call plug#end()
 
 " vim-autoformat settings
@@ -21,6 +23,12 @@ noremap :af<CR> :Autoformat<CR>
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
+
+" vim-snippets/ultisnips settings
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
 
 " Turn on syntax highlighting
 syntax on
