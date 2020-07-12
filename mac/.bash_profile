@@ -37,3 +37,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+
+export PATH="$HOME/.poetry/bin:$PATH"
