@@ -18,6 +18,8 @@ Plug 'honza/vim-snippets' "i use coc-snippets as the engine
 Plug '907th/vim-auto-save'
 Plug 'dense-analysis/ale'
 Plug 'airblade/vim-gitgutter'
+Plug 'cespare/vim-toml'
+Plug 'vmchale/dhall-vim'
 call plug#end()
 
 " vim-autoformat settings
