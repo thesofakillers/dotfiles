@@ -39,3 +39,5 @@ export NVM_DIR="$HOME/.nvm"
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 export PATH="$HOME/.poetry/bin:$PATH"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
