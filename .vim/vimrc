@@ -124,6 +124,9 @@ vnoremap <F1> :set invfullscreen<CR>
 
 " Textmate holdouts
 
+" Spelling
+set spell spelllang=en_gb
+
 " Formatting
 map <leader>q gqip
 
