@@ -58,8 +58,9 @@ syntax on
 " For plugins to load correctly
 filetype plugin indent on
 
-" TODO: Pick a leader key
-" let mapleader = ","
+"Pick a leader key
+nnoremap <SPACE> <Nop>
+let mapleader = "\<Space>"
 
 " Security
 set modelines=0
@@ -156,3 +157,7 @@ colorscheme gruvbox
 " https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
             \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+
+" show line(s) commit https://www.reddit.com/r/vim/comments/i50pce/how_to_show_commit_that_introduced_current_line/
+map <silent><Leader>g :call setbufvar(winbufnr(popup_atcursor(systemlist("cd " . shellescape(fnamemodify(resolve(expand('%:p')), ":h")) . " && git log --no-merges -n 1 -L " . shellescape(line("v") . "," . line(".") . ":" . resolve(expand("%:p")))), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")<CR>
+
