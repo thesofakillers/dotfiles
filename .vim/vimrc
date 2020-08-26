@@ -186,3 +186,5 @@ function! LF()
     redraw!
 endfunction
 command! -bar LF call LF()
+
+nnoremap <leader>f :LF<cr>
