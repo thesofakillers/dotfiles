@@ -1,0 +1,1531 @@
+{
+  "coc-python|/Users/thesofakillers/repos/lbmc": {
+    "INTERPRETERS_CACHE_v3_PipEnvService": [],
+    "INTERPRETERS_CACHE_v3_WorkspaceVirtualEnvService": [],
+    "INTERPRETERS_CACHE_v3_PipEnvService:e1365d59da94002f23edb35da5055fe6": [],
+    "INTERPRETERS_CACHE_v3_WorkspaceVirtualEnvService:e1365d59da94002f23edb35da5055fe6": [],
+    "autoSelectedWorkspacePythonInterpreter-/Users/thesofakillers/repos/lbmc": {
+      "architecture": 3,
+      "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python",
+      "version": {
+        "options": {
+          "loose": false,
+          "includePrerelease": false
+        },
+        "loose": false,
+        "raw": "3.7.7-final",
+        "major": 3,
+        "minor": 7,
+        "patch": 7,
+        "prerelease": [
+          "final"
+        ],
+        "build": [],
+        "version": "3.7.7-final"
+      },
+      "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+      "fileHash": "365493c3d0a4483cfefb91a308ecac8ed498d2527489a9e8b81afd4c41568e8ce0986b18759fc9a0b65502ea2dad1da72633fdd37aad041a548d8b4491f245da",
+      "type": "Unknown"
+    },
+    "SelectedPythonPath": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python"
+  },
+  "coc-python|global": {
+    "INTERPRETERS_CACHE_v3_VirtualEnvService": [],
+    "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python3.7.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python3.7",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.7-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 7,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.7-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "fileHash": "c0326428c670d8adb6138d7ea4de5d62dd9c513e919c883ca8d950c3a5aee024c30eb6900e0b8fbf3336b2815c68f29268cc236b7abb249e53e93cfdd2546466"
+      },
+      "expiry": 1598043855147
+    },
+    "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python3.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python3",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.7-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 7,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.7-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "fileHash": "d8d0c795656c34becb3fbed8e766c9a012e728d51dcdbeb616ad22b18ebe8ff97db359f56f7318aa72a0992e7342a982d8591cb683bd42c10c9e3db5e80b7037"
+      },
+      "expiry": 1598043855148
+    },
+    "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.7-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 7,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.7-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "fileHash": "365493c3d0a4483cfefb91a308ecac8ed498d2527489a9e8b81afd4c41568e8ce0986b18759fc9a0b65502ea2dad1da72633fdd37aad041a548d8b4491f245da"
+      },
+      "expiry": 1598043855175
+    },
+    "/usr/bin/python2.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/usr/bin/python2",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "2.7.16-final",
+          "major": 2,
+          "minor": 7,
+          "patch": 16,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "2.7.16-final"
+        },
+        "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+        "fileHash": "27b6b1992496e49b3b92d10ea7dee4375134ba53a79f3c5670a72dd09a9060e1978afe8a0b3d9153a4762077d022316c0d7337ef03736a1132fde385f8413444"
+      },
+      "expiry": 1598043855256
+    },
+    "/usr/bin/python.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/usr/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "2.7.16-final",
+          "major": 2,
+          "minor": 7,
+          "patch": 16,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "2.7.16-final"
+        },
+        "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+        "fileHash": "c0736f5343590923ed6d55a6aef021db96f6d3a21f286547cce63aec96472351873750b3edb790455e1921b440631cdf9fb60dd6811adb583c2180ecce714f24"
+      },
+      "expiry": 1598043855256
+    },
+    "/usr/local/bin/python3.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/usr/local/bin/python3",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.8.4-final",
+          "major": 3,
+          "minor": 8,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.8.4-final"
+        },
+        "sysPrefix": "/usr/local/Cellar/python@3.8/3.8.4/Frameworks/Python.framework/Versions/3.8",
+        "fileHash": "a10208f6d7809b20dc3706c48cd5b82b28f67b22efa0c07112fea180676043e6c47b03994c93263a323fa45cc7a29cd0ff127b100083d2c8fa6f6aeca8a1660e"
+      },
+      "expiry": 1598043855276
+    },
+    "/usr/local/bin/python3.8.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/usr/local/bin/python3.8",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.8.4-final",
+          "major": 3,
+          "minor": 8,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.8.4-final"
+        },
+        "sysPrefix": "/usr/local/Cellar/python@3.8/3.8.4/Frameworks/Python.framework/Versions/3.8",
+        "fileHash": "e3a9f39b6d7d7c1afee80a3f320aa2c84982ddbecf2156ab33c1a8705fd9477669f8c973bdf263ee179767a4672568317ca521584e7abf256f0c80d1c0e019d6"
+      },
+      "expiry": 1598043855286
+    },
+    "/usr/bin/python3.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/usr/bin/python3",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.3-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 3,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.3-final"
+        },
+        "sysPrefix": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7",
+        "fileHash": "649235d49a3733e7bb7a03903e691cee5792f8fd898b9fc1ffd56d4e1ec7a4a044a3be68f68aa053f251a359cfd361a2bea669a2649cc6c64a4da61ee2fb7b1c"
+      },
+      "expiry": 1598043855395
+    },
+    "/usr/bin/python2.7.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/usr/bin/python2.7",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "2.7.16-final",
+          "major": 2,
+          "minor": 7,
+          "patch": 16,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "2.7.16-final"
+        },
+        "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+        "fileHash": "66ad5658cb020d62a000da198a9f0f1d805258b5b5f572da1e33157668b3d8b07dfcb0607f2c3371f51eb6c23b0267fac786ed043cab5c7c33043d4a73b440e0"
+      },
+      "expiry": 1598043855290
+    },
+    "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "2.7.16-final",
+          "major": 2,
+          "minor": 7,
+          "patch": 16,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "2.7.16-final"
+        },
+        "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+        "fileHash": "c8750264968c948e3cd3bafb0a73e5245fb149c183634cc93ffc4aae295346d69c7d61e6484e967dce0b28601d25aab322c67e3e1085909f9697fb781f3ffd61"
+      },
+      "expiry": 1598043855302
+    },
+    "INTERPRETERS_CACHE_v3_CurrentPathService": [
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python3.7",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.7-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 7,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.7-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "fileHash": "c0326428c670d8adb6138d7ea4de5d62dd9c513e919c883ca8d950c3a5aee024c30eb6900e0b8fbf3336b2815c68f29268cc236b7abb249e53e93cfdd2546466",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python3",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.7-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 7,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.7-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "fileHash": "d8d0c795656c34becb3fbed8e766c9a012e728d51dcdbeb616ad22b18ebe8ff97db359f56f7318aa72a0992e7342a982d8591cb683bd42c10c9e3db5e80b7037",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "2.7.16-final",
+          "major": 2,
+          "minor": 7,
+          "patch": 16,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "2.7.16-final"
+        },
+        "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+        "fileHash": "c8750264968c948e3cd3bafb0a73e5245fb149c183634cc93ffc4aae295346d69c7d61e6484e967dce0b28601d25aab322c67e3e1085909f9697fb781f3ffd61",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.7-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 7,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.7-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "fileHash": "365493c3d0a4483cfefb91a308ecac8ed498d2527489a9e8b81afd4c41568e8ce0986b18759fc9a0b65502ea2dad1da72633fdd37aad041a548d8b4491f245da",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.7-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 7,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.7-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "fileHash": "365493c3d0a4483cfefb91a308ecac8ed498d2527489a9e8b81afd4c41568e8ce0986b18759fc9a0b65502ea2dad1da72633fdd37aad041a548d8b4491f245da",
+        "type": "Unknown"
+      }
+    ],
+    "InterpreterAutoSeletionRule-currentPath": {
+      "architecture": 3,
+      "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python",
+      "version": {
+        "options": {
+          "loose": false,
+          "includePrerelease": false
+        },
+        "loose": false,
+        "raw": "3.7.7-final",
+        "major": 3,
+        "minor": 7,
+        "patch": 7,
+        "prerelease": [
+          "final"
+        ],
+        "build": [],
+        "version": "3.7.7-final"
+      },
+      "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+      "fileHash": "365493c3d0a4483cfefb91a308ecac8ed498d2527489a9e8b81afd4c41568e8ce0986b18759fc9a0b65502ea2dad1da72633fdd37aad041a548d8b4491f245da",
+      "type": "Unknown"
+    },
+    "preferredGlobalPyInterpreter": {
+      "architecture": 3,
+      "path": "/usr/local/bin/python3",
+      "version": {
+        "options": {
+          "loose": false,
+          "includePrerelease": false
+        },
+        "loose": false,
+        "raw": "3.8.4-final",
+        "major": 3,
+        "minor": 8,
+        "patch": 4,
+        "prerelease": [
+          "final"
+        ],
+        "build": [],
+        "version": "3.8.4-final"
+      },
+      "sysPrefix": "/usr/local/Cellar/python@3.8/3.8.4/Frameworks/Python.framework/Versions/3.8",
+      "fileHash": "a10208f6d7809b20dc3706c48cd5b82b28f67b22efa0c07112fea180676043e6c47b03994c93263a323fa45cc7a29cd0ff127b100083d2c8fa6f6aeca8a1660e",
+      "type": "Unknown",
+      "displayName": "Python 3.8.4 64-bit"
+    },
+    "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python.interpreter.Details.v7": {
+      "data": {
+        "fileHash": "365493c3d0a4483cfefb91a308ecac8ed498d2527489a9e8b81afd4c41568e8ce0986b18759fc9a0b65502ea2dad1da72633fdd37aad041a548d8b4491f245da",
+        "info": {
+          "architecture": 3,
+          "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python",
+          "version": {
+            "options": {
+              "loose": false,
+              "includePrerelease": false
+            },
+            "loose": false,
+            "raw": "3.7.7-final",
+            "major": 3,
+            "minor": 7,
+            "patch": 7,
+            "prerelease": [
+              "final"
+            ],
+            "build": [],
+            "version": "3.7.7-final"
+          },
+          "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+          "fileHash": "365493c3d0a4483cfefb91a308ecac8ed498d2527489a9e8b81afd4c41568e8ce0986b18759fc9a0b65502ea2dad1da72633fdd37aad041a548d8b4491f245da",
+          "companyDisplayName": "Anaconda, Inc.",
+          "type": "Conda",
+          "envPath": "/Users/thesofakillers/miniconda3/envs/lbmc",
+          "envName": "lbmc",
+          "displayName": "Python 3.7.7 64-bit ('lbmc': conda)"
+        }
+      },
+      "expiry": 1598044421602
+    },
+    "/Users/thesofakillers/miniconda3/bin/python.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.1-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 1,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.1-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3",
+        "fileHash": "f3c87413e56efbf0ea2536df22a2172bf63dc651769de2ab0d10dcda557640dc8c1c357bf1d534cce309562d9b6e2775e2fa89141d6f45397911203945aa192d"
+      },
+      "expiry": 1598043855395
+    },
+    "/Users/thesofakillers/miniconda3/bin/python3.7.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/bin/python3.7",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.1-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 1,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.1-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3",
+        "fileHash": "cef7e0f9a28930566d6f1dd069c11656685a5c562cbca640b5929377d6a864df10250addec361b380145eb1cf3c35f30167616f416cee9bbf55a8e43cf0345d4"
+      },
+      "expiry": 1598043855394
+    },
+    "/Users/thesofakillers/miniconda3/bin/python3.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/bin/python3",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.1-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 1,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.1-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3",
+        "fileHash": "d8c052f25dfda7a32a993c7e997ffaa4863d2ca33b742355682bd6b9e50a8661d991e20e0a0ccfac438ca089a36add90015f5a6f328c84ef85c62cd666e1aca2"
+      },
+      "expiry": 1598043855394
+    },
+    "INTERPRETERS_CACHE_v3_KnownPathsService": [
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.7-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 7,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.7-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "fileHash": "365493c3d0a4483cfefb91a308ecac8ed498d2527489a9e8b81afd4c41568e8ce0986b18759fc9a0b65502ea2dad1da72633fdd37aad041a548d8b4491f245da",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python3",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.7-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 7,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.7-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "fileHash": "d8d0c795656c34becb3fbed8e766c9a012e728d51dcdbeb616ad22b18ebe8ff97db359f56f7318aa72a0992e7342a982d8591cb683bd42c10c9e3db5e80b7037",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python3.7",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.7-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 7,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.7-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "fileHash": "c0326428c670d8adb6138d7ea4de5d62dd9c513e919c883ca8d950c3a5aee024c30eb6900e0b8fbf3336b2815c68f29268cc236b7abb249e53e93cfdd2546466",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/local/bin/python3",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.8.4-final",
+          "major": 3,
+          "minor": 8,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.8.4-final"
+        },
+        "sysPrefix": "/usr/local/Cellar/python@3.8/3.8.4/Frameworks/Python.framework/Versions/3.8",
+        "fileHash": "a10208f6d7809b20dc3706c48cd5b82b28f67b22efa0c07112fea180676043e6c47b03994c93263a323fa45cc7a29cd0ff127b100083d2c8fa6f6aeca8a1660e",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/local/bin/python3.8",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.8.4-final",
+          "major": 3,
+          "minor": 8,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.8.4-final"
+        },
+        "sysPrefix": "/usr/local/Cellar/python@3.8/3.8.4/Frameworks/Python.framework/Versions/3.8",
+        "fileHash": "e3a9f39b6d7d7c1afee80a3f320aa2c84982ddbecf2156ab33c1a8705fd9477669f8c973bdf263ee179767a4672568317ca521584e7abf256f0c80d1c0e019d6",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/local/bin/python3",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.8.4-final",
+          "major": 3,
+          "minor": 8,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.8.4-final"
+        },
+        "sysPrefix": "/usr/local/Cellar/python@3.8/3.8.4/Frameworks/Python.framework/Versions/3.8",
+        "fileHash": "a10208f6d7809b20dc3706c48cd5b82b28f67b22efa0c07112fea180676043e6c47b03994c93263a323fa45cc7a29cd0ff127b100083d2c8fa6f6aeca8a1660e",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/local/bin/python3.8",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.8.4-final",
+          "major": 3,
+          "minor": 8,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.8.4-final"
+        },
+        "sysPrefix": "/usr/local/Cellar/python@3.8/3.8.4/Frameworks/Python.framework/Versions/3.8",
+        "fileHash": "e3a9f39b6d7d7c1afee80a3f320aa2c84982ddbecf2156ab33c1a8705fd9477669f8c973bdf263ee179767a4672568317ca521584e7abf256f0c80d1c0e019d6",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "2.7.16-final",
+          "major": 2,
+          "minor": 7,
+          "patch": 16,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "2.7.16-final"
+        },
+        "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+        "fileHash": "c0736f5343590923ed6d55a6aef021db96f6d3a21f286547cce63aec96472351873750b3edb790455e1921b440631cdf9fb60dd6811adb583c2180ecce714f24",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/bin/python2",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "2.7.16-final",
+          "major": 2,
+          "minor": 7,
+          "patch": 16,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "2.7.16-final"
+        },
+        "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+        "fileHash": "27b6b1992496e49b3b92d10ea7dee4375134ba53a79f3c5670a72dd09a9060e1978afe8a0b3d9153a4762077d022316c0d7337ef03736a1132fde385f8413444",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/bin/python2.7",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "2.7.16-final",
+          "major": 2,
+          "minor": 7,
+          "patch": 16,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "2.7.16-final"
+        },
+        "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+        "fileHash": "66ad5658cb020d62a000da198a9f0f1d805258b5b5f572da1e33157668b3d8b07dfcb0607f2c3371f51eb6c23b0267fac786ed043cab5c7c33043d4a73b440e0",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/bin/python3",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.3-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 3,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.3-final"
+        },
+        "sysPrefix": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7",
+        "fileHash": "649235d49a3733e7bb7a03903e691cee5792f8fd898b9fc1ffd56d4e1ec7a4a044a3be68f68aa053f251a359cfd361a2bea669a2649cc6c64a4da61ee2fb7b1c",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.1-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 1,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.1-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3",
+        "fileHash": "f3c87413e56efbf0ea2536df22a2172bf63dc651769de2ab0d10dcda557640dc8c1c357bf1d534cce309562d9b6e2775e2fa89141d6f45397911203945aa192d",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/bin/python3",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.1-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 1,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.1-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3",
+        "fileHash": "d8c052f25dfda7a32a993c7e997ffaa4863d2ca33b742355682bd6b9e50a8661d991e20e0a0ccfac438ca089a36add90015f5a6f328c84ef85c62cd666e1aca2",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/bin/python3.7",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.1-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 1,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.1-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3",
+        "fileHash": "cef7e0f9a28930566d6f1dd069c11656685a5c562cbca640b5929377d6a864df10250addec361b380145eb1cf3c35f30167616f416cee9bbf55a8e43cf0345d4",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/local/bin/python3",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.8.4-final",
+          "major": 3,
+          "minor": 8,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.8.4-final"
+        },
+        "sysPrefix": "/usr/local/Cellar/python@3.8/3.8.4/Frameworks/Python.framework/Versions/3.8",
+        "fileHash": "a10208f6d7809b20dc3706c48cd5b82b28f67b22efa0c07112fea180676043e6c47b03994c93263a323fa45cc7a29cd0ff127b100083d2c8fa6f6aeca8a1660e",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/local/bin/python3.8",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.8.4-final",
+          "major": 3,
+          "minor": 8,
+          "patch": 4,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.8.4-final"
+        },
+        "sysPrefix": "/usr/local/Cellar/python@3.8/3.8.4/Frameworks/Python.framework/Versions/3.8",
+        "fileHash": "e3a9f39b6d7d7c1afee80a3f320aa2c84982ddbecf2156ab33c1a8705fd9477669f8c973bdf263ee179767a4672568317ca521584e7abf256f0c80d1c0e019d6",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "2.7.16-final",
+          "major": 2,
+          "minor": 7,
+          "patch": 16,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "2.7.16-final"
+        },
+        "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+        "fileHash": "c0736f5343590923ed6d55a6aef021db96f6d3a21f286547cce63aec96472351873750b3edb790455e1921b440631cdf9fb60dd6811adb583c2180ecce714f24",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/bin/python2",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "2.7.16-final",
+          "major": 2,
+          "minor": 7,
+          "patch": 16,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "2.7.16-final"
+        },
+        "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+        "fileHash": "27b6b1992496e49b3b92d10ea7dee4375134ba53a79f3c5670a72dd09a9060e1978afe8a0b3d9153a4762077d022316c0d7337ef03736a1132fde385f8413444",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/bin/python2.7",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "2.7.16-final",
+          "major": 2,
+          "minor": 7,
+          "patch": 16,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "2.7.16-final"
+        },
+        "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+        "fileHash": "66ad5658cb020d62a000da198a9f0f1d805258b5b5f572da1e33157668b3d8b07dfcb0607f2c3371f51eb6c23b0267fac786ed043cab5c7c33043d4a73b440e0",
+        "type": "Unknown"
+      },
+      {
+        "architecture": 3,
+        "path": "/usr/bin/python3",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.3-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 3,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.3-final"
+        },
+        "sysPrefix": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7",
+        "fileHash": "649235d49a3733e7bb7a03903e691cee5792f8fd898b9fc1ffd56d4e1ec7a4a044a3be68f68aa053f251a359cfd361a2bea669a2649cc6c64a4da61ee2fb7b1c",
+        "type": "Unknown"
+      }
+    ],
+    "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python.interpreter.displayName.v7": {
+      "data": {
+        "displayName": "Python 3.7.7 64-bit ('lbmc': conda)",
+        "hash": "365493c3d0a4483cfefb91a308ecac8ed498d2527489a9e8b81afd4c41568e8ce0986b18759fc9a0b65502ea2dad1da72633fdd37aad041a548d8b4491f245da-3032d6b3feae405405d9f8e27cb8a7fe"
+      },
+      "expiry": 1598044421594
+    },
+    "/Users/thesofakillers/miniconda3/envs/german/bin/python.v3": {
+      "data": {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/german/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.6.10-final",
+          "major": 3,
+          "minor": 6,
+          "patch": 10,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.6.10-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/german",
+        "fileHash": "babd8471023f3d0c20c21e7afb42d4c8effb7d035582350a8fd94f587f580f3f7ac0758be4396bc8c0f83b51816506f2bf0a6228e12bab57680bc1128e5d95ec"
+      },
+      "expiry": 1598043855561
+    },
+    "CONDA_ENVIRONMENTS": {
+      "data": [
+        {
+          "name": "base",
+          "path": "/Users/thesofakillers/miniconda3"
+        },
+        {
+          "name": "german",
+          "path": "/Users/thesofakillers/miniconda3/envs/german"
+        },
+        {
+          "name": "lbmc",
+          "path": "/Users/thesofakillers/miniconda3/envs/lbmc"
+        }
+      ]
+    },
+    "INTERPRETERS_CACHE_v3_CondaEnvFileService": [
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.1-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 1,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.1-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3",
+        "fileHash": "f3c87413e56efbf0ea2536df22a2172bf63dc651769de2ab0d10dcda557640dc8c1c357bf1d534cce309562d9b6e2775e2fa89141d6f45397911203945aa192d",
+        "companyDisplayName": "Anaconda, Inc.",
+        "type": "Conda",
+        "envPath": "/Users/thesofakillers/miniconda3",
+        "envName": "base"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/german/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.6.10-final",
+          "major": 3,
+          "minor": 6,
+          "patch": 10,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.6.10-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/german",
+        "fileHash": "babd8471023f3d0c20c21e7afb42d4c8effb7d035582350a8fd94f587f580f3f7ac0758be4396bc8c0f83b51816506f2bf0a6228e12bab57680bc1128e5d95ec",
+        "companyDisplayName": "Anaconda, Inc.",
+        "type": "Conda",
+        "envPath": "/Users/thesofakillers/miniconda3/envs/german",
+        "envName": "german"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.7-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 7,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.7-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "fileHash": "365493c3d0a4483cfefb91a308ecac8ed498d2527489a9e8b81afd4c41568e8ce0986b18759fc9a0b65502ea2dad1da72633fdd37aad041a548d8b4491f245da",
+        "companyDisplayName": "Anaconda, Inc.",
+        "type": "Conda",
+        "envPath": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "envName": "lbmc"
+      }
+    ],
+    "INTERPRETERS_CACHE_v3_CondaEnvService": [
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.1-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 1,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.1-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3",
+        "fileHash": "f3c87413e56efbf0ea2536df22a2172bf63dc651769de2ab0d10dcda557640dc8c1c357bf1d534cce309562d9b6e2775e2fa89141d6f45397911203945aa192d",
+        "companyDisplayName": "Anaconda, Inc.",
+        "type": "Conda",
+        "envPath": "/Users/thesofakillers/miniconda3",
+        "envName": "base"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/german/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.6.10-final",
+          "major": 3,
+          "minor": 6,
+          "patch": 10,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.6.10-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/german",
+        "fileHash": "babd8471023f3d0c20c21e7afb42d4c8effb7d035582350a8fd94f587f580f3f7ac0758be4396bc8c0f83b51816506f2bf0a6228e12bab57680bc1128e5d95ec",
+        "companyDisplayName": "Anaconda, Inc.",
+        "type": "Conda",
+        "envPath": "/Users/thesofakillers/miniconda3/envs/german",
+        "envName": "german"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.7-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 7,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.7-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "fileHash": "365493c3d0a4483cfefb91a308ecac8ed498d2527489a9e8b81afd4c41568e8ce0986b18759fc9a0b65502ea2dad1da72633fdd37aad041a548d8b4491f245da",
+        "companyDisplayName": "Anaconda, Inc.",
+        "type": "Conda",
+        "envPath": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "envName": "lbmc"
+      },
+      {
+        "architecture": 3,
+        "path": "/Users/thesofakillers/miniconda3/envs/lbmc/bin/python",
+        "version": {
+          "options": {
+            "loose": false,
+            "includePrerelease": false
+          },
+          "loose": false,
+          "raw": "3.7.7-final",
+          "major": 3,
+          "minor": 7,
+          "patch": 7,
+          "prerelease": [
+            "final"
+          ],
+          "build": [],
+          "version": "3.7.7-final"
+        },
+        "sysPrefix": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "fileHash": "365493c3d0a4483cfefb91a308ecac8ed498d2527489a9e8b81afd4c41568e8ce0986b18759fc9a0b65502ea2dad1da72633fdd37aad041a548d8b4491f245da",
+        "companyDisplayName": "Anaconda, Inc.",
+        "type": "Conda",
+        "envPath": "/Users/thesofakillers/miniconda3/envs/lbmc",
+        "envName": "lbmc"
+      }
+    ],
+    "PipEnvInformation": [],
+    "/Users/thesofakillers/miniconda3/bin/python.interpreter.displayName.v7": {
+      "data": {
+        "displayName": "Python 3.7.1 64-bit ('base': conda)",
+        "hash": "f3c87413e56efbf0ea2536df22a2172bf63dc651769de2ab0d10dcda557640dc8c1c357bf1d534cce309562d9b6e2775e2fa89141d6f45397911203945aa192d-35475b62fb8b5d4cb9ad17314b115cb3"
+      },
+      "expiry": 1598043859709
+    },
+    "/Users/thesofakillers/miniconda3/envs/german/bin/python.interpreter.displayName.v7": {
+      "data": {
+        "displayName": "Python 3.6.10 64-bit ('german': conda)",
+        "hash": "babd8471023f3d0c20c21e7afb42d4c8effb7d035582350a8fd94f587f580f3f7ac0758be4396bc8c0f83b51816506f2bf0a6228e12bab57680bc1128e5d95ec-608b56455c82bf8cabde00ab11fd77cf"
+      },
+      "expiry": 1598043859711
+    },
+    "/usr/bin/python.interpreter.displayName.v7": {
+      "data": {
+        "displayName": "Python 2.7.16 64-bit",
+        "hash": "c0736f5343590923ed6d55a6aef021db96f6d3a21f286547cce63aec96472351873750b3edb790455e1921b440631cdf9fb60dd6811adb583c2180ecce714f24-87402bb6c571365bddebde7e538448ee"
+      },
+      "expiry": 1598043859712
+    },
+    "/usr/local/bin/python3.interpreter.displayName.v7": {
+      "data": {
+        "displayName": "Python 3.8.4 64-bit",
+        "hash": "a10208f6d7809b20dc3706c48cd5b82b28f67b22efa0c07112fea180676043e6c47b03994c93263a323fa45cc7a29cd0ff127b100083d2c8fa6f6aeca8a1660e-66fb31eb6d7d3fb9b5958aadd298c526"
+      },
+      "expiry": 1598043859713
+    },
+    "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python.interpreter.displayName.v7": {
+      "data": {
+        "displayName": "Python 2.7.16 64-bit",
+        "hash": "c8750264968c948e3cd3bafb0a73e5245fb149c183634cc93ffc4aae295346d69c7d61e6484e967dce0b28601d25aab322c67e3e1085909f9697fb781f3ffd61-ea6bfcba449396240900dfd54507e931"
+      },
+      "expiry": 1598043859714
+    },
+    "/usr/bin/python3.interpreter.displayName.v7": {
+      "data": {
+        "displayName": "Python 3.7.3 64-bit",
+        "hash": "649235d49a3733e7bb7a03903e691cee5792f8fd898b9fc1ffd56d4e1ec7a4a044a3be68f68aa053f251a359cfd361a2bea669a2649cc6c64a4da61ee2fb7b1c-11f66f93aeec67068ae13d9b1f50b22d"
+      },
+      "expiry": 1598043859715
+    },
+    "InterpreterAutoSeletionRule-system": {
+      "architecture": 3,
+      "path": "/usr/local/bin/python3",
+      "version": {
+        "options": {
+          "loose": false,
+          "includePrerelease": false
+        },
+        "loose": false,
+        "raw": "3.8.4-final",
+        "major": 3,
+        "minor": 8,
+        "patch": 4,
+        "prerelease": [
+          "final"
+        ],
+        "build": [],
+        "version": "3.8.4-final"
+      },
+      "sysPrefix": "/usr/local/Cellar/python@3.8/3.8.4/Frameworks/Python.framework/Versions/3.8",
+      "fileHash": "a10208f6d7809b20dc3706c48cd5b82b28f67b22efa0c07112fea180676043e6c47b03994c93263a323fa45cc7a29cd0ff127b100083d2c8fa6f6aeca8a1660e",
+      "type": "Unknown",
+      "displayName": "Python 3.8.4 64-bit"
+    },
+    "/Users/thesofakillers/miniconda3/bin/python.interpreter.Details.v7": {
+      "data": {
+        "fileHash": "f3c87413e56efbf0ea2536df22a2172bf63dc651769de2ab0d10dcda557640dc8c1c357bf1d534cce309562d9b6e2775e2fa89141d6f45397911203945aa192d",
+        "info": {
+          "architecture": 3,
+          "path": "/Users/thesofakillers/miniconda3/bin/python",
+          "version": {
+            "options": {
+              "loose": false,
+              "includePrerelease": false
+            },
+            "loose": false,
+            "raw": "3.7.1-final",
+            "major": 3,
+            "minor": 7,
+            "patch": 1,
+            "prerelease": [
+              "final"
+            ],
+            "build": [],
+            "version": "3.7.1-final"
+          },
+          "sysPrefix": "/Users/thesofakillers/miniconda3",
+          "fileHash": "f3c87413e56efbf0ea2536df22a2172bf63dc651769de2ab0d10dcda557640dc8c1c357bf1d534cce309562d9b6e2775e2fa89141d6f45397911203945aa192d",
+          "companyDisplayName": "Anaconda, Inc.",
+          "type": "Conda",
+          "envPath": "/Users/thesofakillers/miniconda3",
+          "envName": "base",
+          "displayName": "Python 3.7.1 64-bit ('base': conda)"
+        }
+      },
+      "expiry": 1598043859765
+    },
+    "/Users/thesofakillers/miniconda3/envs/german/bin/python.interpreter.Details.v7": {
+      "data": {
+        "fileHash": "babd8471023f3d0c20c21e7afb42d4c8effb7d035582350a8fd94f587f580f3f7ac0758be4396bc8c0f83b51816506f2bf0a6228e12bab57680bc1128e5d95ec",
+        "info": {
+          "architecture": 3,
+          "path": "/Users/thesofakillers/miniconda3/envs/german/bin/python",
+          "version": {
+            "options": {
+              "loose": false,
+              "includePrerelease": false
+            },
+            "loose": false,
+            "raw": "3.6.10-final",
+            "major": 3,
+            "minor": 6,
+            "patch": 10,
+            "prerelease": [
+              "final"
+            ],
+            "build": [],
+            "version": "3.6.10-final"
+          },
+          "sysPrefix": "/Users/thesofakillers/miniconda3/envs/german",
+          "fileHash": "babd8471023f3d0c20c21e7afb42d4c8effb7d035582350a8fd94f587f580f3f7ac0758be4396bc8c0f83b51816506f2bf0a6228e12bab57680bc1128e5d95ec",
+          "companyDisplayName": "Anaconda, Inc.",
+          "type": "Conda",
+          "envPath": "/Users/thesofakillers/miniconda3/envs/german",
+          "envName": "german",
+          "displayName": "Python 3.6.10 64-bit ('german': conda)"
+        }
+      },
+      "expiry": 1598043859767
+    },
+    "/usr/bin/python.interpreter.Details.v7": {
+      "data": {
+        "fileHash": "c0736f5343590923ed6d55a6aef021db96f6d3a21f286547cce63aec96472351873750b3edb790455e1921b440631cdf9fb60dd6811adb583c2180ecce714f24",
+        "info": {
+          "architecture": 3,
+          "path": "/usr/bin/python",
+          "version": {
+            "options": {
+              "loose": false,
+              "includePrerelease": false
+            },
+            "loose": false,
+            "raw": "2.7.16-final",
+            "major": 2,
+            "minor": 7,
+            "patch": 16,
+            "prerelease": [
+              "final"
+            ],
+            "build": [],
+            "version": "2.7.16-final"
+          },
+          "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+          "fileHash": "c0736f5343590923ed6d55a6aef021db96f6d3a21f286547cce63aec96472351873750b3edb790455e1921b440631cdf9fb60dd6811adb583c2180ecce714f24",
+          "type": "Unknown",
+          "displayName": "Python 2.7.16 64-bit"
+        }
+      },
+      "expiry": 1598043859771
+    },
+    "/usr/local/bin/python3.interpreter.Details.v7": {
+      "data": {
+        "fileHash": "a10208f6d7809b20dc3706c48cd5b82b28f67b22efa0c07112fea180676043e6c47b03994c93263a323fa45cc7a29cd0ff127b100083d2c8fa6f6aeca8a1660e",
+        "info": {
+          "architecture": 3,
+          "path": "/usr/local/bin/python3",
+          "version": {
+            "options": {
+              "loose": false,
+              "includePrerelease": false
+            },
+            "loose": false,
+            "raw": "3.8.4-final",
+            "major": 3,
+            "minor": 8,
+            "patch": 4,
+            "prerelease": [
+              "final"
+            ],
+            "build": [],
+            "version": "3.8.4-final"
+          },
+          "sysPrefix": "/usr/local/Cellar/python@3.8/3.8.4/Frameworks/Python.framework/Versions/3.8",
+          "fileHash": "a10208f6d7809b20dc3706c48cd5b82b28f67b22efa0c07112fea180676043e6c47b03994c93263a323fa45cc7a29cd0ff127b100083d2c8fa6f6aeca8a1660e",
+          "type": "Unknown",
+          "displayName": "Python 3.8.4 64-bit"
+        }
+      },
+      "expiry": 1598043859773
+    },
+    "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python.interpreter.Details.v7": {
+      "data": {
+        "fileHash": "c8750264968c948e3cd3bafb0a73e5245fb149c183634cc93ffc4aae295346d69c7d61e6484e967dce0b28601d25aab322c67e3e1085909f9697fb781f3ffd61",
+        "info": {
+          "architecture": 3,
+          "path": "/System/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python",
+          "version": {
+            "options": {
+              "loose": false,
+              "includePrerelease": false
+            },
+            "loose": false,
+            "raw": "2.7.16-final",
+            "major": 2,
+            "minor": 7,
+            "patch": 16,
+            "prerelease": [
+              "final"
+            ],
+            "build": [],
+            "version": "2.7.16-final"
+          },
+          "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
+          "fileHash": "c8750264968c948e3cd3bafb0a73e5245fb149c183634cc93ffc4aae295346d69c7d61e6484e967dce0b28601d25aab322c67e3e1085909f9697fb781f3ffd61",
+          "type": "Unknown",
+          "displayName": "Python 2.7.16 64-bit"
+        }
+      },
+      "expiry": 1598043859777
+    },
+    "/usr/bin/python3.interpreter.Details.v7": {
+      "data": {
+        "fileHash": "649235d49a3733e7bb7a03903e691cee5792f8fd898b9fc1ffd56d4e1ec7a4a044a3be68f68aa053f251a359cfd361a2bea669a2649cc6c64a4da61ee2fb7b1c",
+        "info": {
+          "architecture": 3,
+          "path": "/usr/bin/python3",
+          "version": {
+            "options": {
+              "loose": false,
+              "includePrerelease": false
+            },
+            "loose": false,
+            "raw": "3.7.3-final",
+            "major": 3,
+            "minor": 7,
+            "patch": 3,
+            "prerelease": [
+              "final"
+            ],
+            "build": [],
+            "version": "3.7.3-final"
+          },
+          "sysPrefix": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7",
+          "fileHash": "649235d49a3733e7bb7a03903e691cee5792f8fd898b9fc1ffd56d4e1ec7a4a044a3be68f68aa053f251a359cfd361a2bea669a2649cc6c64a4da61ee2fb7b1c",
+          "type": "Unknown",
+          "displayName": "Python 3.7.3 64-bit"
+        }
+      },
+      "expiry": 1598043859780
+    },
+    "InterpreterAutoSeletionRule-cachedInterpreters": {
+      "architecture": 3,
+      "path": "/usr/local/bin/python3",
+      "version": {
+        "options": {
+          "loose": false,
+          "includePrerelease": false
+        },
+        "loose": false,
+        "raw": "3.8.4-final",
+        "major": 3,
+        "minor": 8,
+        "patch": 4,
+        "prerelease": [
+          "final"
+        ],
+        "build": [],
+        "version": "3.8.4-final"
+      },
+      "sysPrefix": "/usr/local/Cellar/python@3.8/3.8.4/Frameworks/Python.framework/Versions/3.8",
+      "fileHash": "a10208f6d7809b20dc3706c48cd5b82b28f67b22efa0c07112fea180676043e6c47b03994c93263a323fa45cc7a29cd0ff127b100083d2c8fa6f6aeca8a1660e",
+      "type": "Unknown",
+      "displayName": "Python 3.8.4 64-bit"
+    },
+    "ProposeLSBanner": false
+  }
+}
