@@ -2,3 +2,6 @@
 .vim/.netrwhist
 .vim/plugged/
 .tmux/
+.config/configstore/
+.config/menus/
+.config/gh/
