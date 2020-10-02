@@ -1,8 +1,5 @@
-" Don't try to be vi compatible
-set nocompatible
 
-" Helps force plugins to load correctly when it is turned back on below
-filetype off
+" plugins
 
 "Load plugins here (vim-plug or pathogen or vundle)
 call plug#begin('~/.vim/plugged')
@@ -56,31 +53,29 @@ augroup ft_markdown
   au FileType tex let b:auto_save = 1
 augroup END:
 
+" generic settings
+
+" Don't try to be vi compatible
+set nocompatible
+" Helps force plugins to load correctly when it is turned back on below
+filetype off
 " Turn on syntax highlighting
 syntax on
-
 " For plugins to load correctly
 filetype plugin indent on
-
 "Pick a leader key
 nnoremap <SPACE> <Nop>
 let mapleader = "\<Space>"
-
 " Security
 set modelines=0
-
 " Show line numbers
 set number
-
 " Show file stats
 set ruler
-
-" Blink cursor on error instead of beeping (grr)
+" Blink cursor on error instead of beeping
 set visualbell
-
 " Encoding
 set encoding=utf-8
-
 " Whitespace
 set wrap
 set textwidth=79
@@ -91,30 +86,23 @@ set softtabstop=2
 set expandtab
 set noshiftround
 set autoindent
-
 " Cursor motion
 set scrolloff=3
 set backspace=indent,eol,start
 set matchpairs+=<:> " use % to jump between pairs
 runtime! macros/matchit.vim
-
 " Move up/down editor lines
 nnoremap j gj
 nnoremap k gk
-
 " Allow hidden buffers
 set hidden
-
 " Rendering
 set ttyfast
-
 " Status bar
 set laststatus=2
-
 " Last line
 set showmode
 set showcmd
-
 " Searching
 nnoremap / /\v
 vnoremap / /\v
@@ -124,27 +112,20 @@ set ignorecase
 set smartcase
 set showmatch
 map <leader><space> :let @/=''<cr> " clear search
-
 " Remap help key.
 inoremap <F1> <ESC>:set invfullscreen<CR>a
 nnoremap <F1> :set invfullscreen<CR>
 vnoremap <F1> :set invfullscreen<CR>
-
-" Textmate holdouts
-
 " Spelling
 set spell spelllang=en_gb
-
 " Formatting
 map <leader>q gqip
-
 " Visualize tabs and newlines
 set listchars=tab:▸\ ,eol:¬
 " Uncomment this to enable by default:
 " set list " To enable by default
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
-
 " Color scheme (terminal)
 set t_Co=256
 set background=dark
@@ -155,6 +136,8 @@ let g:gruvbox_italic=1
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 colorscheme gruvbox
+
+" more complex settings 
 
 " Triger `autoread` when files changes on disk
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
