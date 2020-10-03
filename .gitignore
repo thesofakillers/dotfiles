@@ -6,3 +6,4 @@
 .config/configstore/
 .config/menus/
 .config/gh/
+.config/coc/memos.json
