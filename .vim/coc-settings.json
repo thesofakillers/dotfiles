@@ -1,5 +1,6 @@
 {
   "python.jediPath": "/Users/thesofakillers/miniconda3/envs/lbmc/lib/python3.7/site-packages",
   "python.linting.pylintEnabled": true,
-  "python.linting.enabled": true
+  "python.linting.enabled": true,
+  "diagnostic.displayByAle": true
 }
