@@ -1,5 +1,5 @@
 
-" plugins
+" plugins {{{
 
 "Load plugins here (vim-plug or pathogen or vundle)
 call plug#begin('~/.vim/plugged')
@@ -21,18 +21,25 @@ Plug 'vmchale/dhall-vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 call plug#end()
+" }}}
 
-" vim-markdown settings
+" vim-markdown settings {{{
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toml_frontmatter = 1
+" }}}
 
-" vim-autoformat settings
+" vimtex settings {{{
+let g:tex_flavor = 'latex'
+" }}}
+
+" vim-autoformat settings {{{
 noremap :af<CR> :Autoformat<CR>
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
+" }}}
 
-"coc-snippets settings
+"coc-snippets settings {{{
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -45,15 +52,17 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>'
+" }}}
 
-" autosave settings
+" autosave settings {{{
 let g:auto_save = 0
 augroup ft_markdown
   au!
   au FileType tex let b:auto_save = 1
 augroup END:
+" }}}
 
-" generic settings
+" generic settings {{{
 
 " Don't try to be vi compatible
 set nocompatible
@@ -145,8 +154,9 @@ augroup END
 " mouse settings
 set mouse=a
 set ttymouse=xterm2
+" }}}
 
-" more complex settings 
+" more complex settings {{{ 
 
 " Triger `autoread` when files changes on disk
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
@@ -180,3 +190,4 @@ endfunction
 command! -bar LF call LF()
 
 nnoremap <leader>f :LF<cr>
+" }}}
