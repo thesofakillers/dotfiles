@@ -1,20 +1,27 @@
+# {{{ sourcing
 # Prompt
 [[ -f "$HOME/.bash_prompt" ]] && source "$HOME/.bash_prompt"
 # Secrets 
 [[ -f "$HOME/.secrets" ]] && source "$HOME/.secrets"
+# }}}
 
+# {{{ general settings
 # Larger bash history (default is 500)
 export HISTFILESIZE=10000
 export HISTSIZE=10000
 
 PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
-eval "$(rbenv init -)"
-
 export BASH_SILENCE_DEPRECATION_WARNING=1
+# }}}
 
+# {{{ rbvenv
+eval "$(rbenv init -)"
+# }}}
 
+# {{{ conda/miniconda
 export PATH=~/miniconda3/bin:$PATH
+
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -30,16 +37,12 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+# }}}
 
-export NVM_DIR="$HOME/.nvm"
-# This loads nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  
- # This loads nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" 
-
+# {{{ fzf
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+# }}}
 
+# {{{ python poetry
 export PATH="$HOME/.poetry/bin:$PATH"
-
- # Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# }}}
