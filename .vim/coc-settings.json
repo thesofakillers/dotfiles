@@ -2,5 +2,26 @@
   "python.jediPath": "/Users/thesofakillers/miniconda3/envs/lbmc/lib/python3.7/site-packages",
   "python.linting.pylintEnabled": true,
   "python.linting.enabled": true,
-  "diagnostic.displayByAle": true
+  "diagnostic.displayByAle": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.disableSuccessMessage": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "suggest.noselect": false,
+  "snippets.extends": {
+    "cpp": ["c"],
+    "javascript":["html", "javascriptreact"],
+    "javascriptreact": ["javascript"], 
+    "typescript": ["javascript"]
+  }
 }

@@ -42,19 +42,51 @@ let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 " }}}
 
-"coc-snippets settings {{{
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+"coc settings {{{
+" language servers {{{
+let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+  \ ]
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 
-let g:coc_snippet_next = '<tab>'
+if isdirectory('./node_modules') 
+  if isdirectory('./node_modules/prettier')
+    let g:coc_global_extensions += ['coc-prettier']
+  endif
+  if isdirectory('./node_modules/eslint')
+    let g:coc_global_extensions += ['coc-eslint']
+  endif
+endif
+
+" }}}
+" other options {{{
+" show documentation for the word under the cursor
+nnoremap <silent> K :call CocAction('doHover')<CR>
+" goto actions
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)
+" navigate errors
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" show diagnostics 
+nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
+" code actions (like auto import fix)
+nmap <leader>do <Plug>(coc-codeaction)
+" symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+" }}}
+" snippets {{{
+inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
+" }}}
+" }}}
+
+" fzf settings {{{
+" don't search filenames, show preview
+command! -bang -nargs=* Rg
+    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '
+    \ . (len(<q-args>) > 0 ? <q-args> : '""'), 0,
+    \ fzf#vim#with_preview({'options': ['--delimiter=:', '--nth=2..', '--layout=reverse', '--info=inline']}), <bang>0)
 " }}}
 
 " autosave settings {{{
