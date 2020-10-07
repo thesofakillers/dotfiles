@@ -20,6 +20,8 @@ Plug 'cespare/vim-toml'
 Plug 'vmchale/dhall-vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 " }}}
 
