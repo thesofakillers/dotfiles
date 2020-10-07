@@ -7,3 +7,8 @@
 .config/menus/
 .config/gh/
 .config/coc/memos.json
+node_modules/
+.config/coc/*history*
+.config/coc/mru
+.config/coc/commands
+.config/coc/snippets-mru
