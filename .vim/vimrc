@@ -25,78 +25,6 @@ Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 " }}}
 
-" vim-markdown settings {{{
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_toml_frontmatter = 1
-let g:vim_markdown_new_list_item_indent = 2
-" }}}
-
-" vimtex settings {{{
-let g:tex_flavor = 'latex'
-" }}}
-
-" vim-autoformat settings {{{
-noremap :af<CR> :Autoformat<CR>
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
-" }}}
-
-"coc settings {{{
-" language servers {{{
-let g:coc_global_extensions = [
-  \ 'coc-tsserver'
-  \ ]
-
-
-if isdirectory('./node_modules') 
-  if isdirectory('./node_modules/prettier')
-    let g:coc_global_extensions += ['coc-prettier']
-  endif
-  if isdirectory('./node_modules/eslint')
-    let g:coc_global_extensions += ['coc-eslint']
-  endif
-endif
-
-" }}}
-" other options {{{
-" show documentation for the word under the cursor
-nnoremap <silent> K :call CocAction('doHover')<CR>
-" goto actions
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gr <Plug>(coc-references)
-" navigate errors
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-" show diagnostics 
-nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
-" code actions (like auto import fix)
-nmap <leader>do <Plug>(coc-codeaction)
-" symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
-" }}}
-" snippets {{{
-inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
-" }}}
-" }}}
-
-" fzf settings {{{
-" don't search filenames, show preview
-command! -bang -nargs=* Rg
-    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '
-    \ . (len(<q-args>) > 0 ? <q-args> : '""'), 0,
-    \ fzf#vim#with_preview({'options': ['--delimiter=:', '--nth=2..', '--layout=reverse', '--info=inline']}), <bang>0)
-" }}}
-
-" autosave settings {{{
-let g:auto_save = 0
-augroup ft_markdown
-  au!
-  au FileType tex let b:auto_save = 1
-augroup END:
-" }}}
-
 " generic settings {{{
 
 " Don't try to be vi compatible
@@ -185,6 +113,80 @@ set foldmethod=marker
 " mouse settings
 set mouse=a
 set ttymouse=xterm2
+" }}}
+
+" vim-markdown settings {{{
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_new_list_item_indent = 2
+" }}}
+
+" vimtex settings {{{
+let g:tex_flavor = 'latex'
+" }}}
+
+" vim-autoformat settings {{{
+noremap :af<CR> :Autoformat<CR>
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+" }}}
+
+"coc settings {{{
+" language servers {{{
+let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+  \ ]
+
+
+if isdirectory('./node_modules') 
+  if isdirectory('./node_modules/prettier')
+    let g:coc_global_extensions += ['coc-prettier']
+  endif
+  if isdirectory('./node_modules/eslint')
+    let g:coc_global_extensions += ['coc-eslint']
+  endif
+endif
+
+" }}}
+" other options {{{
+" show documentation for the word under the cursor
+nnoremap <silent> K :call CocAction('doHover')<CR>
+" goto actions
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gr <Plug>(coc-references)
+" navigate errors
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" show diagnostics 
+nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
+" code actions (like auto import fix)
+nmap <leader>do <Plug>(coc-codeaction)
+" symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+" }}}
+" snippets {{{
+inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
+" }}}
+" }}}
+
+" fzf settings {{{
+" don't search filenames, show preview
+command! -bang -nargs=* Rg
+    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '
+    \ . (len(<q-args>) > 0 ? <q-args> : '""'), 0,
+    \ fzf#vim#with_preview({'options': ['--delimiter=:', '--nth=2..', '--layout=reverse', '--info=inline']}), <bang>0)
+" silver searcher with leader s
+nnoremap <leader>s :Rg<cr>
+" }}}
+
+" autosave settings {{{
+let g:auto_save = 0
+augroup ft_markdown
+  au!
+  au FileType tex let b:auto_save = 1
+augroup END:
 " }}}
 
 " more complex settings {{{ 
