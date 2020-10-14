@@ -112,6 +112,7 @@ set foldmethod=marker
 " mouse settings
 set mouse=a
 set ttymouse=xterm2
+nnoremap <LeftMouse> ma<LeftMouse>`a
 " }}}
 
 " vim-markdown settings {{{
