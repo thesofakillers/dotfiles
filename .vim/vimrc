@@ -13,7 +13,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'honza/vim-snippets' "i use coc-snippets as the engine
 Plug '907th/vim-auto-save'
-Plug 'dense-analysis/ale'
 Plug 'airblade/vim-gitgutter'
 Plug 'cespare/vim-toml'
 Plug 'vmchale/dhall-vim'
@@ -113,6 +112,8 @@ set foldmethod=marker
 set mouse=a
 set ttymouse=xterm2
 nnoremap <LeftMouse> ma<LeftMouse>`a
+" statusline
+set statusline^=%{coc#status()}
 " }}}
 
 " vim-markdown settings {{{
@@ -137,17 +138,6 @@ let g:autoformat_remove_trailing_spaces = 0
 let g:coc_global_extensions = [
   \ 'coc-tsserver'
   \ ]
-
-
-if isdirectory('./node_modules') 
-  if isdirectory('./node_modules/prettier')
-    let g:coc_global_extensions += ['coc-prettier']
-  endif
-  if isdirectory('./node_modules/eslint')
-    let g:coc_global_extensions += ['coc-eslint']
-  endif
-endif
-
 " }}}
 " other options {{{
 " show documentation for the word under the cursor
