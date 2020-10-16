@@ -113,6 +113,7 @@ set mouse=a
 set ttymouse=xterm2
 nnoremap <LeftMouse> ma<LeftMouse>`a
 " statusline
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline^=%{coc#status()}
 " }}}
 
@@ -134,10 +135,21 @@ let g:autoformat_remove_trailing_spaces = 0
 " }}}
 
 "coc settings {{{
-" language servers {{{
+" language options{{{
+" servers {{{
 let g:coc_global_extensions = [
   \ 'coc-tsserver'
   \ ]
+" }}}
+" python interpreter selectioan (conda) {{{
+" https://github.com/neoclide/coc-python/issues/55#issuecomment-617499047
+if $CONDA_PREFIX == ""
+  let s:current_python_path=$CONDA_PYTHON_EXE
+else
+  let s:current_python_path=$CONDA_PREFIX.'/bin/python'
+endif
+call coc#config('python', {'pythonPath': s:current_python_path})
+" }}}
 " }}}
 " other options {{{
 " show documentation for the word under the cursor
