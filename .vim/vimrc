@@ -167,9 +167,14 @@ nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
 nmap <leader>do <Plug>(coc-codeaction)
 " symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
+" formatting
+nmap <leader>af <Plug>(coc-format)
 " }}}
 " snippets {{{
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
+" }}}
+" highlighting {{{
+autocmd CursorHold * silent call CocActionAsync('highlight')
 " }}}
 " }}}
 

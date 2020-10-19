@@ -1,4 +1,11 @@
 {
+  "coc.preferences.colorSupport": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "languageserver": {
     "digestif": {
       "command": "digestif",
@@ -6,9 +13,11 @@
     }
   },
   "json.format.enable": true,
-  "python.jediEnabled": false,
-  "python.linting.pylintEnabled": true,
+  "python.analysis.diagnosticEnabled": true,
   "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintArgs": ["--enable=unused-import"],
+  "python.jediEnabled": false,
   "python.formatting.provider": "black",
   "eslint.autoFixOnSave": true,
   "eslint.filetypes": [
@@ -18,12 +27,6 @@
     "typescriptreact"
   ],
   "prettier.disableSuccessMessage": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
   "suggest.noselect": false,
   "snippets.extends": {
     "cpp": ["c"],
