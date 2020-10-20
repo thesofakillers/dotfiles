@@ -115,6 +115,8 @@ nnoremap <LeftMouse> ma<LeftMouse>`a
 " statusline
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline^=%{coc#status()}
+" concealing
+set conceallevel=2
 " }}}
 
 " vim-markdown settings {{{
@@ -122,7 +124,8 @@ let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_folding_level = 2
-let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_strikethrough = 0
+let g:vim_markdown_math = 1
 " }}}
 
 " vimtex settings {{{
