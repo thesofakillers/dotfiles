@@ -27,6 +27,7 @@
     "typescriptreact"
   ],
   "prettier.disableSuccessMessage": true,
+  "prettier.proseWrap": "always",
   "suggest.noselect": false,
   "snippets.extends": {
     "cpp": ["c"],
