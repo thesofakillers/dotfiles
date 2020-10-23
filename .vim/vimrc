@@ -114,9 +114,7 @@ set ttymouse=xterm2
 nnoremap <LeftMouse> ma<LeftMouse>`a
 " statusline
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-set statusline^=%{coc#status()}
-" concealing
-set conceallevel=2
+set statusline+=%{coc#status()} 
 " }}}
 
 " vim-markdown settings {{{
