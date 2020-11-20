@@ -49,6 +49,7 @@ set encoding=utf-8
 " Whitespace
 set wrap
 set textwidth=79
+set colorcolumn=79
 set formatoptions=tcqrn1
 set tabstop=2
 set shiftwidth=2
@@ -115,6 +116,12 @@ nnoremap <LeftMouse> ma<LeftMouse>`a
 " statusline
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline+=%{coc#status()} 
+" }}}
+
+" {{{ python settings
+au BufRead,BufNewFile *.py setlocal textwidth=88
+au BufRead,BufNewFile *.py setlocal colorcolumn=88
+
 " }}}
 
 " vim-markdown settings {{{
@@ -188,6 +195,10 @@ command! -bang -nargs=* Rg
     \ fzf#vim#with_preview({'options': ['--delimiter=:', '--nth=2..', '--layout=reverse', '--info=inline']}), <bang>0)
 " silver searcher with leader s
 nnoremap <leader>s :Rg<cr>
+" }}}
+
+" gitgutter settings {{{
+set updatetime=100
 " }}}
 
 " autosave settings {{{
