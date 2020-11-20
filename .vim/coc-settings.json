@@ -35,5 +35,6 @@
     "javascriptreact": ["javascript"],
     "typescript": ["javascript"],
     "markdown": ["tex"]
-  }
+  },
+  "coc.preferences.extensionUpdateCheck": "daily"
 }
