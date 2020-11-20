@@ -14,3 +14,4 @@ node_modules/
 .config/coc/snippets-mru
 .config/coc/lists
 .config/coc/extensions/coc-python-data
+.config/coc/extensions/db.json
