@@ -198,7 +198,7 @@ nnoremap <leader>s :Rg<cr>
 " }}}
 
 " gitgutter settings {{{
-autocmd BufWritePost * GitGutter
+set updatetime=100
 " }}}
 
 " autosave settings {{{
