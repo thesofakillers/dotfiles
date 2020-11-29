@@ -13,13 +13,13 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'honza/vim-snippets' "i use coc-snippets as the engine
 Plug '907th/vim-auto-save'
-Plug 'airblade/vim-gitgutter'
 Plug 'cespare/vim-toml'
 Plug 'vmchale/dhall-vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
+Plug 'mhinz/vim-signify'
 call plug#end()
 " }}}
 
@@ -197,7 +197,7 @@ command! -bang -nargs=* Rg
 nnoremap <leader>s :Rg<cr>
 " }}}
 
-" gitgutter settings {{{
+" {{{ vim-signify settings
 set updatetime=100
 " }}}
 
