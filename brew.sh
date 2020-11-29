@@ -22,6 +22,7 @@ echo "Proceeding with brew cask packages..."
 # Install cask packages
 brew cask install middleclick
 brew cask install rectangle
+brew cask install spotmenu
 
 # the end
 echo "Success! Brew cask packages are installed."
