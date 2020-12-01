@@ -4,13 +4,14 @@ brew update
 brew upgrade
 
 # Install packages
-fzf
-lf
-luarocks
-rbenv
-ripgrep
-tmux
-vim
+brew install fzf
+brew install lf
+brew install luarocks
+brew install rbenv
+brew install ripgrep
+brew install tmux
+brew install vim
+brew install pandoc
 
 # Wait a bit before moving on...
 sleep 1
