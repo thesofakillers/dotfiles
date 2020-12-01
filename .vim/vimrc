@@ -182,6 +182,9 @@ nmap <leader>af <Plug>(coc-format)
 " snippets {{{
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
 " }}}
+" {{{ completion sources
+let g:coc_sources_disable_map = {'markdown': ['around', 'buffer']}
+" }}}
 " highlighting {{{
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " }}}
