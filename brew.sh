@@ -12,6 +12,7 @@ brew install ripgrep
 brew install tmux
 brew install vim
 brew install pandoc
+brew install tree
 
 # Wait a bit before moving on...
 sleep 1
