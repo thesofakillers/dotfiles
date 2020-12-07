@@ -20,6 +20,8 @@ Plug 'plasticboy/vim-markdown'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mhinz/vim-signify'
+Plug 'ptzz/lf.vim'
+Plug 'rbgrouleff/bclose.vim'
 call plug#end()
 " }}}
 
@@ -113,11 +115,14 @@ colorscheme gruvbox
 set foldmethod=marker
 " mouse settings
 set mouse=a
-set ttymouse=xterm2
+if !has('nvim')
+  set ttymouse=xterm2
+endif
 nnoremap <LeftMouse> ma<LeftMouse>`a
 " statusline
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline+=%{coc#status()} 
+set pyxversion=3
 " }}}
 
 " {{{ python settings
@@ -224,28 +229,3 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
 
 " show line(s) commit https://www.reddit.com/r/vim/comments/i50pce/how_to_show_commit_that_introduced_current_line/
 map <silent><Leader>g :call setbufvar(winbufnr(popup_atcursor(systemlist("cd " . shellescape(fnamemodify(resolve(expand('%:p')), ":h")) . " && git log --no-merges -n 1 -L " . shellescape(line("v") . "," . line(".") . ":" . resolve(expand("%:p")))), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")<CR>
-
-" lf integration
-" https://github.com/gokcehan/lf/wiki/Integrations#vim--neovim
-function! LF()
-    let temp = tempname()
-    exec 'silent !lf -selection-path=' . shellescape(temp)
-    if !filereadable(temp)
-        redraw!
-        return
-    endif
-    let names = readfile(temp)
-    if empty(names)
-        redraw!
-        return
-    endif
-    exec 'edit ' . fnameescape(names[0])
-    for name in names[1:]
-        exec 'argadd ' . fnameescape(name)
-    endfor
-    redraw!
-endfunction
-command! -bar LF call LF()
-
-nnoremap <leader>f :LF<cr>
-" }}}
