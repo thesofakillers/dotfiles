@@ -16,6 +16,4 @@ export HISTSIZE=10000
 PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
-
-export TERM=xterm-256color
 # }}}
