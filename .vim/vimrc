@@ -194,6 +194,8 @@ let g:coc_sources_disable_map = {'markdown': ['around', 'buffer']}
 " }}}
 " highlighting {{{
 autocmd CursorHold * silent call CocActionAsync('highlight')
+highlight CocHighlightText ctermbg=DarkGray ctermfg=LightGrey guibg=#444444
+                                                            \ guifg=#bcbcbc
 " }}}
 " }}}
 
