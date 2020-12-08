@@ -1,1 +1,40 @@
-.vim/coc-settings.json
+{
+  "coc.preferences.colorSupport": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "languageserver": {
+    "digestif": {
+      "command": "digestif",
+      "filetypes": ["tex", "plaintex", "context", "markdown"]
+    }
+  },
+  "json.format.enable": true,
+  "python.analysis.diagnosticEnabled": true,
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintArgs": ["--enable=unused-import"],
+  "python.jediEnabled": false,
+  "python.formatting.provider": "black",
+  "eslint.autoFixOnSave": true,
+  "eslint.filetypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.disableSuccessMessage": true,
+  "prettier.proseWrap": "always",
+  "suggest.noselect": false,
+  "snippets.extends": {
+    "cpp": ["c"],
+    "javascript": ["html", "javascriptreact"],
+    "javascriptreact": ["javascript"],
+    "typescript": ["javascript"],
+    "markdown": ["tex"]
+  },
+  "coc.preferences.extensionUpdateCheck": "daily"
+}
