@@ -118,7 +118,12 @@ set mouse=a
 if !has('nvim')
   set ttymouse=xterm2
 endif
-nnoremap <LeftMouse> ma<LeftMouse>`a
+" https://vim.fandom.com/wiki/How_to_not_move_cursor_when_selecting_window_with_mouse
+augroup NO_CURSOR_MOVE_ON_FOCUS
+  au!
+  au FocusLost * let g:oldmouse=&mouse | set mouse=
+  au FocusGained * if exists('g:oldmouse') | let &mouse=g:oldmouse | unlet g:oldmouse | endif
+augroup END
 " statusline
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline+=%{coc#status()} 
