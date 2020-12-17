@@ -14,6 +14,7 @@ brew install vim
 brew install pandoc
 brew install tree
 brew install git-subrepo
+brew install shfmt
 
 # Wait a bit before moving on...
 sleep 1
