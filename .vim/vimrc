@@ -22,6 +22,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mhinz/vim-signify'
 Plug 'ptzz/lf.vim'
 Plug 'rbgrouleff/bclose.vim'
+Plug 'neoclide/jsonc.vim'
 call plug#end()
 " }}}
 
