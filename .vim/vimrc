@@ -135,6 +135,10 @@ au BufRead,BufNewFile *.py setlocal textwidth=88
 au BufRead,BufNewFile *.py setlocal colorcolumn=88
 " }}}
 
+" {{{ json settings
+autocmd BufRead,BufNewFile   *.json setlocal foldmethod=syntax 
+" }}}
+
 " vim-markdown settings {{{
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toml_frontmatter = 1
