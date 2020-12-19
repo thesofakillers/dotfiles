@@ -20,7 +20,7 @@
   ],
   "languageserver": {
     "digestif": {
-      "command": "digestif",
+      "command": "~/.luarocks/bin/digestif",
       "filetypes": ["tex", "plaintex", "context", "markdown"]
     }
   },
