@@ -6,11 +6,12 @@ brew upgrade
 # Install packages
 brew install fzf
 brew install lf
+brew install lua@5.3
 brew install luarocks
 brew install rbenv
 brew install ripgrep
 brew install tmux
-brew install vim
+brew install neovim
 brew install pandoc
 brew install tree
 brew install git-subrepo
