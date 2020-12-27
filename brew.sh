@@ -16,6 +16,7 @@ brew install pandoc
 brew install tree
 brew install git-subrepo
 brew install shfmt
+brew install the_silver_searcher
 
 # Wait a bit before moving on...
 sleep 1
