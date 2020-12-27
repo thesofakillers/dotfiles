@@ -16,3 +16,4 @@ node_modules/
 .config/coc/lists
 .config/coc/extensions/coc-python-data
 .config/coc/extensions/db.json
+.config/karabiner/automatic_backups/
