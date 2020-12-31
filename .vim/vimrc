@@ -149,10 +149,6 @@ let g:vim_markdown_strikethrough = 0
 let g:vim_markdown_math = 1
 " }}}
 
-" vimtex settings {{{
-let g:tex_flavor = 'latex'
-" }}}
-
 " vim-autoformat settings {{{
 let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
