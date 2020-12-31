@@ -17,6 +17,7 @@ brew install tree
 brew install git-subrepo
 brew install shfmt
 brew install the_silver_searcher
+brew install hugo
 
 # Wait a bit before moving on...
 sleep 1
