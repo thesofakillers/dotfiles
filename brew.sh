@@ -4,6 +4,7 @@ brew update
 brew upgrade
 
 # Install packages
+brew install git
 brew install fzf
 brew install lf
 brew install lua@5.3
