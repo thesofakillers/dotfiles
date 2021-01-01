@@ -28,9 +28,10 @@ echo "Success! Basic brew packages are installed."
 echo "Proceeding with brew cask packages..."
 
 # Install cask packages
-brew cask install middleclick
-brew cask install rectangle
-brew cask install spotmenu
+brew install --cask middleclick
+brew install --cask rectangle
+brew install --cask spotmenu
+brew install --cask basictex
 
 # the end
 echo "Success! Brew cask packages are installed."
