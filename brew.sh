@@ -4,11 +4,10 @@ brew update
 brew upgrade
 
 # Install packages
+brew install perl
 brew install git
 brew install fzf
 brew install lf
-brew install lua@5.3
-brew install luarocks
 brew install rbenv
 brew install ripgrep
 brew install tmux

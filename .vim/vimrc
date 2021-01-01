@@ -204,6 +204,15 @@ highlight CocHighlightText ctermbg=DarkGray ctermfg=LightGrey guibg=#444444
 " }}}
 " }}}
 
+" {{{ LaTeX settings
+autocmd FileType tex nnoremap <buffer> <leader>b :exe 'CocCommand latex.Build'<CR>
+augroup WrapLineInTeXFile
+    autocmd!
+    autocmd FileType tex setlocal nowrap
+    autocmd FileType tex setlocal textwidth=0
+augroup END
+" }}}
+
 " fzf settings {{{
 " don't search filenames, show preview
 command! -bang -nargs=* Rg

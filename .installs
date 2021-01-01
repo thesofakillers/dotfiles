@@ -37,3 +37,7 @@ export NVM_DIR="$HOME/.nvm"
  # This loads nvm bash_completion
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 # }}}
+
+# {{{ LaTeX
+export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
+# }}}
