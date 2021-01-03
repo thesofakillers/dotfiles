@@ -6,12 +6,6 @@
     "typescript",
     "typescriptreact"
   ],
-  "languageserver": {
-    "digestif": {
-      "command": "digestif",
-      "filetypes": ["tex", "plaintex", "context", "markdown"]
-    }
-  },
   "json.format.enable": true,
   "python.analysis.diagnosticEnabled": true,
   "python.linting.enabled": true,
