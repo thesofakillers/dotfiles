@@ -12,5 +12,8 @@ sudo tlmgr update --self
 sudo tlmgr install latexmk
 sudo tlmgr install latexindent
 sudo tlmgr install enumitem
+sudo tlmgr install blindtext
+sudo tlmgr install titling
+sudo tlmgr install titlesec
 
 echo "Success! Installation of additional programs is complete."
