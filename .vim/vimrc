@@ -138,6 +138,7 @@ au BufRead,BufNewFile *.py setlocal colorcolumn=88
 autocmd BufRead,BufNewFile   *.json setlocal foldmethod=syntax 
 " }}}
 
+" markdown settings {{{
 " vim-markdown settings {{{
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toml_frontmatter = 1
@@ -145,6 +146,11 @@ let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_folding_level = 2
 let g:vim_markdown_strikethrough = 0
 let g:vim_markdown_math = 1
+" }}}
+
+" useful pandoc shortcuts {{{
+autocmd FileType markdown nnoremap <buffer> <leader>b :w<CR>:silent !pandoc %<.md -C -o %<.pdf<CR>
+" }}}
 " }}}
 
 " vim-autoformat settings {{{
