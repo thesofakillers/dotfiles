@@ -16,5 +16,6 @@ sudo tlmgr install blindtext
 sudo tlmgr install titling
 sudo tlmgr install titlesec
 sudo tlmgr install biber
+sudo tlmgr install biblatex
 
 echo "Success! Installation of additional programs is complete."
