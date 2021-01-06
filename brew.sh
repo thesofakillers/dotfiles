@@ -13,6 +13,7 @@ brew install ripgrep
 brew install tmux
 brew install neovim
 brew install pandoc
+brew install pandoc-crossref
 brew install tree
 brew install git-subrepo
 brew install shfmt
