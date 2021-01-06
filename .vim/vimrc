@@ -149,7 +149,7 @@ let g:vim_markdown_math = 1
 " }}}
 
 " useful pandoc shortcuts {{{
-autocmd FileType markdown nnoremap <buffer> <leader>b :w<CR>:silent !pandoc %<.md -C -o %<.pdf<CR>
+autocmd FileType markdown nnoremap <buffer> <leader>b :w<CR>:silent !pandoc %<.md -F pandoc-crossref -C -o %<.pdf<CR>
 " }}}
 " }}}
 
