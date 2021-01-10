@@ -23,6 +23,7 @@ Plug 'mhinz/vim-signify'
 Plug 'ptzz/lf.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'neoclide/jsonc.vim'
+Plug 'HerringtonDarkholme/yats.vim'
 call plug#end()
 " }}}
 
@@ -162,11 +163,6 @@ let g:autoformat_remove_trailing_spaces = 0
 
 "coc settings {{{
 " language options{{{
-" servers {{{
-let g:coc_global_extensions = [
-  \ 'coc-tsserver'
-  \ ]
-" }}}
 " python interpreter selectioan (conda) {{{
 " https://github.com/neoclide/coc-python/issues/55#issuecomment-617499047
 if $CONDA_PREFIX == ""
