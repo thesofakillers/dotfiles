@@ -9,6 +9,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive' 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'honza/vim-snippets' "i use coc-snippets as the engine
@@ -125,6 +126,10 @@ augroup END
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline+=%{coc#status()} 
 set pyxversion=3
+" }}}
+
+" git (fugitive) settings {{{
+nmap <silent><leader>gg :Gblame<CR>
 " }}}
 
 " {{{ python settings
