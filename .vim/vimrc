@@ -24,6 +24,7 @@ Plug 'ptzz/lf.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'neoclide/jsonc.vim'
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'gisphm/vim-gitignore'
 call plug#end()
 " }}}
 
@@ -177,9 +178,9 @@ call coc#config('python', {'pythonPath': s:current_python_path})
 " show documentation for the word under the cursor
 nnoremap <silent> K :call CocAction('doHover')<CR>
 " goto actions
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent><leader>gd <Plug>(coc-definition)
+nmap <silent><leader>gy <Plug>(coc-type-definition)
+nmap <silent><leader>gr <Plug>(coc-references)
 " navigate errors
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -252,6 +253,3 @@ augroup END:
 " https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
             \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
-
-" show line(s) commit https://www.reddit.com/r/vim/comments/i50pce/how_to_show_commit_that_introduced_current_line/
-map <silent><Leader>g :call setbufvar(winbufnr(popup_atcursor(systemlist("cd " . shellescape(fnamemodify(resolve(expand('%:p')), ":h")) . " && git log --no-merges -n 1 -L " . shellescape(line("v") . "," . line(".") . ":" . resolve(expand("%:p")))), { "padding": [1,1,1,1], "pos": "botleft", "wrap": 0 })), "&filetype", "git")<CR>
