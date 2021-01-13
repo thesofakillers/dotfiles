@@ -130,6 +130,8 @@ set pyxversion=3
 
 " git (fugitive) settings {{{
 nmap <silent><leader>gg :Gblame<CR>
+" https://github.com/tpope/vim-fugitive/issues/1387#issuecomment-611313792
+nmap <leader>gp :0,3Git blame<CR>
 " }}}
 
 " {{{ python settings
