@@ -15,5 +15,7 @@ export HISTSIZE=10000
 
 PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
+set -o vi
+
 export BASH_SILENCE_DEPRECATION_WARNING=1
 # }}}
