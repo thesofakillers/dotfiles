@@ -21,6 +21,7 @@ vim so the config is shared between the two for now. I use
 You may wish to run or at least to refer to the contents of
 
 - [brew.sh](brew.sh)
+- [node.sh](node.sh)
 - [additional-installs.sh](additional-installs.sh)
 - [mac_finish.sh](mac_finish.sh) to complete the setup with necessary programs
   and configuration.
