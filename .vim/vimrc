@@ -124,7 +124,8 @@ augroup NO_CURSOR_MOVE_ON_FOCUS
 augroup END
 " statusline
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-set statusline+=%{coc#status()} 
+set statusline+=%=%{FugitiveStatusline()}
+set statusline+=\ %{coc#status()} 
 set pyxversion=3
 " }}}
 
