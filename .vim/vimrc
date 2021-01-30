@@ -129,6 +129,7 @@ set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline+=%=%{FugitiveStatusline()}
 set statusline+=\ %{coc#status()} 
 set pyxversion=3
+vnoremap <leader>c :w !pbcopy<CR>:silent
 " }}}
 
 " git (fugitive) settings {{{
@@ -234,7 +235,6 @@ highlight CocHighlightText ctermbg=DarkGray ctermfg=LightGrey guibg=#444444
                                                             \ guifg=#bcbcbc
 " }}}
 " }}}
-
 
 " fzf settings {{{
 " don't search filenames, show preview
