@@ -27,6 +27,7 @@ Plug 'rbgrouleff/bclose.vim'
 Plug 'neoclide/jsonc.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'gisphm/vim-gitignore'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 " }}}
 
