@@ -150,20 +150,39 @@ au BufRead,BufNewFile *.py setlocal colorcolumn=88
 autocmd BufRead,BufNewFile   *.json setlocal foldmethod=syntax 
 " }}}
 
-" markdown settings {{{
-" vim-markdown settings {{{
+" {{{ writing settings
+"   {{{ miscellaneous settings
+"   get selection word count
+vmap <leader>ww g<C-g>2gs
+"   }}}
+"   {{{ markdown settings
+"     {{{ vim-markdown settings
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_folding_level = 2
 let g:vim_markdown_strikethrough = 0
 let g:vim_markdown_math = 1
-" }}}
+"     }}}
 
-" useful pandoc shortcuts {{{
+"     {{{ useful pandoc shortcuts
 autocmd FileType markdown nnoremap <buffer> <leader>b :w<CR>:silent 
       \ !pandoc <C-r>=expand('%:r')<CR>.md -F pandoc-crossref -C -o <C-r>=expand('%:r')<CR>.pdf<CR>
-" }}}
+"     }}}
+"   }}}
+
+"   {{{ LaTeX settings
+" building 
+autocmd FileType tex nnoremap <buffer> <leader>b :exe 'CocCommand latex.Build'<CR>
+" forward search
+autocmd FileType tex nnoremap <buffer> <leader>fs :w<CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline <C-r>=line('.')<CR> %<.pdf<CR>
+" linewrapping
+augroup WrapLineInTeXFile
+    autocmd!
+    autocmd FileType tex setlocal textwidth=100
+    autocmd FileType tex setlocal colorcolumn=100
+augroup END
+"   }}}
 " }}}
 
 " vim-autoformat settings {{{
@@ -216,18 +235,6 @@ highlight CocHighlightText ctermbg=DarkGray ctermfg=LightGrey guibg=#444444
 " }}}
 " }}}
 
-" {{{ LaTeX settings
-" building 
-autocmd FileType tex nnoremap <buffer> <leader>b :exe 'CocCommand latex.Build'<CR>
-" forward search
-autocmd FileType tex nnoremap <buffer> <leader>fs :w<CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline <C-r>=line('.')<CR> %<.pdf<CR>
-" linewrapping
-augroup WrapLineInTeXFile
-    autocmd!
-    autocmd FileType tex setlocal textwidth=100
-    autocmd FileType tex setlocal colorcolumn=100
-augroup END
-" }}}
 
 " fzf settings {{{
 " don't search filenames, show preview
