@@ -21,3 +21,4 @@ node_modules/
 .config/karabiner/automatic_backups/
 .config/gatsby
 .config/Dadroit
+.config/gtk*
