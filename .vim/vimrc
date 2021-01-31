@@ -167,8 +167,12 @@ let g:vim_markdown_math = 1
 "     }}}
 
 "     {{{ useful pandoc shortcuts
+" compile to pdf 
 autocmd FileType markdown nnoremap <buffer> <leader>b :w<CR>:silent 
       \ !pandoc <C-r>=expand('%:r')<CR>.md -F pandoc-crossref -C -o <C-r>=expand('%:r')<CR>.pdf<CR>
+" get word count
+autocmd FileType markdown nnoremap <buffer> <leader>ww :w<CR> 
+      \ :!pandoc --lua-filter wordcount.lua <C-r>=expand('%:r')<CR>.md<CR>
 "     }}}
 "   }}}
 
