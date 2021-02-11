@@ -19,6 +19,7 @@ brew install git-subrepo
 brew install shfmt
 brew install the_silver_searcher
 brew install hugo
+brew install git-filter-repo
 
 # Wait a bit before moving on...
 sleep 1
