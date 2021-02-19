@@ -22,3 +22,4 @@ node_modules/
 .config/gatsby
 .config/Dadroit
 .config/gtk*
+.config/iterm2
