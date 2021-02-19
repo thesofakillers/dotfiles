@@ -20,6 +20,7 @@ brew install shfmt
 brew install the_silver_searcher
 brew install hugo
 brew install git-filter-repo
+brew install grip
 
 # Wait a bit before moving on...
 sleep 1
