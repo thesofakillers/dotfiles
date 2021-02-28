@@ -21,6 +21,7 @@ brew install the_silver_searcher
 brew install hugo
 brew install git-filter-repo
 brew install grip
+brew install ffmpeg
 
 # Wait a bit before moving on...
 sleep 1
