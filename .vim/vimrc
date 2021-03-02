@@ -129,7 +129,7 @@ set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline+=%=%{FugitiveStatusline()}
 set statusline+=\ %{coc#status()} 
 set pyxversion=3
-vnoremap <leader>c :w !pbcopy<CR>:silent
+vnoremap <leader>c :w !pbcopy<CR>:silent<CR>
 " }}}
 
 " git (fugitive) settings {{{
