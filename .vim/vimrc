@@ -101,7 +101,10 @@ map <leader>q gwip
 set listchars=tab:▸\ ,eol:¬
 " Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
-" Color scheme (terminal)
+" Colors
+" https://github.com/vim/vim/issues/3608#issuecomment-438487463
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set t_Co=256
 set background=dark
 set termguicolors
