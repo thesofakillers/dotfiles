@@ -28,6 +28,7 @@ Plug 'neoclide/jsonc.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'gisphm/vim-gitignore'
 Plug 'sheerun/vim-polyglot'
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 " }}}
 
