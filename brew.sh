@@ -22,6 +22,7 @@ brew install hugo
 brew install git-filter-repo
 brew install grip
 brew install ffmpeg
+brew install gnupg
 
 # Wait a bit before moving on...
 sleep 1
