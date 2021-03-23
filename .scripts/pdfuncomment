@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+usage="$(basename "$0") [-h] [-i path/to/input.pdf] 
+
+Remove comments and annotations from pdf files
+Outputs to stdout, so to save to a file, simply append '> path/to/output.pdf'
+
+where:
+    -h | --help     show this help text
+    -i | --input    path to input pdf"
+
+# handle no passed args
+if [[ $# == 0 ]]; then
+  echo "$usage"
+  exit
+fi
+
+PARAMS=""
+while (("$#")); do
+  case "$1" in
+    -h | --help)
+      echo "$usage"
+      shift
+      exit
+      ;;
+    -i | --input)
+      if [ -n "$2" ] && [ ${2:0:1} != "-" ]; then
+        INPUT_FILE=$2
+        shift 2
+      else
+        echo "Error: Argument for $1 is missing" >&2
+        exit 1
+      fi
+      ;;
+    -* | --*=) # unsupported flags
+      echo "Error: Unsupported flag $1" >&2
+      exit 1
+      ;;
+    *) # preserve positional arguments
+      PARAMS="$PARAMS $1"
+      shift
+      ;;
+  esac
+done
+# set positional arguments in their proper place
+eval set -- "$PARAMS"
+
+pdftk "$INPUT_FILE" output - uncompress \
+  | LANG=C LC_CTYPE=C sed '/^\/Annots/d' \
+  | pdftk - output - compress
