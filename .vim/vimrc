@@ -134,6 +134,8 @@ set statusline+=%=%{FugitiveStatusline()}
 set statusline+=\ %{coc#status()} 
 set pyxversion=3
 vnoremap <leader>c :w !pbcopy<CR>:silent<CR>
+" allow project-level vimrc
+set exrc
 " }}}
 
 " git (fugitive) settings {{{
