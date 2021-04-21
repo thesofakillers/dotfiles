@@ -36,6 +36,7 @@ brew install --cask middleclick
 brew install --cask rectangle
 brew install --cask spotmenu
 brew install --cask basictex
+brew install --cask stretchly
 
 # the end
 echo "Success! Brew cask packages are installed."
