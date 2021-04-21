@@ -1,9 +1,9 @@
 # {{{ sourcing
 # Prompt
 [[ -f "$HOME/.bash_prompt" ]] && source "$HOME/.bash_prompt"
-# Secrets 
+# Secrets
 [[ -f "$HOME/.secrets" ]] && source "$HOME/.secrets"
-# Installs (conda, rbenv, fzf, etc) 
+# Installs (conda, rbenv, fzf, etc)
 [[ -f "$HOME/.installs" ]] && source "$HOME/.installs"
 # My own scripts
 [[ -f "$HOME/.bash_scripts" ]] && source "$HOME/.bash_scripts"
@@ -13,6 +13,9 @@
 # Larger bash history (default is 500)
 export HISTFILESIZE=10000
 export HISTSIZE=10000
+# UTF locale settings
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
