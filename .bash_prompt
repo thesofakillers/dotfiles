@@ -44,6 +44,9 @@ esac
 
 if [[ "$machine" == "Mac" ]]; then
   export LSCOLORS=exfxfeaeBxxehehbadacea
-else
+elif [[ "$machine" == "Linux" ]]; then
+  alias ls='ls --color=auto'
   export LS_COLORS='di=34:ln=35:so=35;44:pi=30;44:ex=1;31:bd=0;44:cd=37;44:su=37;41:sg=30;43:tw=30;42:ow=34;40'
+else
+  echo "terminal colors not properly defined. see ~/.bash_prompt"
 fi
