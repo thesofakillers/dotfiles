@@ -136,6 +136,8 @@ set pyxversion=3
 vnoremap <leader>c "+y<CR>
 " allow project-level vimrc
 set exrc
+" clear last search highlighting
+nmap <silent><leader>/ :let @/ = ""<CR>
 " }}}
 
 " git (fugitive) settings {{{
