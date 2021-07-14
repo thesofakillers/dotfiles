@@ -23,6 +23,7 @@ brew install git-filter-repo
 brew install grip
 brew install ffmpeg
 brew install gnupg
+brew install youtube-dl
 
 # Wait a bit before moving on...
 sleep 1
