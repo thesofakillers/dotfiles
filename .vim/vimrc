@@ -29,6 +29,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'gisphm/vim-gitignore'
 Plug 'sheerun/vim-polyglot'
 Plug 'voldikss/vim-floaterm'
+Plug 'justinmk/vim-gtfo'
 call plug#end()
 " }}}
 
