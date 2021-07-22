@@ -92,7 +92,7 @@ set incsearch
 set ignorecase
 set smartcase
 set showmatch
-map <leader><space> :let @/=''<cr> " clear search
+map <silent><leader><space> :let @/=''<cr> " clear search
 " Spelling
 set spell spelllang=en,it
 set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.vim/spell/it.utf-8.add
@@ -137,8 +137,6 @@ set pyxversion=3
 vnoremap <leader>c "+y<CR>
 " allow project-level vimrc
 set exrc
-" clear last search highlighting
-nmap <silent><leader>/ :let @/ = ""<CR>
 " }}}
 
 " git (fugitive) settings {{{
