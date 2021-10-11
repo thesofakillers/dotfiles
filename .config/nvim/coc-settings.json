@@ -1,14 +1,57 @@
 {
   "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck"
+    "sh": "shellcheck",
+    "python": "pylint"
+  },
+  "diagnostic-languageserver.linters": {
+    "pylint": {
+      "sourceName": "pylint",
+      "command": "pylint",
+      "args": [
+        "--enable",
+        "unused-import",
+        "--output-format",
+        "text",
+        "--score",
+        "no",
+        "--msg-template",
+        "'{line}:{column}:{category}:{msg} ({msg_id}:{symbol})'",
+        "%file"
+      ],
+      "formatPattern": [
+        "^(\\d+?):(\\d+?):([a-z]+?):(.*)$",
+        {
+          "line": 1,
+          "column": 2,
+          "security": 3,
+          "message": 4
+        }
+      ],
+      "rootPatterns": [".git", "pyproject.toml", "setup.py"],
+      "securities": {
+        "informational": "hint",
+        "refactor": "info",
+        "convention": "info",
+        "warning": "warning",
+        "error": "error",
+        "fatal": "error"
+      },
+      "offsetColumn": 1,
+      "formatLines": 1
+    }
   },
   "diagnostic-languageserver.formatFiletypes": {
-    "sh": "shfmt"
+    "sh": "shfmt",
+    "python": "black"
   },
   "diagnostic-languageserver.formatters": {
     "shfmt": {
       "command": "shfmt",
       "args": ["-i", "2", "-bn", "-ci", "-sr"]
+    },
+    "black": {
+      "command": "black",
+      "args": ["--quiet", "-"]
     }
   },
   "coc.preferences.colorSupport": false,
@@ -21,19 +64,7 @@
   "typescript.suggest.completeFunctionCalls": true,
   "javascript.suggest.completeFunctionCalls": true,
   "json.format.enable": true,
-  "python.analysis.diagnosticEnabled": true,
-  "python.linting.enabled": true,
-  "python.linting.pylintEnabled": true,
-  "python.linting.pylintArgs": ["--enable=unused-import"],
-  "python.jediEnabled": false,
-  "python.formatting.provider": "black",
   "eslint.autoFixOnSave": true,
-  "eslint.filetypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
   "prettier.disableSuccessMessage": true,
   "prettier.proseWrap": "always",
   "suggest.noselect": false,
