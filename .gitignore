@@ -4,6 +4,8 @@
 .vim/plugged/
 .vim/view/
 .tmux/
+.config/github-copilot/hosts.json
+.config/nvim/pack/
 .config/configstore/
 .config/menus/
 .config/gh/
