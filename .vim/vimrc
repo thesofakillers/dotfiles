@@ -169,7 +169,8 @@ vmap <leader>ww g<C-g>2gs
 "     {{{ vim-markdown settings
 let g:vim_markdown_frontmatter = 1
 let g:vim_markdown_toml_frontmatter = 1
-let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_auto_insert_bullets = 1
 let g:vim_markdown_folding_level = 2
 let g:vim_markdown_strikethrough = 0
 let g:vim_markdown_math = 1
