@@ -25,6 +25,7 @@ brew install ffmpeg
 brew install gnupg
 brew install youtube-dl
 brew install diff-pdf
+brew install wget
 
 # Wait a bit before moving on...
 sleep 1
