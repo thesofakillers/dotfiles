@@ -218,3 +218,8 @@ ReLU
 tanh
 Approximators
 expressivity
+nomial
+Tristimulus
+PCA
+PPCA
+reparametrization
