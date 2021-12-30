@@ -30,7 +30,6 @@ Plug 'gisphm/vim-gitignore'
 Plug 'sheerun/vim-polyglot'
 Plug 'voldikss/vim-floaterm'
 Plug 'justinmk/vim-gtfo'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 call plug#end()
 " }}}
@@ -94,17 +93,12 @@ set incsearch
 set ignorecase
 set smartcase
 set showmatch
-map <silent><leader><space> :let @/=''<cr> " clear search
 " Spelling
 set spell spelllang=en,it
 set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.vim/spell/it.utf-8.add
 set spellsuggest=fast
-" Formatting
-map <leader>q gwip
 " Visualize tabs and newlines
 set listchars=tab:▸\ ,eol:¬
-" Or use your leader key + l to toggle on/off
-map <leader>l :set list!<CR> " Toggle tabs and EOL
 " Colors
 " https://github.com/vim/vim/issues/3608#issuecomment-438487463
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -136,13 +130,31 @@ set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline+=%=%{FugitiveStatusline()}
 set statusline+=\ %{coc#status()} 
 set pyxversion=3
-vnoremap <leader>c "+y<CR>
 " allow project-level vimrc
 set exrc
 " }}}
 
+" custom leader mappings {{{
+" copy to selection to clipboard
+vnoremap <leader>c "+y<CR>
+" use leader key + l to toggle on/off tab/space visualization
+map <leader>l :set list!<CR> " Toggle tabs and EOL
+" clear current search
+map <silent><leader><space> :let @/=''<cr> " clear search
+" Formatting
+map <leader>q gwip
+" yank till end of line
+nnoremap <leader>yend yg_
+" yank till beginning of line
+nnoremap <leader>ybeg y^
+" visual select till end of line
+nnoremap <leader>vend vg_
+" visual select till beginning of line
+nnoremap <leader>vbeg v^
+" }}}
+
 " git (fugitive) settings {{{
-nmap <silent><leader>gg :Gblame<CR>
+nmap <silent><leader>gg :Git blame<CR>
 " https://github.com/tpope/vim-fugitive/issues/1387#issuecomment-611313792
 nmap <leader>gp :0,3Git blame<CR>
 " }}}
