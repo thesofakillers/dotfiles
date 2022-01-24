@@ -24,13 +24,14 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mhinz/vim-signify'
 Plug 'ptzz/lf.vim'
 Plug 'rbgrouleff/bclose.vim'
-Plug 'neoclide/jsonc.vim'
+Plug 'kevinoid/vim-jsonc'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'gisphm/vim-gitignore'
 Plug 'sheerun/vim-polyglot'
 Plug 'voldikss/vim-floaterm'
 Plug 'justinmk/vim-gtfo'
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
+Plug 'zivyangll/git-blame.vim'
 call plug#end()
 " }}}
 
@@ -153,10 +154,12 @@ nnoremap <leader>vend vg_
 nnoremap <leader>vbeg v^
 " }}}
 
-" git (fugitive) settings {{{
-nmap <silent><leader>gg :Git blame<CR>
+" git settings {{{
+nmap <silent><leader>gb :Git blame<CR>
 " https://github.com/tpope/vim-fugitive/issues/1387#issuecomment-611313792
 nmap <leader>gp :0,3Git blame<CR>
+" status bar git blame
+nnoremap <Leader>gg :<C-u>call gitblame#echo()<CR>
 " }}}
 
 " {{{ python settings
