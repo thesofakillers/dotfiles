@@ -286,14 +286,6 @@ map <leader>ff :Lf<CR>
 set updatetime=100
 " }}}
 
-" autosave settings {{{
-let g:auto_save = 0
-augroup ft_markdown
-  au!
-  au FileType tex let b:auto_save = 1
-augroup END:
-" }}}
-
 " {{{ firenvim settings
 let g:firenvim_config = { 
     \ 'globalSettings': {
