@@ -3,10 +3,11 @@ echo "Installing additional packages. Make sure this is running towards the end
 of setup"
 
 # list install commands
-# CPAN Perl modules
+# CPAN Perl modules, necessary for some latex, such as latexindent
 sudo cpan Log::Log4per
 sudo cpan YAML::Tiny
 sudo cpan File::HomeDir
+sudo cpan Unicode::GCString
 # tex live package manager
 sudo tlmgr update --self
 sudo tlmgr install latexmk
