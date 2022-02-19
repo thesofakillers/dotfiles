@@ -16,6 +16,8 @@ echo "Installing global npm packages..."
 npm install -g neovim
 npm install -g terminalizer
 npm install -g git-mob
+npm install -g create-web-ext
+npm install -g web-ext
 
 # the end
 echo "Success! Node setup complete."
