@@ -287,7 +287,7 @@ set updatetime=100
 " }}}
 
 " {{{ firenvim settings
-" local config
+" local config {{{
 let g:firenvim_config = { 
     \ 'globalSettings': {
         \ 'alt': 'all',
@@ -298,15 +298,24 @@ let g:firenvim_config = {
         \ },
     \ }
 \ }
-" for copy pasting into firenvim, 
-" see https://github.com/glacambre/firenvim/issues/551#issuecomment-731644525
+" }}}
+
 if exists('g:started_by_firenvim')
+  " for copy pasting into firenvim, {{{
+  " see https://github.com/glacambre/firenvim/issues/551#issuecomment-731644525
   tmap <D-v> <C-w>"+
   nnoremap <D-v> "+p
   vnoremap <D-v> "+p
   inoremap <D-v> <C-R><C-O>+
   cnoremap <D-v> <C-R><C-O>+
+  " }}}
+  " for resizing fonts {{{
+  " see https://github.com/glacambre/firenvim/issues/972#issuecomment-1046244324
+  nnoremap <leader>font :set guifont=Monaco:h18<CR>
+  nnoremap <leader>dfont :set guifont=Monaco:h9<CR>
+  " }}}
 endif
+
 " }}}
 
 " more complex settings {{{ 
