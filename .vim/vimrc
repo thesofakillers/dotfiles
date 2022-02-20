@@ -287,20 +287,26 @@ set updatetime=100
 " }}}
 
 " {{{ firenvim settings
+" local config
 let g:firenvim_config = { 
     \ 'globalSettings': {
         \ 'alt': 'all',
     \  },
     \ 'localSettings': {
         \ '.*': {
-            \ 'cmdline': 'neovim',
-            \ 'content': 'text',
-            \ 'priority': 0,
-            \ 'selector': 'textarea',
             \ 'takeover': 'never',
         \ },
     \ }
 \ }
+" for copy pasting into firenvim, 
+" see https://github.com/glacambre/firenvim/issues/551#issuecomment-731644525
+if exists('g:started_by_firenvim')
+  tmap <D-v> <C-w>"+
+  nnoremap <D-v> "+p
+  vnoremap <D-v> "+p
+  inoremap <D-v> <C-R><C-O>+
+  cnoremap <D-v> <C-R><C-O>+
+endif
 " }}}
 
 " more complex settings {{{ 
