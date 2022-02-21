@@ -1,0 +1,23 @@
+specialBeginEnd:
+    specialBeforeCommand: 1
+    If:
+        begin: '\\If'
+        middle: '\\ElsIf'
+        end: '\\EndIf'
+        lookForThis: 1
+    For:
+        begin: '\\For'
+        end: '\\EndFor'
+        lookForThis: 1
+    While:
+        begin: '\\While'
+        end: '\\EndWhile'
+        lookForThis: 1
+    Procedure:
+        begin: '\\Procedure'
+        end: '\\EndProcedure'
+        lookForThis: 1
+    Function:
+        begin: '\\Function'
+        end: '\\EndFunction'
+        lookForThis: 1

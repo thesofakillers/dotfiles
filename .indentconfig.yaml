@@ -1,0 +1,6 @@
+# Paths to user settings for latexindent.pl
+#
+# see https://latexindentpl.readthedocs.io/en/latest/sec-indent-config-and-settings.html#lst-indentconfig
+
+paths:
+  - /Users/thesofakillers/.config/latexindent/config.yaml
