@@ -33,6 +33,7 @@ Plug 'justinmk/vim-gtfo'
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 Plug 'zivyangll/git-blame.vim'
 Plug 'glacambre/firenvim'
+Plug 'lervag/vimtex'
 call plug#end()
 " }}}
 
@@ -215,6 +216,8 @@ augroup WrapLineInTeXFile
     autocmd FileType tex setlocal colorcolumn=100
 augroup END
 "   }}}
+" folding
+let g:vimtex_fold_enabled = 1
 " }}}
 
 " vim-autoformat settings {{{
