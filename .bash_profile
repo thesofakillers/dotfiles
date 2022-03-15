@@ -23,3 +23,8 @@ set -o vi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 # }}}
+
+export XALT_EXECUTABLE_TRACKING=no
+
+alias sqp='squeue -p gpu_shared_course'
+alias squ='squeue -u $USER'

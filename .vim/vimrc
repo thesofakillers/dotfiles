@@ -30,7 +30,6 @@ Plug 'gisphm/vim-gitignore'
 Plug 'sheerun/vim-polyglot'
 Plug 'voldikss/vim-floaterm'
 Plug 'justinmk/vim-gtfo'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 call plug#end()
 " }}}
@@ -208,6 +207,8 @@ let g:autoformat_remove_trailing_spaces = 0
 " }}}
 
 "coc settings {{{
+let g:coc_start_at_startup = v:false
+let g:coc_disable_startup_warning = 1
 " language options{{{
 " python interpreter selectioan (conda) {{{
 " https://github.com/neoclide/coc-python/issues/55#issuecomment-617499047
