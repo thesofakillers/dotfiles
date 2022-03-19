@@ -18,5 +18,6 @@ sudo tlmgr install titling
 sudo tlmgr install titlesec
 sudo tlmgr install biber
 sudo tlmgr install biblatex
+sudo tlmgr install tcolorbox
 
 echo "Success! Installation of additional programs is complete."
