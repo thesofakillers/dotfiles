@@ -16,6 +16,7 @@ node_modules/
 .config/coc/commands
 .config/coc/snippets-mru
 .config/coc/lists
+.config/coc/suggest.txt
 .config/coc/extensions/coc-python-data
 .config/coc/extensions/coc-texlab-data
 .config/coc/extensions/db.json
