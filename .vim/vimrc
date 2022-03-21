@@ -34,6 +34,7 @@ Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build'
 Plug 'zivyangll/git-blame.vim'
 Plug 'glacambre/firenvim'
 Plug 'lervag/vimtex'
+Plug 'rkaminsk/vim-syntax-clingo'
 call plug#end()
 " }}}
 
