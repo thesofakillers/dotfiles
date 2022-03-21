@@ -9,7 +9,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive' 
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -132,7 +132,7 @@ augroup END
 " statusline
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline+=%=%{FugitiveStatusline()}
-set statusline+=\ %{coc#status()} 
+set statusline+=\ %{coc#status()}
 set pyxversion=3
 " allow project-level vimrc
 set exrc
@@ -155,6 +155,8 @@ nnoremap <leader>ybeg y^
 nnoremap <leader>vend vg_
 " visual select till beginning of line
 nnoremap <leader>vbeg v^
+" get rid of trailing whitespace
+nnoremap <leader>ws :%s/\s\+$//e<CR>
 " }}}
 
 " git settings {{{
@@ -175,13 +177,13 @@ au BufRead,BufNewFile *.py setlocal colorcolumn=88
 " }}}
 
 " {{{ json settings
-autocmd BufRead,BufNewFile   *.json setlocal foldmethod=syntax 
+autocmd BufRead,BufNewFile   *.json setlocal foldmethod=syntax
 " }}}
 
 " {{{ writing settings
 "   {{{ miscellaneous settings
 "   get selection word count
-vmap <leader>ww g<C-g>2gs
+vmap <leader>wc g<C-g>2gs
 "   }}}
 "   {{{ markdown settings
 "     {{{ vim-markdown settings
@@ -195,18 +197,18 @@ let g:vim_markdown_math = 1
 "     }}}
 
 "     {{{ useful pandoc shortcuts
-" compile to pdf 
-autocmd FileType markdown nnoremap <buffer> <leader>b :w<CR>:silent 
-      \ !pandoc <C-r>=expand('%:r')<CR>.md --shift-heading-level-by=-1 -F 
+" compile to pdf
+autocmd FileType markdown nnoremap <buffer> <leader>b :w<CR>:silent
+      \ !pandoc <C-r>=expand('%:r')<CR>.md --shift-heading-level-by=-1 -F
       \ pandoc-crossref -C -o <C-r>=expand('%:r')<CR>.pdf<CR>
 " get word count
-autocmd FileType markdown nnoremap <buffer> <leader>ww :w<CR> 
+autocmd FileType markdown nnoremap <buffer> <leader>ww :w<CR>
       \ :!pandoc --lua-filter wordcount.lua <C-r>=expand('%:r')<CR>.md<CR>
 "     }}}
 "   }}}
 
 "   {{{ LaTeX settings
-" building 
+" building
 autocmd FileType tex nnoremap <buffer> <leader>b :exe 'CocCommand latex.Build'<CR>
 " forward search
 autocmd FileType tex nnoremap <buffer> <leader>fs :w<CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline <C-r>=line('.')<CR> %<.pdf<CR>
@@ -249,7 +251,7 @@ nmap <silent><leader>gr <Plug>(coc-references)
 " navigate errors
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-" show diagnostics 
+" show diagnostics
 nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
 " code actions (like auto import fix)
 nmap <leader>do <Plug>(coc-codeaction)
@@ -292,7 +294,7 @@ set updatetime=100
 
 " {{{ firenvim settings
 " local config {{{
-let g:firenvim_config = { 
+let g:firenvim_config = {
     \ 'globalSettings': {
         \ 'alt': 'all',
     \  },
@@ -322,7 +324,7 @@ endif
 
 " }}}
 
-" more complex settings {{{ 
+" more complex settings {{{
 
 " Triger `autoread` when files changes on disk
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
