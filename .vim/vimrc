@@ -105,6 +105,7 @@ set spellsuggest=fast
 " Visualize tabs and newlines
 set listchars=tab:▸\ ,eol:¬
 " Colors
+set background=dark
 " https://github.com/vim/vim/issues/3608#issuecomment-438487463
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
@@ -233,6 +234,8 @@ let g:autoformat_remove_trailing_spaces = 0
 " }}}
 
 "coc settings {{{
+let g:coc_disable_startup_warning = 1
+let g:coc_start_at_startup = v:false
 " language options{{{
 " python interpreter selectioan (conda) {{{
 " https://github.com/neoclide/coc-python/issues/55#issuecomment-617499047
