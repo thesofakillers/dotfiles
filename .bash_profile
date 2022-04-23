@@ -38,3 +38,9 @@ function homedisplay() {
     "id:0C813C86-6289-1EFA-29DB-4AC73278DA9E res:1440x900 color_depth:8 scaling:on origin:(-1440,0) degree:0"
 }
 # }}}
+
+# {{{ aliases
+# ls --group-directories-first on mac
+# https://unix.stackexchange.com/a/581394/376432
+alias ll='ls -lh | sort -r | awk '\''NF==9 { if ($1~/^d/) { printf $1 "/" $2 "/" $3 "/" $4 "/" $5 "/" $6 " " $7 "/" $8 " " "\033[1;34m" $9 "\033[0m" "\n" } else { printf $1 "/" $2 "/" $3 "/" $4 "/" $5 "/" $6 " " $7 "/" $8 " " "\033[1;32m" $9 "\033[0m" "\n" } }'\'' | column -t -s"/"'
+# }}}
