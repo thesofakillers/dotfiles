@@ -3,7 +3,8 @@
     "default": true,
     "MD024": {
       "siblings_only": true
-    }
+    },
+    "MD004": false
   },
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck",
