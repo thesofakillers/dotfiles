@@ -19,5 +19,14 @@ sudo tlmgr install titlesec
 sudo tlmgr install biber
 sudo tlmgr install biblatex
 sudo tlmgr install tcolorbox
+sudo tlmgr install marginnote
+sudo tlmgr install csquotes
+sudo tlmgr install preprint
+sudo tlmgr install environ
+sudo tlmgr install todonotes
+sudo tlmgr install units
+sudo tlmgr install multirow
+sudo tlmgr install wrapfig
+sudo tlmgr install appendix
 
 echo "Success! Installation of additional programs is complete."
