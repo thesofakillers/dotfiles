@@ -36,6 +36,7 @@ Plug 'glacambre/firenvim'
 Plug 'lervag/vimtex'
 Plug 'rkaminsk/vim-syntax-clingo'
 Plug 'ggandor/lightspeed.nvim'
+Plug 'github/copilot.vim'
 call plug#end()
 " }}}
 
@@ -157,7 +158,8 @@ nnoremap <leader>vend vg_
 nnoremap <leader>vbeg v^
 " get rid of trailing whitespace
 nnoremap <leader>ws :%s/\s\+$//e<CR>
-" dark mode and light mode
+" dark mode and light mode, default light mode
+set background=light
 nnoremap <leader>dm :set background=dark<CR>
 nnoremap <leader>lm :set background=light<CR>
 " }}}
