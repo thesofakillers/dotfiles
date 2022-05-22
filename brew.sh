@@ -43,6 +43,7 @@ brew install --cask spotmenu
 brew install --cask basictex
 brew install --cask stretchly
 brew install --cask licecap
+brew install --cask latexit
 
 # the end
 echo "Success! Brew cask packages are installed."
