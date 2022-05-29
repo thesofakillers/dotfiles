@@ -28,5 +28,6 @@ sudo tlmgr install units
 sudo tlmgr install multirow
 sudo tlmgr install wrapfig
 sudo tlmgr install appendix
+sudo tlmgr install collection-fontsrecommended
 
 echo "Success! Installation of additional programs is complete."
