@@ -29,5 +29,7 @@ sudo tlmgr install multirow
 sudo tlmgr install wrapfig
 sudo tlmgr install appendix
 sudo tlmgr install collection-fontsrecommended
+sudo tlmgr install pgfplots
+sudo tlmgr install preview
 
 echo "Success! Installation of additional programs is complete."
