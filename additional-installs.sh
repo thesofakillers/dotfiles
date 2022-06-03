@@ -31,5 +31,6 @@ sudo tlmgr install appendix
 sudo tlmgr install collection-fontsrecommended
 sudo tlmgr install pgfplots
 sudo tlmgr install preview
+sudo tlmgr install standalone
 
 echo "Success! Installation of additional programs is complete."
