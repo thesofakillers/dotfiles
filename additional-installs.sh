@@ -32,5 +32,7 @@ sudo tlmgr install collection-fontsrecommended
 sudo tlmgr install pgfplots
 sudo tlmgr install preview
 sudo tlmgr install standalone
+sudo tlmgr install type1cm
+sudo tlmgr install dvipng
 
 echo "Success! Installation of additional programs is complete."
