@@ -32,11 +32,14 @@ Plug 'voldikss/vim-floaterm'
 Plug 'justinmk/vim-gtfo'
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 Plug 'zivyangll/git-blame.vim'
-Plug 'glacambre/firenvim'
 Plug 'lervag/vimtex'
 Plug 'rkaminsk/vim-syntax-clingo'
 Plug 'ggandor/lightspeed.nvim'
 Plug 'github/copilot.vim'
+" NeoVim-only plug-ins
+if has('nvim')
+  Plug 'glacambre/firenvim'
+endif
 call plug#end()
 " }}}
 
