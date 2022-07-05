@@ -4,7 +4,6 @@
 "Load plugins here (vim-plug or pathogen or vundle)
 call plug#begin('~/.vim/plugged')
 Plug 'gruvbox-community/gruvbox'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
@@ -39,6 +38,7 @@ Plug 'github/copilot.vim'
 " NeoVim-only plug-ins
 if has('nvim')
   Plug 'glacambre/firenvim'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
 call plug#end()
 " }}}
@@ -136,7 +136,6 @@ augroup END
 " statusline
 set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 set statusline+=%=%{FugitiveStatusline()}
-set statusline+=\ %{coc#status()}
 set pyxversion=3
 " allow project-level vimrc
 set exrc
@@ -238,50 +237,6 @@ let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 " }}}
 
-"coc settings {{{
-" language options{{{
-" python interpreter selectioan (conda) {{{
-" https://github.com/neoclide/coc-python/issues/55#issuecomment-617499047
-if $CONDA_PREFIX == ""
-  let s:current_python_path=$CONDA_PYTHON_EXE
-else
-  let s:current_python_path=$CONDA_PREFIX.'/bin/python'
-endif
-call coc#config('python', {'pythonPath': s:current_python_path})
-" }}}
-" }}}
-" other options {{{
-" show documentation for the word under the cursor
-nnoremap <silent> K :call CocAction('doHover')<CR>
-" goto actions
-nmap <silent><leader>gd <Plug>(coc-definition)
-nmap <silent><leader>gy <Plug>(coc-type-definition)
-nmap <silent><leader>gr <Plug>(coc-references)
-" navigate errors
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-" show diagnostics
-nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
-" code actions (like auto import fix)
-nmap <leader>do <Plug>(coc-codeaction)
-" symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
-" formatting
-nmap <leader>af <Plug>(coc-format)
-" }}}
-" snippets {{{
-inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
-" }}}
-" {{{ completion sources
-let g:coc_sources_disable_map = {'markdown': ['around', 'buffer']}
-" }}}
-" highlighting {{{
-autocmd CursorHold * silent call CocActionAsync('highlight')
-highlight CocHighlightText ctermbg=DarkGray ctermfg=LightGrey guibg=#444444
-                                                            \ guifg=#bcbcbc
-" }}}
-" }}}
-
 " fzf settings {{{
 " don't search filenames, show preview
 command! -bang -nargs=* Rg
@@ -340,3 +295,54 @@ endif
 " https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
 autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
             \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+" }}}
+
+" neovim only {{{
+if has('nvim')
+"coc settings {{{
+" language options{{{
+" python interpreter selectioan (conda) {{{
+" https://github.com/neoclide/coc-python/issues/55#issuecomment-617499047
+if $CONDA_PREFIX == ""
+  let s:current_python_path=$CONDA_PYTHON_EXE
+else
+  let s:current_python_path=$CONDA_PREFIX.'/bin/python'
+endif
+call coc#config('python', {'pythonPath': s:current_python_path})
+" }}}
+" }}}
+" other options {{{
+" status line
+set statusline+=\ %{coc#status()}
+" show documentation for the word under the cursor
+nnoremap <silent> K :call CocAction('doHover')<CR>
+" goto actions
+nmap <silent><leader>gd <Plug>(coc-definition)
+nmap <silent><leader>gy <Plug>(coc-type-definition)
+nmap <silent><leader>gr <Plug>(coc-references)
+" navigate errors
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" show diagnostics
+nnoremap <silent> <space>d :<C-u>CocList diagnostics<cr>
+" code actions (like auto import fix)
+nmap <leader>do <Plug>(coc-codeaction)
+" symbol renaming
+nmap <leader>rn <Plug>(coc-rename)
+" formatting
+nmap <leader>af <Plug>(coc-format)
+" }}}
+" snippets {{{
+inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
+" }}}
+" {{{ completion sources
+let g:coc_sources_disable_map = {'markdown': ['around', 'buffer']}
+" }}}
+" highlighting {{{
+autocmd CursorHold * silent call CocActionAsync('highlight')
+highlight CocHighlightText ctermbg=DarkGray ctermfg=LightGrey guibg=#444444
+                                                            \ guifg=#bcbcbc
+" }}}
+" }}}
+endif
+" }}}
