@@ -1,4 +1,5 @@
 {
+  "texlab.build.executable": "pdflatex",
   "markdownlint.config": {
     "default": true,
     "MD024": {
