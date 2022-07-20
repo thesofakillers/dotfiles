@@ -41,3 +41,8 @@ export NVM_DIR="$HOME/.nvm"
 # {{{ LaTeX
 export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
 # }}}
+
+# {{{ gruvbox
+# https://github.com/morhetz/gruvbox/wiki/Terminal-specific#a-256-color-gruvbox-palette-shellscript
+source "~/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+# }}}
