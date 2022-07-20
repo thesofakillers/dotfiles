@@ -160,8 +160,8 @@ nnoremap <leader>vend vg_
 nnoremap <leader>vbeg v^
 " get rid of trailing whitespace
 nnoremap <leader>ws :%s/\s\+$//e<CR>
-" dark mode and light mode, default light mode
-set background=light
+" dark mode and light mode, default dark mode
+set background=dark
 nnoremap <leader>dm :set background=dark<CR>
 nnoremap <leader>lm :set background=light<CR>
 " }}}
