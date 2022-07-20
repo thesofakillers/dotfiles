@@ -29,16 +29,16 @@ Plug 'gisphm/vim-gitignore'
 Plug 'sheerun/vim-polyglot'
 Plug 'voldikss/vim-floaterm'
 Plug 'justinmk/vim-gtfo'
-Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 Plug 'zivyangll/git-blame.vim'
 Plug 'lervag/vimtex'
 Plug 'rkaminsk/vim-syntax-clingo'
 Plug 'ggandor/lightspeed.nvim'
-Plug 'github/copilot.vim'
 " NeoVim-only plug-ins
 if has('nvim')
   Plug 'glacambre/firenvim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
+  Plug 'github/copilot.vim'
 endif
 call plug#end()
 " }}}
@@ -160,8 +160,8 @@ nnoremap <leader>vend vg_
 nnoremap <leader>vbeg v^
 " get rid of trailing whitespace
 nnoremap <leader>ws :%s/\s\+$//e<CR>
-" dark mode and light mode, default light mode
-set background=light
+" dark mode and light mode, default dark mode
+set background=dark
 nnoremap <leader>dm :set background=dark<CR>
 nnoremap <leader>lm :set background=light<CR>
 " }}}
