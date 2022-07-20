@@ -44,5 +44,5 @@ export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PA
 
 # {{{ gruvbox
 # https://github.com/morhetz/gruvbox/wiki/Terminal-specific#a-256-color-gruvbox-palette-shellscript
-source "~/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 # }}}
