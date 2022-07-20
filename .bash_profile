@@ -7,6 +7,8 @@
 [[ -f "$HOME/.installs" ]] && source "$HOME/.installs"
 # My own scripts
 [[ -f "$HOME/.bash_scripts" ]] && source "$HOME/.bash_scripts"
+# If we're on an ssh server, ill move all the custom stuff here
+[[ -f "$HOME/.serverthings" ]] && source "$HOME/.serverthings"
 # }}}
 
 # {{{ general settings
