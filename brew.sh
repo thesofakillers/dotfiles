@@ -29,6 +29,7 @@ brew install wget
 brew install graphviz
 brew install git-lfs
 brew install rename
+brew install watchman
 
 # Wait a bit before moving on...
 sleep 1
