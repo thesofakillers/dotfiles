@@ -3,14 +3,14 @@
     "coc-diagnostic": ">=0.23.4",
     "coc-eslint": ">=1.5.8",
     "coc-highlight": ">=1.3.0",
-    "coc-jedi": ">=0.31.0",
-    "coc-json": ">=1.4.2",
-    "coc-markdownlint": ">=1.12.4",
+    "coc-json": ">=1.5.0",
+    "coc-markdownlint": ">=1.12.7",
     "coc-prettier": ">=9.3.1",
-    "coc-snippets": ">=3.0.14",
+    "coc-pyright": ">=1.1.265",
+    "coc-snippets": ">=3.1.0",
     "coc-texlab": ">=3.2.0",
     "coc-toml": ">=1.2.5",
-    "coc-tsserver": ">=1.10.5",
-    "coc-yaml": ">=1.7.5"
+    "coc-tsserver": ">=1.11.1",
+    "coc-yaml": ">=1.8.0"
   }
 }

@@ -8,52 +8,17 @@
     "MD004": false
   },
   "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck",
-    "python": "flake8"
-  },
-  "diagnostic-languageserver.linters": {
-    "flake8": {
-      "sourceName": "flake8",
-      "command": "flake8",
-      "debounce": 200,
-      "rootPatterns": [".git", "pyproject.toml", "setup.py"],
-      "args": ["--format=%(row)d,%(col)d,%(code).1s,%(code)s: %(text)s", "-"],
-      "offsetLine": 0,
-      "offsetColumn": 0,
-      "formatLines": 1,
-      "formatPattern": [
-        "(\\d+),(\\d+),([A-Z]),(.*)(\\r|\\n)*$",
-        {
-          "line": 1,
-          "column": 2,
-          "security": 3,
-          "message": 4
-        }
-      ],
-      "securities": {
-        "W": "info",
-        "E": "warning",
-        "F": "info",
-        "C": "info",
-        "N": "hint"
-      }
-    }
+    "sh": "shellcheck"
   },
   "diagnostic-languageserver.formatFiletypes": {
-    "sh": "shfmt",
-    "python": "black"
+    "sh": "shfmt"
   },
   "diagnostic-languageserver.formatters": {
     "shfmt": {
       "command": "shfmt",
       "args": ["-i", "2", "-bn", "-ci", "-sr"]
-    },
-    "black": {
-      "command": "black",
-      "args": ["--quiet", "-"]
     }
   },
-  "coc.preferences.colorSupport": false,
   "coc.preferences.formatOnSaveFiletypes": [
     "javascript",
     "javascriptreact",
@@ -64,7 +29,6 @@
   "javascript.suggest.completeFunctionCalls": true,
   "json.format.enable": true,
   "eslint.autoFixOnSave": true,
-  "prettier.disableSuccessMessage": true,
   "prettier.proseWrap": "always",
   "suggest.noselect": false,
   "snippets.extends": {
@@ -75,5 +39,8 @@
     "markdown": ["tex"]
   },
   "snippets.loadFromExtensions": true,
-  "coc.preferences.extensionUpdateCheck": "daily"
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "python.formatting.provider": "black",
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true
 }

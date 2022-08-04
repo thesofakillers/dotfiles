@@ -37,7 +37,6 @@ Plug 'ggandor/lightspeed.nvim'
 if has('nvim')
   Plug 'glacambre/firenvim'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
   Plug 'github/copilot.vim'
 endif
 call plug#end()
@@ -240,7 +239,7 @@ let g:autoformat_remove_trailing_spaces = 0
 " fzf settings {{{
 " don't search filenames, show preview
 command! -bang -nargs=* Rg
-    \ call fzf#vim#grep('rg --column --line-number --no-heading --color=always --smart-case '
+    \ call fzf#vim#grep('rg --column --hidden --line-number --no-heading --color=always --smart-case '
     \ . (len(<q-args>) > 0 ? <q-args> : '""'), 0,
     \ fzf#vim#with_preview({'options': ['--delimiter=:', '--nth=2..', '--layout=reverse', '--info=inline']}), <bang>0)
 " silver searcher with leader s
