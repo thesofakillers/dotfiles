@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# gets rid of all latex-adjacent files except .pdf, .tex, .cls, .sty and .bib
+
+rm *.aux *.bbl *.blg *.dvi *.log *.out *.toc *.lof *.lot *.idx *.ilg *.ind \
+    *.brf *.nav *.snm *.vrb *.synctex.gz
