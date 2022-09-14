@@ -215,7 +215,7 @@ autocmd FileType markdown nnoremap <buffer> <leader>ww :w<CR>
 
 "   {{{ LaTeX settings
 " building
-autocmd FileType tex nnoremap <buffer> <leader>b :exe 'CocCommand latex.Build'<CR>
+autocmd FileType tex nnoremap <buffer> <leader>b :w<CR> :exe 'CocCommand latex.Build'<CR>
 " forward search
 autocmd FileType tex nnoremap <buffer> <leader>fs :w<CR>:silent !/Applications/Skim.app/Contents/SharedSupport/displayline <C-r>=line('.')<CR> %<.pdf<CR>
 " linewrapping
