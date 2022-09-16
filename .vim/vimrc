@@ -170,6 +170,8 @@ nmap <silent><leader>gb :Git blame<CR>
 nmap <leader>gp :0,3Git blame<CR>
 " status bar git blame
 nnoremap <Leader>gg :<C-u>call gitblame#echo()<CR>
+" Git diff
+nnoremap <leader>diff :Gdiff<CR>
 " }}}
 
 " {{{ python settings
