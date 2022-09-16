@@ -105,7 +105,7 @@ set spell spelllang=en,it
 set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.vim/spell/it.utf-8.add
 set spellsuggest=fast
 " Visualize tabs and newlines
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬,trail:~,extends:>,precedes:<,space:␣
 " Colors
 " https://github.com/vim/vim/issues/3608#issuecomment-438487463
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
