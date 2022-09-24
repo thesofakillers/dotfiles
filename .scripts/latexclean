@@ -2,5 +2,5 @@
 
 # gets rid of all latex-adjacent files except .pdf, .tex, .cls, .sty and .bib
 
-rm *.aux *.bbl *.blg *.dvi *.log *.out *.toc *.lof *.lot *.idx *.ilg *.ind \
-    *.brf *.nav *.snm *.vrb *.synctex.gz *.fdb_latexmk *.fls
+rm -f *.aux *.bbl *.blg *.dvi *.log *.out *.toc *.lof *.lot *.idx *.ilg *.ind \
+  *.brf *.nav *.snm *.vrb *.synctex.gz *.fdb_latexmk *.fls
