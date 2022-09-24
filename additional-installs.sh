@@ -34,5 +34,6 @@ sudo tlmgr install preview
 sudo tlmgr install standalone
 sudo tlmgr install type1cm
 sudo tlmgr install dvipng
+sudo tlmgr install cancel
 
 echo "Success! Installation of additional programs is complete."
