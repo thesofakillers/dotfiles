@@ -1,5 +1,12 @@
 {
   "texlab.build.executable": "pdflatex",
+  "texlab.build.args": [
+    "--shell-escape",
+    "-pdf",
+    "-interaction=nonstopmode",
+    "-synctex=1",
+    "%f"
+  ],
   "markdownlint.config": {
     "default": true,
     "MD024": {
@@ -43,6 +50,7 @@
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": true,
+  "pyright.disableDiagnostics": true,
   "pyright.inlayHints.variableTypes": false,
   "pyright.inlayHints.functionReturnTypes": false
 }
