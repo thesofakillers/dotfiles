@@ -256,6 +256,12 @@ map <leader>ff :Lf<CR>
 set updatetime=100
 " }}}
 
+" {{{ copilot settings
+let g:copilot_filetypes = {
+      \ 'markdown': v:true,
+      \ }
+" }}}
+
 " more complex settings {{{
 
 " Triger `autoread` when files changes on disk
