@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # {{{ rbvenv
 eval "$(rbenv init -)"
 # }}}
@@ -45,4 +46,9 @@ export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PA
 # {{{ gruvbox
 # https://github.com/morhetz/gruvbox/wiki/Terminal-specific#a-256-color-gruvbox-palette-shellscript
 source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
+# }}}
+
+# {{{ go
+export GOPATH=/Users/$USER/go
+export PATH=$GOPATH/bin:$PATH
 # }}}
