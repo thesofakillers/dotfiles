@@ -32,11 +32,11 @@ Plug 'justinmk/vim-gtfo'
 Plug 'zivyangll/git-blame.vim'
 Plug 'lervag/vimtex'
 Plug 'rkaminsk/vim-syntax-clingo'
-Plug 'ggandor/lightspeed.nvim'
 " NeoVim-only plug-ins
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'github/copilot.vim'
+  Plug 'ggandor/lightspeed.nvim'
 endif
 call plug#end()
 " }}}

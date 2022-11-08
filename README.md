@@ -25,3 +25,8 @@ You may wish to run or at least to refer to the contents of
 - [additional-installs.sh](additional-installs.sh)
 - [mac_finish.sh](mac_finish.sh) to complete the setup with necessary programs
   and configuration.
+
+### tmux without root
+
+For installing tmux without needing root access, please refer to
+`tmux_local_install.sh`
