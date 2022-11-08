@@ -30,3 +30,8 @@ You may wish to run or at least to refer to the contents of
 
 For installing tmux without needing root access, please refer to
 `tmux_local_install.sh`
+
+### Servers and Custom environments
+
+For custom environments for which you do not wish to commit things, add any
+configuration to a file named `.serverthings` placed in the `$HOME` directory.
