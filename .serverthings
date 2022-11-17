@@ -1,7 +1,12 @@
 # {{{ aliases
 alias squ='squeue -u $USER'
 alias sqi='sacct --format JobID,JobName,State,Elapsed'
+alias sqp='squeue -p gpu,gpu_shared,gpu_titanrtx,gpu_titanrtx_shared'
 # }}}
+
+# {{{ path things (needed for e.g. for local non-sudo installs)
+export PATH=$HOME/local/bin:$PATH
+#
 
 # # {{{ if using linuxbrew
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -27,11 +32,3 @@ alias sqi='sacct --format JobID,JobName,State,Elapsed'
 # unset __conda_setup
 # # <<< conda initialize <<<
 # # }}}
-
-# {{{ das6
-[[ -f "$HOME/.das6" ]] && source "$HOME/.das6"
-# }}}
-
-# {{{ ilps
-[[ -f "$HOME/.ilps" ]] && source "$HOME/.ilps"
-# }}}
