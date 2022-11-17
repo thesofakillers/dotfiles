@@ -4,7 +4,8 @@
 # first activate the agent
 eval "$(ssh-agent -s)"
 
-# then iterate through ~/.ssh, adding each key
+# then iterate through ~/.ssh, ignoring *.pub, known_hosts and config
 for key in ~/.ssh/*; do
-    ssh-add $key
+    [[ $key == *.pub || $key == *known_hosts || $key == *config ]] && continue
+    echo $key
 done
