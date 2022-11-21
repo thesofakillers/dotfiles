@@ -2,6 +2,7 @@
 alias squ='squeue -u $USER'
 alias sqi='sacct --format JobID,JobName,State,Elapsed'
 alias sqp='squeue -p gpu,gpu_shared,gpu_titanrtx,gpu_titanrtx_shared'
+alias sqj="sacct --format JobID,JobName,State,Elapsed -j"
 # }}}
 
 # {{{ path things (needed for e.g. for local non-sudo installs)
