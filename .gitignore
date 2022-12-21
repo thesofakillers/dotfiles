@@ -1,3 +1,4 @@
+.config/wandb/
 *.swp
 .DS_Store
 .vim/.netrwhist
