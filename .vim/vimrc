@@ -229,6 +229,8 @@ augroup END
 "   }}}
 " folding
 let g:vimtex_fold_enabled = 1
+" change fold marker when latex file encountered
+autocmd FileType tex setlocal foldmarker=<<<,>>>
 " }}}
 
 " vim-autoformat settings {{{
