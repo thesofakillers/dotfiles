@@ -37,6 +37,7 @@
   "json.format.enable": true,
   "eslint.autoFixOnSave": true,
   "prettier.proseWrap": "always",
+  "prettier.useEditorConfig": false,
   "suggest.noselect": false,
   "snippets.extends": {
     "cpp": ["c"],
