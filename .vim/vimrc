@@ -32,6 +32,8 @@ Plug 'justinmk/vim-gtfo'
 Plug 'zivyangll/git-blame.vim'
 Plug 'lervag/vimtex'
 Plug 'rkaminsk/vim-syntax-clingo'
+Plug 'Konfekt/FastFold'
+
 " NeoVim-only plug-ins
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
