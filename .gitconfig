@@ -2,7 +2,7 @@
 [user]
 # Please adapt and uncomment the following lines:
  name = Giulio Starace 
-	email = <>
+	email = 26286291+thesofakillers@users.noreply.github.com
 [core]
 	excludesFile = ~/.gitignore
 	editor = vim
