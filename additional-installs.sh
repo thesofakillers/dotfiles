@@ -36,5 +36,6 @@ sudo tlmgr install type1cm
 sudo tlmgr install dvipng
 sudo tlmgr install cancel
 sudo tlmgr install texcount
+sudo tlmgr install mwe
 
 echo "Success! Installation of additional programs is complete."
