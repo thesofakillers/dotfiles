@@ -226,11 +226,13 @@ augroup WrapLineInTeXFile
     autocmd FileType tex setlocal textwidth=100
     autocmd FileType tex setlocal colorcolumn=100
 augroup END
-"   }}}
 " folding
 let g:vimtex_fold_enabled = 1
-" change fold marker when latex file encountered
-autocmd FileType tex setlocal foldmarker=<<<,>>>
+autocmd FileType tex setlocal foldmethod=expr
+autocmd FileType tex setlocal foldexpr=vimtex#fold#level(v:lnum)
+"
+" }}}
+
 " }}}
 
 " vim-autoformat settings {{{
