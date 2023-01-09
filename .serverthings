@@ -1,8 +1,9 @@
 # {{{ aliases
 alias squ='squeue -u $USER'
 alias sqi='sacct --format JobID,JobName,State,Elapsed'
-alias sqp='squeue -p gpu,gpu_shared,gpu_titanrtx,gpu_titanrtx_shared'
+alias sqp='squeue'
 alias sqj="sacct --format JobID,JobName,State,Elapsed -j"
+alias nvim="vim"
 # }}}
 
 # {{{ path things (needed for e.g. for local non-sudo installs)
