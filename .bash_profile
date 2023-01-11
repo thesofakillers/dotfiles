@@ -39,6 +39,11 @@ function homedisplay() {
     "id:1569F1F1-64A6-361E-D96F-D11BE9E8C97B res:1920x1080 hz:60 color_depth:8 scaling:off origin:(0,0) degree:0" \
     "id:0C813C86-6289-1EFA-29DB-4AC73278DA9E res:1440x900 color_depth:8 scaling:on origin:(-1440,0) degree:0"
 }
+
+# show sizes of directories https://stackoverflow.com/a/38032798/9889508
+function duls {
+    paste <( du -hs -- "$@" | cut -f1 ) <( ls -ld -- "$@" )
+}
 # }}}
 
 # {{{ aliases
