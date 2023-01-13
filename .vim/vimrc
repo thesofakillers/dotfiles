@@ -181,8 +181,8 @@ nnoremap <leader>diff :Gdiff<CR>
 let g:python_host_prog = '~/miniconda3/envs/neovim2/bin/python'
 let g:python3_host_prog = '~/miniconda3/envs/neovim3/bin/python'
 " black-style linewidth
-au BufRead,BufNewFile *.py setlocal textwidth=88
-au BufRead,BufNewFile *.py setlocal colorcolumn=88
+autocmd FileType python setlocal textwidth=88
+autocmd FileType python setlocal colorcolumn=88
 " }}}
 
 " {{{ json settings
