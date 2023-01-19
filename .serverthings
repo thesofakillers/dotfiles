@@ -34,7 +34,3 @@ export PATH=$HOME/local/bin:$PATH
 # unset __conda_setup
 # # <<< conda initialize <<<
 # # }}}
-
-# {{{ scratch dir
-export WANDB_CACHE_DIR=/scratch-shared/gstarace/.cache/wandb
-# }}}
