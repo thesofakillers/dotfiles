@@ -8,7 +8,7 @@ alias nvim="vim"
 
 # {{{ path things (needed for e.g. for local non-sudo installs)
 export PATH=$HOME/local/bin:$PATH
-#
+# }}}
 
 # # {{{ if using linuxbrew
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -34,3 +34,7 @@ export PATH=$HOME/local/bin:$PATH
 # unset __conda_setup
 # # <<< conda initialize <<<
 # # }}}
+
+# {{{ scratch dir
+export WANDB_CACHE_DIR=/scratch-shared/gstarace/.cache/wandb
+# }}}
