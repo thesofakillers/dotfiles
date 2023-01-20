@@ -1,9 +1,16 @@
-# {{{ aliases
+# {{{ aliases and helper functions
+  # {{{ aliases
 alias squ='squeue -u $USER'
 alias sqi='sacct --format JobID,JobName,State,Elapsed'
 alias sqp='squeue'
 alias sqj="sacct --format JobID,JobName,State,Elapsed -j"
 alias nvim="vim"
+  # }}} 
+  # {{{ functions
+sruni() {
+srun --partition=gpu --gres=gpu:1 --mem=$1 --ntasks=1 --cpus-per-task=18 --time=$2 --pty bash -i
+}
+  # }}}
 # }}}
 
 # {{{ path things (needed for e.g. for local non-sudo installs)
