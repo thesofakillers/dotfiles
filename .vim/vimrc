@@ -262,6 +262,15 @@ map <leader>ff :Lf<CR>
 set updatetime=100
 " }}}
 
+" {{{ window/split ettings.
+function! ResizeSplitToTextWidth()
+  let textwidth = &textwidth + 6
+  execute "normal ".textwidth."\<C-w>|"
+endfunction
+
+nmap <silent><leader>ww :call ResizeSplitToTextWidth()<CR>
+" }}}
+
 " {{{ copilot settings
 let g:copilot_filetypes = {
       \ 'markdown': v:true,
