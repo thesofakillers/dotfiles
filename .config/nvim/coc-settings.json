@@ -50,8 +50,9 @@
   "coc.preferences.extensionUpdateCheck": "daily",
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
-  "python.linting.flake8Enabled": true,
-  "pyright.disableDiagnostics": true,
+  "python.linting.flake8Enabled": false,
+  "pyright.disableDiagnostics": false,
+  "python.analysis.typeCheckingMode": "off",
   "pyright.inlayHints.variableTypes": false,
   "pyright.inlayHints.functionReturnTypes": false
 }
