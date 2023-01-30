@@ -4,33 +4,33 @@ brew update
 brew upgrade
 
 # Install packages
-brew install perl
-brew install git
-brew install fzf
-brew install lf
-brew install rbenv
-brew install ripgrep
-brew install tmux
-brew install neovim
-brew install pandoc
-brew install pandoc-crossref
-brew install tree
-brew install git-subrepo
-brew install shfmt
-brew install the_silver_searcher
-brew install hugo
-brew install git-filter-repo
-brew install grip
-brew install ffmpeg
-brew install gnupg
-brew install youtube-dl
-brew install diff-pdf
-brew install wget
-brew install graphviz
-brew install git-lfs
-brew install rename
-brew install watchman
-brew install pv
+brew install perl # scripting lang used by a lot of other packages
+brew install git # version control
+brew install fzf # fuzzy finder
+brew install lf # file explorer
+brew install rbenv # ruby environment manager
+brew install ripgrep # rg: file and file content search
+brew install tmux # terminal multiplexer
+brew install neovim # fork of vim
+brew install pandoc # ultimate markdown processor
+brew install pandoc-crossref # for making references to sections/figs in pandoc
+brew install tree # see tree structure of directories
+brew install git-subrepo # Git Submodule Alternative
+brew install shfmt # Autoformat shell script source code
+brew install the_silver_searcher # ag, file and file-content search
+brew install hugo # static site generator
+brew install git-filter-repo # Quickly rewrite git repository history
+brew install grip # Markdown previewer
+brew install ffmpeg # video and audio processor
+brew install gnupg # for PGP
+brew install youtube-dl # for downloading youtube videos
+brew install diff-pdf # for diffing pdfs
+brew install wget # for downloading files
+brew install graphviz # i think this was for pdf stuff
+brew install git-lfs # large files on git
+brew install rename # Perl-powered file rename script with many helpful built-ins
+brew install watchman # Watch files and take action when they change
+brew install pv # monitor progress of data through a pipe
 
 # Wait a bit before moving on...
 sleep 1
