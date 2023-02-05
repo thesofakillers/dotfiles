@@ -44,6 +44,12 @@ function homedisplay() {
 function duls {
     paste <( du -hs -- "$@" | cut -f1 ) <( ls -ld -- "$@" )
 }
+
+# touch all files in a directory recursively: https://askubuntu.com/a/580413/1003945
+function toucheverything() {
+      find "$1" -type f -exec touch {} +
+}
+
 # }}}
 
 # {{{ aliases
