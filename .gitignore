@@ -1,3 +1,4 @@
+.config/fontforge/
 .config/rclone/
 .config/wandb/
 *.swp
