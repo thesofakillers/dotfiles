@@ -37,5 +37,6 @@ sudo tlmgr install dvipng
 sudo tlmgr install cancel
 sudo tlmgr install texcount
 sudo tlmgr install mwe
+sudo tlmgr install subfiles
 
 echo "Success! Installation of additional programs is complete."
