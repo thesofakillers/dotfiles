@@ -1,5 +1,4 @@
 {
-  "texlab.build.executable": "pdflatex",
   "texlab.build.args": [
     "--shell-escape",
     "-pdf",
