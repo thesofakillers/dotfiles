@@ -9,6 +9,8 @@
 [[ -f "$HOME/.bash_scripts" ]] && source "$HOME/.bash_scripts"
 # If we're on an ssh server, ill move all the custom stuff here
 [[ -f "$HOME/.serverthings" ]] && source "$HOME/.serverthings"
+# finally, clean up, removing duplicates from PATH
+export PATH=$(echo $PATH | tr ':' '\n' | sort -u | tr '\n' ':')
 # }}}
 
 # {{{ general settings
