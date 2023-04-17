@@ -219,7 +219,7 @@ autocmd FileType markdown nnoremap <buffer> <leader>b :w<CR>:silent
       \ --highlight-style tango
       \ -F pandoc-crossref -C -o <C-r>=expand('%:r')<CR>.pdf<CR>
 " get word count
-autocmd FileType markdown nnoremap <buffer> <leader>ww :w<CR>
+autocmd FileType markdown nnoremap <buffer> <leader>wc :w<CR>
       \ :!pandoc --lua-filter wordcount.lua <C-r>=expand('%:r')<CR>.md<CR>
 "     }}}
 "   }}}
