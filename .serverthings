@@ -12,6 +12,10 @@ sruni() {
 srun --partition=gpu --gres=gpu:1 --mem=$1 --ntasks=1 --cpus-per-task=18 --time=$2 --pty bash -i
 }
 
+srunicpu() {
+srun --partition=thin --mem=$1 --ntasks=1 --cpus-per-task=18 --time=$2 --pty bash -i
+}
+
 # gets host name of job. Run with: job_hostname $JOB_ID
 job_hostname() {
 scontrol show job $1 | grep ' NodeList'
