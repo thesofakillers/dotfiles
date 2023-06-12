@@ -258,11 +258,14 @@ command! -bang -nargs=* Rg
     \ fzf#vim#with_preview({'options': ['--delimiter=:', '--nth=2..', '--layout=reverse', '--info=inline']}), <bang>0)
 " silver searcher with leader s
 nnoremap <leader>s :Rg<cr>
+" search for file names
+map <leader>ff :Files<CR>
 " }}}
 
 " lf settings {{{
 let g:lf_map_keys = 0
-map <leader>ff :Lf<CR>
+" leader shortcut
+map <leader>lf :Lf<CR>
 " }}}
 
 " {{{ vim-signify settings
