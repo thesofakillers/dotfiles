@@ -165,6 +165,8 @@ nnoremap <leader>ws :%s/\s\+$//e<CR>
 set background=dark
 nnoremap <leader>dm :set background=dark<CR>
 nnoremap <leader>lm :set background=light<CR>
+" toggle cursorcolumn
+nnoremap <leader>i :set cursorcolumn!<CR>
 " }}}
 
 " git settings {{{
