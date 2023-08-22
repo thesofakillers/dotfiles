@@ -196,6 +196,8 @@ autocmd BufRead,BufNewFile   *.json setlocal foldmethod=syntax
 "   {{{ miscellaneous settings
 "   get selection word count
 vmap <leader>wc g<C-g>2gs
+"   get selection character count
+vmap <leader>hc :<C-u>%s/\%V.//gn<CR>
 "   activate wrapping
 autocmd BufRead,BufNewFile *.md setlocal wrap
 autocmd BufRead,BufNewFile *.tex setlocal wrap
