@@ -48,10 +48,12 @@
   "snippets.loadFromExtensions": true,
   "coc.preferences.extensionUpdateCheck": "daily",
   "python.formatting.provider": "black",
+  "python.formatting.blackPath": "black",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": false,
   "pyright.disableDiagnostics": false,
   "python.analysis.typeCheckingMode": "off",
   "pyright.inlayHints.variableTypes": false,
-  "pyright.inlayHints.functionReturnTypes": false
+  "pyright.inlayHints.functionReturnTypes": false,
+  "snippets.ultisnips.pythonPrompt": false
 }
