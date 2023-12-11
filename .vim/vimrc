@@ -3,7 +3,7 @@
 
 "Load plugins here (vim-plug or pathogen or vundle)
 call plug#begin('~/.vim/plugged')
-Plug 'gruvbox-community/gruvbox', {'commit':'2b5b1f7'}
+Plug 'gruvbox-community/gruvbox'
 Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
