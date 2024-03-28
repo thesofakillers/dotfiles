@@ -186,6 +186,38 @@ let g:python3_host_prog = '~/miniconda3/envs/neovim3/bin/python'
 " black-style linewidth
 autocmd FileType python setlocal textwidth=88
 autocmd FileType python setlocal colorcolumn=88
+" determine textwidth from pyproject.toml black config
+function! SetTextWidthFromPyproject()
+    let pyproject_path = findfile('pyproject.toml', '.;')
+    if empty(pyproject_path)
+        " pyproject.toml not found, silently using default settings
+        return
+    endif
+
+    let content = readfile(pyproject_path)
+    let line_length = 0
+    let in_black_section = 0
+    for line in content
+        if line =~ '\[tool.black\]'
+            let in_black_section = 1
+        elseif in_black_section && line =~ '^line-length = \zs\d\+'
+            let line_length = matchstr(line, '\d\+')
+            break
+        endif
+    endfor
+
+    if line_length > 0
+        execute 'setlocal textwidth='.line_length
+        execute 'setlocal colorcolumn='.line_length
+        " Optionally, uncomment the next line to display a confirmation message
+        " echo "Set textwidth and colorcolumn to ".line_length
+    endif
+endfunction
+
+augroup PyprojectTextWidth
+    autocmd!
+    autocmd BufRead,BufNewFile *.py call SetTextWidthFromPyproject()
+augroup END
 " }}}
 
 " {{{ json settings
