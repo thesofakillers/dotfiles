@@ -347,6 +347,8 @@ call coc#config('python', {'pythonPath': s:current_python_path})
 " }}}
 " }}}
 " other options {{{
+" disable warning
+let g:coc_disable_startup_warning = 1
 " status line
 set statusline+=\ %{coc#status()}
 " show documentation for the word under the cursor
