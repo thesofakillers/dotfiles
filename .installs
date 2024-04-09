@@ -56,3 +56,7 @@ export PATH=$GOPATH/bin:$PATH
 # MacPorts Installer addition on 2023-02-01_at_12:25:54: adding an appropriate PATH variable for use with MacPorts.
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # Finished adapting your PATH environment variable for use with MacPorts. }}}
+
+# {{{ tree
+alias tree='tree -I "node_modules|\.git|\.DS_Store|__pycache__|venv|\.venv|\.mypy_cache|\.pytest_cache|\.tox|\.vscode|\.idea|\.cache|\.ipynb_checkpoints"'
+# }}}
