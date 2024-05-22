@@ -295,6 +295,7 @@ command! -bang -nargs=* Rg
 " silver searcher with leader s
 nnoremap <leader>s :Rg<cr>
 " search for file names
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
 map <leader>ff :Files<CR>
 " }}}
 
