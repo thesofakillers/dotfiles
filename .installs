@@ -63,4 +63,4 @@ alias tree='tree -I "node_modules|\.git|\.DS_Store|__pycache__|venv|\.venv|\.myp
 
 # {{{ homebrew
 export HOMEBREW_NO_AUTO_UPDATE=1
-}}}
+# }}}
