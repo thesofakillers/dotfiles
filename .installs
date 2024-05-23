@@ -60,3 +60,7 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 # {{{ tree
 alias tree='tree -I "node_modules|\.git|\.DS_Store|__pycache__|venv|\.venv|\.mypy_cache|\.pytest_cache|\.tox|\.vscode|\.idea|\.cache|\.ipynb_checkpoints"'
 # }}}
+
+# {{{ homebrew
+export HOMEBREW_NO_AUTO_UPDATE=1
+}}}
