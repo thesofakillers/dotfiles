@@ -309,13 +309,30 @@ map <leader>lf :Lf<CR>
 set updatetime=100
 " }}}
 
-" {{{ window/split ettings.
+" {{{ window/split settings.
 function! ResizeSplitToTextWidth()
   let textwidth = &textwidth + 6
   execute "normal ".textwidth."\<C-w>|"
 endfunction
 
 nmap <silent><leader>ww :call ResizeSplitToTextWidth()<CR>
+
+" {{{ center pane
+function! WriteRoomToggle()
+  let l:name = '_writeroom_'
+  if bufwinnr(l:name) > 0
+    wincmd o
+  else
+    let l:width = (&columns - &textwidth) / 2
+    execute 'topleft' l:width . 'vsplit +setlocal\ nobuflisted' l:name | wincmd p
+    execute 'botright' l:width . 'vsplit +setlocal\ nobuflisted' l:name | wincmd p
+    endif
+endfunction
+
+" toggle writeroom on/off
+map <silent><Leader>x :call WriteRoomToggle()<CR>
+" }}}
+
 " }}}
 
 " {{{ copilot settings
