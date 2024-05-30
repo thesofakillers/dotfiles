@@ -318,6 +318,7 @@ endfunction
 nmap <silent><leader>ww :call ResizeSplitToTextWidth()<CR>
 
 " {{{ center pane
+" https://stackoverflow.com/a/59955784/9889508
 function! WriteRoomToggle()
   let l:name = '_writeroom_'
   if bufwinnr(l:name) > 0
