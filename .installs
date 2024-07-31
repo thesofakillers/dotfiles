@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# {{{ homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_NO_AUTO_UPDATE=1
+# }}}
+
 # {{{ rbvenv
 eval "$(rbenv init -)"
 # }}}
@@ -42,11 +47,6 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
 # }}}
 
-# {{{ gruvbox
-# https://github.com/morhetz/gruvbox/wiki/Terminal-specific#a-256-color-gruvbox-palette-shellscript
-source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
-# }}}
-
 # {{{ go
 export GOPATH=/Users/$USER/go
 export PATH=$GOPATH/bin:$PATH
@@ -59,8 +59,4 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 # {{{ tree
 alias tree='tree -I "node_modules|\.git|\.DS_Store|__pycache__|venv|\.venv|\.mypy_cache|\.pytest_cache|\.tox|\.vscode|\.idea|\.cache|\.ipynb_checkpoints"'
-# }}}
-
-# {{{ homebrew
-export HOMEBREW_NO_AUTO_UPDATE=1
 # }}}
