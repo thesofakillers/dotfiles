@@ -1,19 +1,19 @@
 {
   "dependencies": {
     "coc-diagnostic": ">=0.24.1",
-    "coc-eslint": ">=1.6.0",
-    "coc-highlight": ">=1.3.0",
+    "coc-eslint": ">=1.7.0",
+    "coc-highlight": ">=2.0.4",
     "coc-json": ">=1.9.2",
-    "coc-markdownlint": ">=1.32.0",
+    "coc-markdownlint": ">=1.34.0",
     "coc-prettier": ">=9.3.2",
-    "coc-pyright": ">=1.1.337",
+    "coc-pyright": ">=1.1.371",
     "coc-snippets": ">=3.1.10",
     "coc-texlab": ">=3.3.0",
     "coc-toml": ">=1.2.5",
-    "coc-tsserver": ">=1.11.1",
+    "coc-tsserver": ">=2.2.0",
     "coc-yaml": ">=1.9.0"
   },
   "disabled": [],
   "locked": [],
-  "lastUpdate": 1716450894390
+  "lastUpdate": 1722419200178
 }
