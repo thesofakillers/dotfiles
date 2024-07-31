@@ -55,5 +55,6 @@
   "python.analysis.typeCheckingMode": "off",
   "pyright.inlayHints.variableTypes": false,
   "pyright.inlayHints.functionReturnTypes": false,
+  "pyright.inlayHints.parameterTypes": false,
   "snippets.ultisnips.pythonPrompt": false
 }
