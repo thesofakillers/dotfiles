@@ -1,14 +1,4 @@
 #!/usr/bin/env bash
-# {{{ homebrew
-if command -v brew &> /dev/null; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-export HOMEBREW_NO_AUTO_UPDATE=1
-# }}}
-
-# {{{ rbvenv
-eval "$(rbenv init -)"
-# }}}
 
 # {{{ conda/miniconda
 # >>> conda initialize >>>
@@ -35,12 +25,10 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export PATH="$HOME/.local/bin:$PATH"
 # }}}
 
-# {{{ node version manager
-export NVM_DIR="$HOME/.nvm"
-# This loads nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# This loads nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# {{{ node version manager (https://github.com/tj/n)
+# using curl -L https://bit.ly/n-install | bash
+export N_PREFIX="$HOME/n"
+[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 # }}}
 
 # {{{ LaTeX
@@ -62,6 +50,9 @@ alias tree='tree -I "node_modules|\.git|\.DS_Store|__pycache__|venv|\.venv|\.myp
 # }}}
 
 # {{{ homebrew
+if command -v brew &> /dev/null; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
 export HOMEBREW_NO_AUTO_UPDATE=1
 # brew python
 if [ ! -e /usr/local/bin/python ]; then
