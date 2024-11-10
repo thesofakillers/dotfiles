@@ -31,25 +31,25 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # {{{ custom functions
 # show sizes of directories https://stackoverflow.com/a/38032798/9889508
 function duls {
-    paste <( du -hs -- "$@" | cut -f1 ) <( ls -ld -- "$@" )
+  paste <(du -hs -- "$@" | cut -f1) <(ls -ld -- "$@")
 }
 
 # touch all files in a directory recursively: https://askubuntu.com/a/580413/1003945
 function toucheverything() {
-      find "$1" -type f -exec touch {} +
+  find "$1" -type f -exec touch {} +
 }
 
 # forward ssh port to localhost and back
 sshfwd() {
-    if [ "$#" -ne 2 ]; then
-        echo "Usage: sshfwd <port> <normal ssh args and host>"
-        return 1
-    fi
+  if [ "$#" -ne 2 ]; then
+    echo "Usage: sshfwd <port> <normal ssh args and host>"
+    return 1
+  fi
 
-    local port=$1
-    local ssh_stuff=$2
+  local port=$1
+  local ssh_stuff=$2
 
-    ssh -L localhost:${port}:localhost:${port} ${ssh_stuff}
+  ssh -L localhost:${port}:localhost:${port} ${ssh_stuff}
 }
 # }}}
 
