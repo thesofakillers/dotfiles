@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+# {{{ homebrew
+if command -v brew &> /dev/null; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+export HOMEBREW_NO_AUTO_UPDATE=1
+# }}}
+
 # {{{ rbvenv
 eval "$(rbenv init -)"
 # }}}
@@ -38,11 +45,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # {{{ LaTeX
 export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
-# }}}
-
-# {{{ gruvbox
-# https://github.com/morhetz/gruvbox/wiki/Terminal-specific#a-256-color-gruvbox-palette-shellscript
-source "$HOME/.vim/plugged/gruvbox/gruvbox_256palette.sh"
 # }}}
 
 # {{{ go

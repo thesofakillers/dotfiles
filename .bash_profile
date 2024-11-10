@@ -39,6 +39,18 @@ function toucheverything() {
       find "$1" -type f -exec touch {} +
 }
 
+# forward ssh port to localhost and back
+sshfwd() {
+    if [ "$#" -ne 2 ]; then
+        echo "Usage: sshfwd <port> <normal ssh args and host>"
+        return 1
+    fi
+
+    local port=$1
+    local ssh_stuff=$2
+
+    ssh -L localhost:${port}:localhost:${port} ${ssh_stuff}
+}
 # }}}
 
 # {{{ aliases
