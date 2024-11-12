@@ -56,10 +56,10 @@ elif [ -x "/usr/local/bin/brew" ]; then
 fi
 export HOMEBREW_NO_AUTO_UPDATE=1
 # brew python
-if [ ! -e /usr/local/bin/python ]; then
+if ! which python > /dev/null 2>&1; then
   ln -s $(which python3) /usr/local/bin/python
 fi
-if [ ! -e /usr/local/bin/pip ]; then
+if ! which pip > /dev/null 2>&1; then
   ln -s $(which pip3) /usr/local/bin/pip
 fi
 # }}}
