@@ -35,6 +35,7 @@ Plug 'rkaminsk/vim-syntax-clingo'
 Plug 'Konfekt/FastFold'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
+Plug 'lepture/vim-jinja'
 
 " NeoVim-only plug-ins
 if has('nvim')
