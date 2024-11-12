@@ -1,18 +1,5 @@
 #!/usr/bin/env bash
-# {{{ homebrew
-if [ -d "/opt/homebrew" ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-export HOMEBREW_NO_AUTO_UPDATE=1
-# }}}
-
-# {{{ rbenv
-eval "$(rbenv init -)"
-# }}}
-
 # {{{ conda/miniconda
-export PATH=~/miniconda3/bin:$PATH
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('~/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -37,12 +24,10 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 export PATH="$HOME/.local/bin:$PATH"
 # }}}
 
-# {{{ node version manager
-export NVM_DIR="$HOME/.nvm"
-# This loads nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# This loads nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+# {{{ node version manager (https://github.com/tj/n)
+# using curl -L https://bit.ly/n-install | bash
+export N_PREFIX="$HOME/n"
+[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 # }}}
 
 # {{{ LaTeX
@@ -61,4 +46,20 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 # {{{ tree
 alias tree='tree -I "node_modules|\.git|\.DS_Store|__pycache__|venv|\.venv|\.mypy_cache|\.pytest_cache|\.tox|\.vscode|\.idea|\.cache|\.ipynb_checkpoints"'
+# }}}
+
+# {{{ homebrew
+if [ -d "/opt/homebrew" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x "/usr/local/bin/brew" ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+export HOMEBREW_NO_AUTO_UPDATE=1
+# brew python
+if [ ! -e /usr/local/bin/python ]; then
+  ln -s $(which python3) /usr/local/bin/python
+fi
+if [ ! -e /usr/local/bin/pip ]; then
+  ln -s $(which pip3) /usr/local/bin/pip
+fi
 # }}}
