@@ -49,6 +49,7 @@
   "coc.preferences.extensionUpdateCheck": "daily",
   "python.formatting.provider": "black",
   "python.formatting.blackPath": "black",
+  "python.sortImports.args": ["--profile", "black"],
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": false,
   "pyright.disableDiagnostics": false,
