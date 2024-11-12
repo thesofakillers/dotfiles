@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# {{{ general
+mkdir -p "$HOME/bin"
+export PATH="$HOME/bin:$PATH"
+# }}}
+
 # {{{ conda/miniconda
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -56,10 +61,27 @@ elif [ -x "/usr/local/bin/brew" ]; then
 fi
 export HOMEBREW_NO_AUTO_UPDATE=1
 # brew python
-if ! which python > /dev/null 2>&1; then
-  ln -s $(which python3) /usr/local/bin/python
+# Check if `python` is not available in the PATH
+if ! which python > /dev/null; then
+  # Check if Homebrew is in /opt/homebrew or /usr/local and create the link in $HOME/bin
+  if [ -x "/opt/homebrew/bin/python3" ]; then
+    ln -s /opt/homebrew/bin/python3 "$HOME/bin/python"
+  elif [ -x "/usr/local/bin/python3" ]; then
+    ln -s /usr/local/bin/python3 "$HOME/bin/python"
+  else
+    echo "python3 not found in /opt/homebrew or /usr/local"
+  fi
 fi
-if ! which pip > /dev/null 2>&1; then
-  ln -s $(which pip3) /usr/local/bin/pip
+
+# Check if `pip` is not available in the PATH
+if ! which pip > /dev/null; then
+  # Check if Homebrew is in /opt/homebrew or /usr/local and create the link in $HOME/bin
+  if [ -x "/opt/homebrew/bin/pip3" ]; then
+    ln -s /opt/homebrew/bin/pip3 "$HOME/bin/pip"
+  elif [ -x "/usr/local/bin/pip3" ]; then
+    ln -s /usr/local/bin/pip3 "$HOME/bin/pip"
+  else
+    echo "pip3 not found in /opt/homebrew or /usr/local"
+  fi
 fi
 # }}}
