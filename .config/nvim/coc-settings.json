@@ -25,12 +25,6 @@
       "args": ["-i", "2", "-bn", "-ci", "-sr"]
     }
   },
-  "coc.preferences.formatOnSaveFiletypes": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
   "typescript.suggest.completeFunctionCalls": true,
   "javascript.suggest.completeFunctionCalls": true,
   "json.format.enable": true,
