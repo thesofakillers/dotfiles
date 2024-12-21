@@ -28,8 +28,16 @@ Plug 'lepture/vim-jinja'
 " NeoVim-only plug-ins
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'github/copilot.vim'
   Plug 'ggandor/lightspeed.nvim'
+
+  " avante {{{
+  Plug 'zbirenbaum/copilot.lua' " see also init.lua
+  Plug 'stevearc/dressing.nvim'    " Better UI for vim.ui.input and vim.ui.select
+  Plug 'nvim-lua/plenary.nvim'       " Utility functions required by many neovim plugins
+  Plug 'MunifTanjim/nui.nvim'        " UI component library for neovim plugins
+  Plug 'nvim-tree/nvim-web-devicons' " Adds filetype icons to neovim plugins
+  Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' } " see also init.lua
+  " }}}
 endif
 call plug#end()
 " }}}
@@ -330,12 +338,6 @@ map <silent><Leader>x :call WriteRoomToggle()<CR>
 
 " }}}
 
-" {{{ copilot settings
-let g:copilot_filetypes = {
-      \ 'markdown': v:true,
-      \ }
-" }}}
-
 " more complex settings {{{
 
 " Triger `autoread` when files changes on disk
@@ -380,7 +382,7 @@ nmap <leader>do <Plug>(coc-codeaction)
 " symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
 " formatting
-nmap <leader>af <Plug>(coc-format)
+nmap <leader>fmt <Plug>(coc-format)
 " }}}
 " snippets {{{
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
