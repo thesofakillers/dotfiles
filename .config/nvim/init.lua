@@ -29,6 +29,13 @@ require('avante').setup({
       cursor = "<leader>cc",
       next = "]x",
       prev = "[x",
+    },
+    files = {
+      add_current = "<leader>ab" -- Add current buffer to selected files
     }
   }
 })
+
+
+-- leader mappings
+vim.keymap.set("n", "<leader>ac", ":AvanteClear<CR>")
