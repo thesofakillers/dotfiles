@@ -43,6 +43,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+-- Disable hard line breaks for AvanteInput files
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = "AvanteInput",
+  callback = function()
+    vim.bo.textwidth = 0
+  end,
+})
+
 
 
 -- leader mappings
