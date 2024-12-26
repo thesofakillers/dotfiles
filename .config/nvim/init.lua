@@ -35,6 +35,14 @@ require('avante').setup({
     }
   }
 })
+-- Treat Avante files as markdown
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = "Avante",
+  callback = function()
+    vim.bo.filetype = "markdown"
+  end,
+})
+
 
 
 -- leader mappings
