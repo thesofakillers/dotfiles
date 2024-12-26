@@ -168,7 +168,7 @@ nnoremap <leader>i :set cursorcolumn!<CR>
 " }}}
 
 " clipboard settings {{{
-vmap <leader>c <Plug>OSCYankVisual
+vmap <leader>cc <Plug>OSCYankVisual
 " }}}
 
 " git settings {{{

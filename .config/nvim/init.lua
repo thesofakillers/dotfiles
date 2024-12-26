@@ -26,7 +26,7 @@ require('avante').setup({
       theirs = "<leader>ct",
       all_theirs = "<leader>ca",
       both = "<leader>cb",
-      cursor = "<leader>cc",
+      cursor = "<leader>cu",
       next = "]x",
       prev = "[x",
     },
