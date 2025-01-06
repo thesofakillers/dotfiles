@@ -4,7 +4,6 @@
 "Load plugins here (vim-plug or pathogen or vundle)
 call plug#begin('~/.vim/plugged')
 Plug 'gruvbox-community/gruvbox'
-Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
@@ -13,25 +12,14 @@ Plug 'tpope/vim-abolish'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'honza/vim-snippets' "i use coc-snippets as the engine
-Plug '907th/vim-auto-save'
 Plug 'cespare/vim-toml'
-Plug 'vmchale/dhall-vim'
-Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
-Plug 'yuezk/vim-js'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'mhinz/vim-signify'
 Plug 'ptzz/lf.vim'
-Plug 'rbgrouleff/bclose.vim'
 Plug 'kevinoid/vim-jsonc'
-Plug 'HerringtonDarkholme/yats.vim'
 Plug 'gisphm/vim-gitignore'
 Plug 'sheerun/vim-polyglot'
-Plug 'voldikss/vim-floaterm'
-Plug 'justinmk/vim-gtfo'
-Plug 'zivyangll/git-blame.vim'
 Plug 'lervag/vimtex'
-Plug 'rkaminsk/vim-syntax-clingo'
 Plug 'Konfekt/FastFold'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
@@ -40,8 +28,16 @@ Plug 'lepture/vim-jinja'
 " NeoVim-only plug-ins
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'github/copilot.vim'
   Plug 'ggandor/lightspeed.nvim'
+
+  " avante {{{
+  Plug 'zbirenbaum/copilot.lua' " see also init.lua
+  Plug 'stevearc/dressing.nvim'    " Better UI for vim.ui.input and vim.ui.select
+  Plug 'nvim-lua/plenary.nvim'       " Utility functions required by many neovim plugins
+  Plug 'MunifTanjim/nui.nvim'        " UI component library for neovim plugins
+  Plug 'nvim-tree/nvim-web-devicons' " Adds filetype icons to neovim plugins
+  Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' } " see also init.lua
+  " }}}
 endif
 call plug#end()
 " }}}
@@ -172,7 +168,7 @@ nnoremap <leader>i :set cursorcolumn!<CR>
 " }}}
 
 " clipboard settings {{{
-vmap <leader>c <Plug>OSCYankVisual
+vmap <leader>cc <Plug>OSCYankVisual
 " }}}
 
 " git settings {{{
@@ -342,12 +338,6 @@ map <silent><Leader>x :call WriteRoomToggle()<CR>
 
 " }}}
 
-" {{{ copilot settings
-let g:copilot_filetypes = {
-      \ 'markdown': v:true,
-      \ }
-" }}}
-
 " more complex settings {{{
 
 " Triger `autoread` when files changes on disk
@@ -392,7 +382,7 @@ nmap <leader>do <Plug>(coc-codeaction)
 " symbol renaming
 nmap <leader>rn <Plug>(coc-rename)
 " formatting
-nmap <leader>af <Plug>(coc-format)
+nmap <leader>fmt <Plug>(coc-format)
 " }}}
 " snippets {{{
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
