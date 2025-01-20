@@ -11,7 +11,8 @@
     "MD024": {
       "siblings_only": true
     },
-    "MD004": false
+    "MD004": false,
+    "MD013": false
   },
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"

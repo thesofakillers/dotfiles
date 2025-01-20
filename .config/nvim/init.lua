@@ -10,6 +10,9 @@ require("copilot").setup({
     keymap = {
       accept = "<C-l>",
     }
+  },
+  filetypes = {
+    ["*"] = true  -- enable for all filetypes and ignore default `filetypes` config
   }
 })
 
