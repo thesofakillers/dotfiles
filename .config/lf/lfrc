@@ -1,2 +1,2 @@
-set opener nvim
+cmd open $nvim $f
 set hidden!
