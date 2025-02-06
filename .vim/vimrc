@@ -67,7 +67,7 @@ set visualbell
 " Encoding
 set encoding=utf-8
 " Whitespace
-set nowrap
+set wrap
 set breakindent " when softwrapping,indent wrapped lines
 set linebreak " when softwrapping, wrap at word boundaries
 set textwidth=79
