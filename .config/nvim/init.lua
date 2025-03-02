@@ -16,7 +16,6 @@ require("copilot").setup({
   }
 })
 
-require('avante_lib').load()
 require('avante').setup({
   auto_suggestions_provider = "copilot", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
   behaviour = {

@@ -32,12 +32,19 @@ if has('nvim')
   Plug 'ggandor/lightspeed.nvim'
 
   " avante {{{
-  Plug 'zbirenbaum/copilot.lua' " see also init.lua
+  " required {{{
+  Plug 'nvim-treesitter/nvim-treesitter'
   Plug 'stevearc/dressing.nvim'    " Better UI for vim.ui.input and vim.ui.select
   Plug 'nvim-lua/plenary.nvim'       " Utility functions required by many neovim plugins
   Plug 'MunifTanjim/nui.nvim'        " UI component library for neovim plugins
+  Plug 'MeanderingProgrammer/render-markdown.nvim'
+  " }}}
+  " {{{ optional (allegedly)
+  Plug 'zbirenbaum/copilot.lua' " see also init.lua
   Plug 'nvim-tree/nvim-web-devicons' " Adds filetype icons to neovim plugins
-  Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make' } " see also init.lua
+  Plug 'HakonHarnes/img-clip.nvim'
+  "}}}
+  Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make'} " see also init.lua
   " }}}
 endif
 call plug#end()
