@@ -9,8 +9,18 @@
 [[ -f "$HOME/.bash_scripts" ]] && source "$HOME/.bash_scripts"
 # If we're on an ssh server, ill move all the custom stuff here
 [[ -f "$HOME/.serverthings" ]] && source "$HOME/.serverthings"
-# finally, clean up, removing duplicates from PATH
-export PATH=$(echo $PATH | tr ':' '\n' | sort -u | tr '\n' ':')
+# finally, clean up, removing duplicates from PATH (while keeping order)
+remove_duplicates() {
+  local path new_path=
+  IFS=':' read -ra path <<< "$PATH"
+  for p in "${path[@]}"; do
+    if [[ ":$new_path:" != *":$p:"* ]]; then
+      new_path="${new_path:+$new_path:}$p"
+    fi
+  done
+  echo "$new_path"
+}
+export PATH=$(remove_duplicates)
 # }}}
 
 # {{{ general settings
