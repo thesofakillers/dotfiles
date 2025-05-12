@@ -11,7 +11,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-abolish'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'honza/vim-snippets' "i use coc-snippets as the engine
+" Plug 'honza/vim-snippets' "i use coc-snippets as the engine
 Plug 'cespare/vim-toml'
 Plug 'preservim/vim-markdown'
 Plug 'mhinz/vim-signify'
@@ -25,26 +25,27 @@ Plug 'Konfekt/FastFold'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 Plug 'lepture/vim-jinja'
+Plug 'preservim/tagbar'
 
 " NeoVim-only plug-ins
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'ggandor/lightspeed.nvim'
 
-  " avante {{{
-  " required {{{
-  Plug 'nvim-treesitter/nvim-treesitter'
-  Plug 'stevearc/dressing.nvim'    " Better UI for vim.ui.input and vim.ui.select
-  Plug 'nvim-lua/plenary.nvim'       " Utility functions required by many neovim plugins
-  Plug 'MunifTanjim/nui.nvim'        " UI component library for neovim plugins
-  Plug 'MeanderingProgrammer/render-markdown.nvim'
+  " " avante {{{
+  " " required {{{
+  " Plug 'nvim-treesitter/nvim-treesitter'
+  " Plug 'stevearc/dressing.nvim'    " Better UI for vim.ui.input and vim.ui.select
+  " Plug 'nvim-lua/plenary.nvim'       " Utility functions required by many neovim plugins
+  " Plug 'MunifTanjim/nui.nvim'        " UI component library for neovim plugins
+  " Plug 'MeanderingProgrammer/render-markdown.nvim'  this is actually optional
   " }}}
   " {{{ optional (allegedly)
   Plug 'zbirenbaum/copilot.lua' " see also init.lua
-  Plug 'nvim-tree/nvim-web-devicons' " Adds filetype icons to neovim plugins
-  Plug 'HakonHarnes/img-clip.nvim'
-  "}}}
-  Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make'} " see also init.lua
+  "Plug 'nvim-tree/nvim-web-devicons' " Adds filetype icons to neovim plugins
+  "Plug 'HakonHarnes/img-clip.nvim'
+  ""}}}
+  "Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make'} " see also init.lua
   " }}}
 endif
 call plug#end()
@@ -391,6 +392,8 @@ nmap <leader>do <Plug>(coc-codeaction)
 nmap <leader>rn <Plug>(coc-rename)
 " formatting
 nmap <leader>fmt <Plug>(coc-format)
+" quick fix
+nmap <leader>fix <Plug>(coc-fix-current)
 " }}}
 " snippets {{{
 inoremap <expr> <TAB> pumvisible() ? "\<C-y>" : "\<C-g>u\<TAB>"
