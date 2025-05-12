@@ -42,9 +42,7 @@
   },
   "snippets.loadFromExtensions": true,
   "coc.preferences.extensionUpdateCheck": "daily",
-  "python.formatting.provider": "black",
-  "python.formatting.blackPath": "black",
-  "python.sortImports.args": ["--profile", "black"],
+  "python.formatting.provider": "ruff",
   "python.linting.enabled": true,
   "python.linting.flake8Enabled": false,
   "pyright.disableDiagnostics": false,
@@ -52,5 +50,11 @@
   "pyright.inlayHints.variableTypes": false,
   "pyright.inlayHints.functionReturnTypes": false,
   "pyright.inlayHints.parameterTypes": false,
-  "snippets.ultisnips.pythonPrompt": false
+  "python.linting.mypyEnabled": true,
+  "python.linting.mypyArgs": ["--incremental"],
+  "python.linting.ruffEnabled": true,
+  "snippets.ultisnips.pythonPrompt": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
