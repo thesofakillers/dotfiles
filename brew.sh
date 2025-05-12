@@ -31,6 +31,7 @@ brew install git-lfs # large files on git
 brew install rename # Perl-powered file rename script with many helpful built-ins
 brew install watchman # Watch files and take action when they change
 brew install pv # monitor progress of data through a pipe
+brew install ctags # exuberant ctags, use for vim tagbar
 
 # Wait a bit before moving on...
 sleep 1
