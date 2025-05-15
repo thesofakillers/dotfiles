@@ -26,3 +26,6 @@
 	textconv = cat
 [alias]
 	delete-local-merged = "!git fetch && git branch --merged | egrep -v 'master|dev|main|staging'  | xargs git branch -d"
+[include]
+	# for any custom things not meant for version control
+	path = ~/.gitconfig.custom
