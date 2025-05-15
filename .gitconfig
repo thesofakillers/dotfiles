@@ -26,4 +26,6 @@
 	textconv = cat
 [include]
 	# for any custom things not meant for version control
-	path = ~/.gitconfig.custom
+	path = ~/.gitconfig.secret
+	# for aliases, since they can be a bit verbose
+	path = ~/.gitconfig.aliases
