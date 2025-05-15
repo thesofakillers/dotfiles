@@ -1,26 +1,9 @@
-# This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
- name = Giulio Starace 
+	name = Giulio Starace
 	email = giulio.starace@gmail.com
 [core]
-	excludesFile = ~/.gitignore
-	editor = vim
-[init]
-	defaultBranch = main
-[diff "jupyternotebook"]
-	command = git-nbdiffdriver diff
-[merge "jupyternotebook"]
-	driver = git-nbmergedriver merge %O %A %B %L %P
-	name = jupyter notebook merge driver
-[difftool "nbdime"]
-	cmd = git-nbdifftool diff \"$LOCAL\" \"$REMOTE\" \"$BASE\"
-[difftool]
-	prompt = false
-[mergetool "nbdime"]
-	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
-[mergetool]
-	prompt = false
+	excludesfile = /Users/giulio.starace/git/.gitignore
+	hooksPath = /Library/Application Support/OpenAI/Tools/PushPatrol/git-hooks
 [pull]
 	rebase = false
 [filter "lfs"]
@@ -28,5 +11,18 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[credential]
-	helper = store
+[lfs "ssh"]
+	; https://github.com/git-lfs/git-lfs/issues/5784#issuecomment-2239826183
+	autoMultiplex = false
+[merge]
+	tool = nvim
+[diff]
+	tool = nvim
+[difftool "nvim"]
+	cmd = nvim -d $LOCAL $REMOTE
+[difftool]
+	prompt = false
+[diff "lfs"]
+	textconv = cat
+[alias]
+	delete-local-merged = "!git fetch && git branch --merged | egrep -v 'master|dev|main|staging'  | xargs git branch -d"
