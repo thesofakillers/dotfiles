@@ -53,8 +53,5 @@
   "python.linting.mypyEnabled": true,
   "python.linting.mypyArgs": ["--incremental"],
   "python.linting.ruffEnabled": true,
-  "snippets.ultisnips.pythonPrompt": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  }
+  "snippets.ultisnips.pythonPrompt": false
 }
