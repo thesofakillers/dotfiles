@@ -2,8 +2,7 @@
 	name = Giulio Starace
 	email = giulio.starace@gmail.com
 [core]
-	excludesfile = /Users/giulio.starace/git/.gitignore
-	hooksPath = /Library/Application Support/OpenAI/Tools/PushPatrol/git-hooks
+	excludesfile = ~/.config/git/ignore
 [pull]
 	rebase = false
 [filter "lfs"]
