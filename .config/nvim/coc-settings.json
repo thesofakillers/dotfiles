@@ -53,5 +53,6 @@
   "python.linting.mypyEnabled": true,
   "python.linting.mypyArgs": ["--incremental"],
   "python.linting.ruffEnabled": true,
-  "snippets.ultisnips.pythonPrompt": false
+  "snippets.ultisnips.pythonPrompt": false,
+  "eslint.migration.2_x": "off"
 }
