@@ -31,8 +31,10 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # {{{ node version manager (https://github.com/tj/n)
 # using curl -L https://bit.ly/n-install | bash
-export N_PREFIX="$HOME/n"
-[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 # }}}
 
 # {{{ LaTeX
@@ -84,4 +86,10 @@ if ! which pip > /dev/null; then
     echo "pip3 not found in /opt/homebrew or /usr/local"
   fi
 fi
+# }}}
+
+# {{{ LMStudio
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/thesofakillers/.cache/lm-studio/bin"
+# End of LM Studio CLI section
 # }}}
