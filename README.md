@@ -16,6 +16,16 @@ stagnate and in the long run will outlive vim. That being said I originally used
 vim so the config is shared between the two for now. I use
 [vim-plugged](https://github.com/junegunn/vim-plug) for packages.
 
+### Neovim / Coc specifics
+
+- Coc is pinned to `~/n/bin/node`; keep `n` on PATH or Coc will fail to start.
+- Coc extensions live in `~/.config/coc/extensions`; regenerated with the
+  current Node, so run `:CocUpdate` after node changes.
+- Neovim Python host is a dedicated venv at `~/.local/share/nvim-py3` with
+  `pynvim` installed. If missing, recreate via
+  `python3 -m venv ~/.local/share/nvim-py3 && ~/.local/share/nvim-py3/bin/pip install -U pynvim`.
+- Built-in node/perl/ruby providers are disabled; only Coc’s node host is used.
+
 ## Additional Setup
 
 You may wish to run or at least to refer to the contents of
