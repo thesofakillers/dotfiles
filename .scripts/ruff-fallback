@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Prefer project-local Ruff; fall back to PATH; if none, consume stdin and exit 0
+# to prevent coc-pyright from writing to a closed pipe (EPIPE).
+set -euo pipefail
+
+# Look for common venv folders relative to current working directory
+for d in .venv venv env .env; do
+  if [ -x "$PWD/$d/bin/ruff" ]; then
+    exec "$PWD/$d/bin/ruff" "$@"
+  fi
+done
+
+# Otherwise fall back to PATH-installed ruff
+if command -v ruff >/dev/null 2>&1; then
+  exec ruff "$@"
+fi
+
+# No ruff available: drain stdin so callers writing to stdin don't EPIPE
+cat >/dev/null
+exit 0

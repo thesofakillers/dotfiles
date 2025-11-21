@@ -18,13 +18,15 @@ vim so the config is shared between the two for now. I use
 
 ### Neovim / Coc specifics
 
-- Coc is pinned to `~/n/bin/node`; keep `n` on PATH or Coc will fail to start.
-- Coc extensions live in `~/.config/coc/extensions`; regenerated with the
-  current Node, so run `:CocUpdate` after node changes.
-- Neovim Python host is a dedicated venv at `~/.local/share/nvim-py3` with
-  `pynvim` installed. If missing, recreate via
-  `python3 -m venv ~/.local/share/nvim-py3 && ~/.local/share/nvim-py3/bin/pip install -U pynvim`.
+- Coc uses `~/n/bin/node`; keep `n` on PATH.
+- Coc extensions live in `~/.config/coc/extensions`; run `:CocUpdate` after
+  changing Node.
+- Neovim Python host lives in `~/.local/share/nvim-py3` with `pynvim` installed
+  (recreate with `python3 -m venv ~/.local/share/nvim-py3 && ~/.local/share/nvim-py3/bin/pip install -U pynvim`).
 - Built-in node/perl/ruby providers are disabled; only Coc’s node host is used.
+- Coc-pyright is installed. Ruff lint/format uses `~/.scripts/ruff-fallback`:
+  looks for `./.venv/ruff`, then PATH ruff, else no-op (prevents EPIPE when
+  ruff is missing). Install ruff in each project venv for full lint/format.
 
 ## Additional Setup
 

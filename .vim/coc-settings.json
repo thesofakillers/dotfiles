@@ -1,3 +1,86 @@
 {
-  "snippets.ultisnips.pythonPrompt": false
+  "texlab.build.args": [
+    "--shell-escape",
+    "-pdf",
+    "-interaction=nonstopmode",
+    "-synctex=1",
+    "%f"
+  ],
+  "markdownlint.config": {
+    "default": true,
+    "MD024": {
+      "siblings_only": true
+    },
+    "MD004": false,
+    "MD013": false
+  },
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "sh": "shfmt"
+  },
+  "diagnostic-languageserver.formatters": {
+    "shfmt": {
+      "command": "shfmt",
+      "args": [
+        "-i",
+        "2",
+        "-bn",
+        "-ci",
+        "-sr"
+      ]
+    }
+  },
+  "typescript.suggest.completeFunctionCalls": true,
+  "javascript.suggest.completeFunctionCalls": true,
+  "json.format.enable": true,
+  "eslint.autoFixOnSave": true,
+  "prettier.proseWrap": "always",
+  "prettier.useEditorConfig": false,
+  "suggest.noselect": false,
+  "snippets.extends": {
+    "cpp": [
+      "c"
+    ],
+    "javascript": [
+      "html",
+      "javascriptreact"
+    ],
+    "javascriptreact": [
+      "javascript",
+      "typescriptreact"
+    ],
+    "typescript": [
+      "javascript"
+    ],
+    "markdown": [
+      "tex"
+    ]
+  },
+  "snippets.loadFromExtensions": true,
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "python.formatting.provider": "ruff",
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": false,
+  "pyright.disableDiagnostics": false,
+  "python.analysis.typeCheckingMode": "off",
+  "pyright.inlayHints.variableTypes": false,
+  "pyright.inlayHints.functionReturnTypes": false,
+  "pyright.inlayHints.parameterTypes": false,
+  "python.linting.mypyEnabled": true,
+  "python.linting.mypyArgs": [
+    "--incremental"
+  ],
+  "python.linting.ruffEnabled": true,
+  "snippets.ultisnips.pythonPrompt": false,
+  "snippets.ultisnips.enable": false,
+  "pyright.trace.server": "verbose",
+  "eslint.migration.2_x": "off",
+  "fileSystemWatch.enable": false,
+  "fileSystemWatch.watchmanPath": "/usr/bin/false",
+  "coc.preferences.watchmanPath": "/usr/bin/false",
+  "pyright.logFile": "/tmp/pyright-lsp.log",
+  "python.linting.ruffPath": "~/.scripts/ruff-fallback",
+  "python.formatting.ruffPath": "~/.scripts/ruff-fallback"
 }

@@ -379,6 +379,10 @@ else
   echom "pynvim host missing: run 'python3 -m venv ~/.local/share/nvim-py3 && ~/.local/share/nvim-py3/bin/pip install -U pynvim'"
   echohl None
 endif
+" pyright server path (nested to avoid npm hoist issues)
+if filereadable(expand('~/.config/coc/extensions/node_modules/coc-pyright/node_modules/pyright/langserver.index.js'))
+  call coc#config('pyright', {'server': expand('~/.config/coc/extensions/node_modules/coc-pyright/node_modules/pyright/langserver.index.js')})
+endif
 " }}}
 " }}}
 " provider settings {{{
