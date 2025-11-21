@@ -2,7 +2,7 @@
 	name = Giulio Starace
 	email = giulio.starace@gmail.com
 [core]
-	excludesfile = /Users/giulio.starace/git/.gitignore
+	excludesfile = ~/.config/git/ignore
 [pull]
 	rebase = false
 [filter "lfs"]
@@ -25,6 +25,6 @@
 	textconv = cat
 [include]
 	# for any custom things not meant for version control
-	path = ~/.gitconfig.secret
+	path = ~/.config/git/config.secret
 	# for aliases, since they can be a bit verbose
-	path = ~/.gitconfig.aliases
+	path = ~/.config/git/config.aliases

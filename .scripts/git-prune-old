@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#
+# Usage: git prune-old [<days>]
+#
+d=${1:-30}
+now=$(date +%s)
+cutoff=$(( now - d*86400 ))
+
+git for-each-ref --format="%(committerdate:unix) %(refname:short)" refs/heads |
+while read ts br; do
+  # never delete the branch you’re on:
+  if [ "$br" = "$(git rev-parse --abbrev-ref HEAD)" ]; then
+    continue
+  fi
+
+  # if branch is older than cutoff:
+  if [ "$ts" -le "$cutoff" ]; then
+    git branch -D "$br"
+  fi
+done

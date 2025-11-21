@@ -463,7 +463,5 @@ bipedale
 uap
 #ti
 coreset
-AutoAdvExBench
-nanoeval
-Vendored
-vendored
+excludable
+artisanal

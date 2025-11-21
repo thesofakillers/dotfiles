@@ -54,7 +54,5 @@
   "python.linting.mypyArgs": ["--incremental"],
   "python.linting.ruffEnabled": true,
   "snippets.ultisnips.pythonPrompt": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  }
+  "eslint.migration.2_x": "off"
 }
