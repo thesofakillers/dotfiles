@@ -316,6 +316,11 @@ let g:lf_map_keys = 0
 map <leader>lf :Lf<CR>
 " }}}
 
+" {{{ tagbar settings
+let g:tagbar_sort = 0  " sort by appearance order
+nmap <leader>tb :TagbarToggle<CR>
+" }}}
+
 " {{{ vim-signify settings
 set updatetime=100
 " }}}
