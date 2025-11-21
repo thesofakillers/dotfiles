@@ -1,13 +1,10 @@
 [alias]
     # `git prune-old 45` to override the default of 30 days
-    prune-old = "!bash -c '
-        d=${1:-30}
-        now=$(date +%s)
-        cutoff=$((now - d*86400))
-
-        git for-each-ref --format=\"%(committerdate:unix) %(refname:short)\" refs/heads |
-        while read ts br; do
-            [ \"$br\" = \"$(git rev-parse --abbrev-ref HEAD)\" ] && continue
-            [ $ts -le $cutoff ] && git branch -D \"$br\"
-        done
-    ' -"
+    prune-old = "!bash -c ' \
+        d=${1:-30}; \
+        cutoff=$(($(date +%s)-d*86400)); \
+        git for-each-ref --format=\"%(committerdate:unix) %(refname:short)\" refs/heads | \
+        while read ts br; do \
+            [ \"$br\" = \"$(git rev-parse --abbrev-ref HEAD)\" ] && continue; \
+            [ $ts -le $cutoff ] && git branch -D \"$br\"; \
+        done' -"
