@@ -16,6 +16,18 @@ stagnate and in the long run will outlive vim. That being said I originally used
 vim so the config is shared between the two for now. I use
 [vim-plugged](https://github.com/junegunn/vim-plug) for packages.
 
+### Neovim / Coc specifics
+
+- Coc uses `~/n/bin/node`; keep `n` on PATH.
+- Coc extensions live in `~/.config/coc/extensions`; run `:CocUpdate` after
+  changing Node.
+- Neovim Python host lives in `~/.local/share/nvim-py3` with `pynvim` installed
+  (recreate with `python3 -m venv ~/.local/share/nvim-py3 && ~/.local/share/nvim-py3/bin/pip install -U pynvim`).
+- Built-in node/perl/ruby providers are disabled; only Coc’s node host is used.
+- Coc-pyright is installed. Ruff lint/format uses `~/.scripts/ruff-fallback`:
+  looks for `./.venv/ruff`, then PATH ruff, else no-op (prevents EPIPE when
+  ruff is missing). Install ruff in each project venv for full lint/format.
+
 ## Additional Setup
 
 You may wish to run or at least to refer to the contents of

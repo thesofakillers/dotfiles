@@ -23,7 +23,13 @@
   "diagnostic-languageserver.formatters": {
     "shfmt": {
       "command": "shfmt",
-      "args": ["-i", "2", "-bn", "-ci", "-sr"]
+      "args": [
+        "-i",
+        "2",
+        "-bn",
+        "-ci",
+        "-sr"
+      ]
     }
   },
   "typescript.suggest.completeFunctionCalls": true,
@@ -34,11 +40,23 @@
   "prettier.useEditorConfig": false,
   "suggest.noselect": false,
   "snippets.extends": {
-    "cpp": ["c"],
-    "javascript": ["html", "javascriptreact"],
-    "javascriptreact": ["javascript", "typescriptreact"],
-    "typescript": ["javascript"],
-    "markdown": ["tex"]
+    "cpp": [
+      "c"
+    ],
+    "javascript": [
+      "html",
+      "javascriptreact"
+    ],
+    "javascriptreact": [
+      "javascript",
+      "typescriptreact"
+    ],
+    "typescript": [
+      "javascript"
+    ],
+    "markdown": [
+      "tex"
+    ]
   },
   "snippets.loadFromExtensions": true,
   "coc.preferences.extensionUpdateCheck": "daily",
@@ -51,8 +69,18 @@
   "pyright.inlayHints.functionReturnTypes": false,
   "pyright.inlayHints.parameterTypes": false,
   "python.linting.mypyEnabled": true,
-  "python.linting.mypyArgs": ["--incremental"],
+  "python.linting.mypyArgs": [
+    "--incremental"
+  ],
   "python.linting.ruffEnabled": true,
   "snippets.ultisnips.pythonPrompt": false,
-  "eslint.migration.2_x": "off"
+  "snippets.ultisnips.enable": false,
+  "pyright.trace.server": "verbose",
+  "eslint.migration.2_x": "off",
+  "fileSystemWatch.enable": false,
+  "fileSystemWatch.watchmanPath": "/usr/bin/false",
+  "coc.preferences.watchmanPath": "/usr/bin/false",
+  "pyright.logFile": "/tmp/pyright-lsp.log",
+  "python.linting.ruffPath": "~/.scripts/ruff-fallback",
+  "python.formatting.ruffPath": "~/.scripts/ruff-fallback"
 }

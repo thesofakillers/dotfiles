@@ -316,6 +316,11 @@ let g:lf_map_keys = 0
 map <leader>lf :Lf<CR>
 " }}}
 
+" {{{ tagbar settings
+let g:tagbar_sort = 0  " sort by appearance order
+nmap <leader>tb :TagbarToggle<CR>
+" }}}
+
 " {{{ vim-signify settings
 set updatetime=100
 " }}}
@@ -359,16 +364,31 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
 " neovim only {{{
 if has('nvim')
 "coc settings {{{
-" language options{{{
-" python interpreter selectioan (conda) {{{
-" https://github.com/neoclide/coc-python/issues/55#issuecomment-617499047
-if $CONDA_PREFIX == ""
-  let s:current_python_path=$CONDA_PYTHON_EXE
-else
-  let s:current_python_path=$CONDA_PREFIX.'/bin/python'
+" pin node used by coc to avoid EPIPE when PATH differs (GUI launches etc.)
+if executable(expand('~/n/bin/node'))
+  let g:coc_node_path = expand('~/n/bin/node')
 endif
-call coc#config('python', {'pythonPath': s:current_python_path})
+" language options{{{
+" python interpreter selection {{{
+" Pin to dedicated venv to avoid touching system python
+if filereadable(expand('~/.local/share/nvim-py3/bin/python'))
+  let g:python3_host_prog = expand('~/.local/share/nvim-py3/bin/python')
+  call coc#config('python', {'pythonPath': g:python3_host_prog})
+else
+  echohl WarningMsg
+  echom "pynvim host missing: run 'python3 -m venv ~/.local/share/nvim-py3 && ~/.local/share/nvim-py3/bin/pip install -U pynvim'"
+  echohl None
+endif
+" pyright server path (nested to avoid npm hoist issues)
+if filereadable(expand('~/.config/coc/extensions/node_modules/coc-pyright/node_modules/pyright/langserver.index.js'))
+  call coc#config('pyright', {'server': expand('~/.config/coc/extensions/node_modules/coc-pyright/node_modules/pyright/langserver.index.js')})
+endif
 " }}}
+" }}}
+" provider settings {{{
+let g:loaded_node_provider = 0
+let g:loaded_perl_provider = 0
+let g:loaded_ruby_provider = 0
 " }}}
 " other options {{{
 " disable warning

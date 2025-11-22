@@ -1,1 +1,5 @@
-/Users/thesofakillers/repos/dotfiles/git/.gitignore
+giulioignore*
+*~
+*.swp
+*.swo
+.DS_Store

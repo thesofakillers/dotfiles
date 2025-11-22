@@ -1,4 +1,5 @@
 .mypy_cache/
+.config/github-copilot/versions.json
 .config/uv/
 .config/github-copilot/apps.json
 .config/fontforge/
