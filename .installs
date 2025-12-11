@@ -16,6 +16,9 @@ export PATH="$HOME/.local/bin:$PATH"
 # using curl -L https://bit.ly/n-install | bash
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+# Hint Codex that Bun manages the install so update prompts use bun.
+export npm_execpath="${npm_execpath:-$BUN_INSTALL/bin/bun}"
+export npm_config_user_agent="${npm_config_user_agent:-bun/1}"
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 # }}}
