@@ -26,29 +26,20 @@ Plug 'mzlogin/vim-markdown-toc'
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 Plug 'lepture/vim-jinja'
 Plug 'preservim/tagbar'
+Plug 'github/copilot.vim'
 
 " NeoVim-only plug-ins
 if has('nvim')
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'ggandor/lightspeed.nvim'
-
-  " " avante {{{
-  " " required {{{
-  " Plug 'nvim-treesitter/nvim-treesitter'
-  " Plug 'stevearc/dressing.nvim'    " Better UI for vim.ui.input and vim.ui.select
-  " Plug 'nvim-lua/plenary.nvim'       " Utility functions required by many neovim plugins
-  " Plug 'MunifTanjim/nui.nvim'        " UI component library for neovim plugins
-  " Plug 'MeanderingProgrammer/render-markdown.nvim'  this is actually optional
-  " }}}
-  " {{{ optional (allegedly)
-  Plug 'zbirenbaum/copilot.lua' " see also init.lua
-  "Plug 'nvim-tree/nvim-web-devicons' " Adds filetype icons to neovim plugins
-  "Plug 'HakonHarnes/img-clip.nvim'
-  ""}}}
-  "Plug 'yetone/avante.nvim', { 'branch': 'main', 'do': 'make'} " see also init.lua
-  " }}}
 endif
 call plug#end()
+" }}}
+
+" copilot.vim settings {{{
+" Use Ctrl-L instead of Tab to accept Copilot suggestions
+let g:copilot_no_tab_map = v:true
+imap <silent><script><expr> <C-l> copilot#Accept("\<CR>")
 " }}}
 
 " generic settings {{{
