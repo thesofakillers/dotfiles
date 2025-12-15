@@ -31,6 +31,8 @@ node_modules/
 .config/coc/snippets-mru
 .config/coc/lists
 .config/coc/suggest.txt
+.config/coc/extensions/package.json
+.config/coc/extensions/package-lock.json
 .config/coc/extensions/coc-python-data
 .config/coc/extensions/coc-texlab-data
 .config/coc/extensions/db.json

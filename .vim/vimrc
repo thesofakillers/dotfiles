@@ -359,6 +359,22 @@ if has('nvim')
 if executable(expand('~/n/bin/node'))
   let g:coc_node_path = expand('~/n/bin/node')
 endif
+" ensure extensions stay in sync without tracking coc's generated package.json
+" https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions#g:coc_global_extensions
+let g:coc_global_extensions = [
+      \ 'coc-diagnostic',
+      \ 'coc-eslint',
+      \ 'coc-highlight',
+      \ 'coc-json',
+      \ 'coc-markdownlint',
+      \ 'coc-prettier',
+      \ 'coc-pyright',
+      \ 'coc-snippets',
+      \ 'coc-texlab',
+      \ 'coc-toml',
+      \ 'coc-tsserver',
+      \ 'coc-yaml',
+      \ ]
 " language options{{{
 " python interpreter selection {{{
 " Pin to dedicated venv to avoid touching system python
