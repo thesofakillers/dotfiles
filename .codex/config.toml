@@ -1,8 +1,9 @@
-model = "gpt-5.1-codex-max"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.2-codex"
+model_reasoning_effort = "medium"
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
 oss_provider = "lmstudio"
+web_search = "cached"
 
 [projects."/Users/thesofakillers/repos/interview_prep"]
 trust_level = "trusted"
@@ -18,8 +19,8 @@ hide_full_access_warning = true
 hide_gpt5_1_migration_prompt = true
 "hide_gpt-5.1-codex-max_migration_prompt" = true
 
-[features]
-web_search_request = true
+[notice.model_migrations]
+"gpt-5.1-codex-max" = "gpt-5.2-codex"
 
 [model_providers.lmstudio]
 name = "LM Studio (OpenAI compatible)"
@@ -30,5 +31,4 @@ wire_api = "chat"
 model_provider = "lmstudio"
 model = "openai/gpt-oss-20b"
 model_reasoning_effort = "medium"
-[profiles.oss.features]
-web_search_request = false
+web_search = "disabled"
