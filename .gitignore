@@ -4,8 +4,20 @@
 .codex/log/
 .codex/sessions/
 .codex/version.json
+.codex/.codex-global-state.json
+.codex/.personality_migration
+.codex/archived_sessions/
+.codex/models_cache.json
+.codex/rules/
+.codex/shell_snapshots/
+.codex/skills/
+.codex/sqlite/
+.codex/tmp/
+.codex/vendor_imports/
+.codex/worktrees/
 
 .mypy_cache/
+.config/cagent/
 .config/github-copilot/versions.json
 .config/uv/
 .config/github-copilot/apps.json
