@@ -15,3 +15,14 @@ When developing python:
 - If working in a monorepo structure, most likely you will have to cd into the
   project directory for running things for a specific project
 - If available, run the pre-commit hooks (dont actually commit, just run them).
+
+## Repo-specific Instructions
+
+Of course, you should also follow any repo-specific instructions and, if
+present, AGENTS.md file(s), which you should look for in the repo you are
+working in.
+
+## Secrets
+
+Keep in mind that ~/.secrets has been sourced, setting a number of env vars that
+can help or get in the way of developing. Be aware of it when working.
