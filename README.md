@@ -1,20 +1,52 @@
 # Dotfiles
 
-Clone this repository. Then use symbolic linking to set the relevant files where
-they need to be relative to your `~`.
+## Quick Start
 
-For example, if you wish for `dotfiles/folder/` to appear in `~/folder` then run
+On a fresh machine, logged in as your regular user:
 
 ```bash
-ln -s path/to/dotfiles/folder ~/folder
+git clone <your-dotfiles-repo-url> ~/dotfiles
+cd ~/dotfiles
+./bootstrap.sh
+exec bash -l
+```
+
+What `bootstrap.sh` does:
+
+- asks a short interactive questionnaire first, then executes the selected setup plan
+- installs baseline packages (`git`, `tmux`, `neovim`, `ripgrep`, `fd`, etc.) via `apt` or Homebrew when available
+- optionally installs developer runtimes (`uv`, `bun`, and `node` via `n`)
+- symlinks the main dotfiles and selected `.config/*` files
+- backs up any replaced files to `~/.dotfiles-backups/<timestamp>/...`
+- creates a local-only git template at `~/.config/git/config.secret`
+- installs `tmux` TPM plugin manager
+- skips package installation if no supported package manager is found
+
+Useful flags:
+
+```bash
+./bootstrap.sh --non-interactive
+./bootstrap.sh --skip-packages --without-runtimes
+./bootstrap.sh --with-conda --with-nvim-plugins
+```
+
+After first login:
+
+- start `tmux`, then press `prefix + I` to install tmux plugins
+- run `nvim +PlugInstall +qall` once to install Vim/Neovim plugins
+
+## Manual Linking
+
+If you prefer manual setup, clone this repository and create symlinks from files
+inside the repo into your `$HOME`.
+
+Example:
+
+```bash
+ln -s /path/to/dotfiles/.bashrc ~/.bashrc
 ```
 
 ## Vim/Neovim
-
-I use [neovim](https://neovim.io/) as I believe that it is less likely to
-stagnate and in the long run will outlive vim. That being said I originally used
-vim so the config is shared between the two for now. I use
-[vim-plugged](https://github.com/junegunn/vim-plug) for packages.
 
 ### Neovim / Coc specifics
 
@@ -28,7 +60,7 @@ vim so the config is shared between the two for now. I use
   looks for `./.venv/ruff`, then PATH ruff, else no-op (prevents EPIPE when
   ruff is missing). Install ruff in each project venv for full lint/format.
 
-## Additional Setup
+## Additional Local Setup (Mac)
 
 You may wish to run or at least to refer to the contents of
 
@@ -43,7 +75,7 @@ You may wish to run or at least to refer to the contents of
 For installing tmux without needing root access, please refer to
 `tmux_local_install.sh`
 
-### Servers and Custom environments
+### Local-only git config
 
-For custom environments for which you do not wish to commit things, add any
-configuration to a file named `.serverthings` placed in the `$HOME` directory.
+Use `~/.config/git/config.secret` for machine-specific git settings you do not
+want to commit.

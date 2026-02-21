@@ -1,15 +1,27 @@
 #!/usr/bin/env bash
+OS_NAME="$(uname -s)"
+
 # {{{ general
 mkdir -p "$HOME/bin"
 export PATH="$HOME/bin:$PATH"
 # }}}
 
 # {{{ fzf
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+if command -v rg > /dev/null 2>&1; then
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
+elif command -v ag > /dev/null 2>&1; then
+  export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+fi
 # }}}
 
 # {{{ python poetry
 export PATH="$HOME/.local/bin:$PATH"
+# }}}
+
+# {{{ conda/miniforge
+if [ -d "$HOME/miniforge3/bin" ]; then
+  export PATH="$HOME/miniforge3/bin:$PATH"
+fi
 # }}}
 
 # {{{ node version manager (https://github.com/tj/n)
@@ -25,52 +37,39 @@ export N_PREFIX="$HOME/n"
 # }}}
 
 # {{{ LaTeX
-export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
+if [[ "$OS_NAME" == "Darwin" ]]; then
+  export PATH="/Library/TeX/Distributions/.DefaultTeX/Contents/Programs/texbin:$PATH"
+fi
 # }}}
 
 # {{{ go
-export GOPATH=/Users/$USER/go
-export PATH=$GOPATH/bin:$PATH
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
 # }}}
 
 # {{{ macports
-# MacPorts Installer addition on 2023-02-01_at_12:25:54: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts. }}}
+if [[ "$OS_NAME" == "Darwin" ]]; then
+  # MacPorts Installer addition on 2023-02-01_at_12:25:54: adding an appropriate PATH variable for use with MacPorts.
+  export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+  # Finished adapting your PATH environment variable for use with MacPorts.
+fi
+# }}}
 
 # {{{ tree
 alias tree='tree -I "node_modules|\.git|\.DS_Store|__pycache__|venv|\.venv|\.mypy_cache|\.pytest_cache|\.tox|\.vscode|\.idea|\.cache|\.ipynb_checkpoints"'
 # }}}
 
 # {{{ homebrew
-if [ -d "/opt/homebrew" ]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-elif [ -x "/usr/local/bin/brew" ]; then
-  eval "$(/usr/local/bin/brew shellenv)"
-fi
-export HOMEBREW_NO_AUTO_UPDATE=1
-# brew python
-# Check if `python` is not available in the PATH
-if ! which python > /dev/null; then
-  # Check if Homebrew is in /opt/homebrew or /usr/local and create the link in $HOME/bin
-  if [ -x "/opt/homebrew/bin/python3" ]; then
-    ln -s /opt/homebrew/bin/python3 "$HOME/bin/python"
-  elif [ -x "/usr/local/bin/python3" ]; then
-    ln -s /usr/local/bin/python3 "$HOME/bin/python"
-  else
-    echo "python3 not found in /opt/homebrew or /usr/local"
-  fi
-fi
+if command -v brew > /dev/null 2>&1; then
+  eval "$(brew shellenv)"
+  export HOMEBREW_NO_AUTO_UPDATE=1
 
-# Check if `pip` is not available in the PATH
-if ! which pip > /dev/null; then
-  # Check if Homebrew is in /opt/homebrew or /usr/local and create the link in $HOME/bin
-  if [ -x "/opt/homebrew/bin/pip3" ]; then
-    ln -s /opt/homebrew/bin/pip3 "$HOME/bin/pip"
-  elif [ -x "/usr/local/bin/pip3" ]; then
-    ln -s /usr/local/bin/pip3 "$HOME/bin/pip"
-  else
-    echo "pip3 not found in /opt/homebrew or /usr/local"
+  if ! command -v python > /dev/null 2>&1 && command -v python3 > /dev/null 2>&1; then
+    ln -sf "$(command -v python3)" "$HOME/bin/python"
+  fi
+
+  if ! command -v pip > /dev/null 2>&1 && command -v pip3 > /dev/null 2>&1; then
+    ln -sf "$(command -v pip3)" "$HOME/bin/pip"
   fi
 fi
 # }}}
@@ -82,16 +81,26 @@ export PATH="$PATH:$HOME/.cache/lm-studio/bin"
 # }}}
 
 # {{{ Docker
-export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
+if [[ "$OS_NAME" == "Darwin" ]]; then
+  export PATH="/Applications/Docker.app/Contents/Resources/bin:$PATH"
+fi
 # }}}
 
 # {{{ psql (postgresql)
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+if [ -d "/opt/homebrew/opt/libpq/bin" ]; then
+  export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
-# For compilers to find libpq you may need to set:
-export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
+  # For compilers to find libpq you may need to set:
+  export LDFLAGS="-L/opt/homebrew/opt/libpq/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/libpq/include"
 
-# For pkg-config to find libpq you may need to set:
-export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
+  # For pkg-config to find libpq you may need to set:
+  export PKG_CONFIG_PATH="/opt/homebrew/opt/libpq/lib/pkgconfig"
+fi
+# }}}
+
+# {{{ fd on Debian/Ubuntu
+if command -v fdfind > /dev/null 2>&1 && ! command -v fd > /dev/null 2>&1; then
+  alias fd='fdfind'
+fi
 # }}}

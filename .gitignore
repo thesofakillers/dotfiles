@@ -54,3 +54,4 @@ node_modules/
 .config/Dadroit
 .config/gtk*
 .config/iterm2
+.config/git/config.secret
