@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commit"
+  short_description: "Create small, atomic git commits"
+  default_prompt: "Use $commit to stage related changes and create small commits with one-line messages."

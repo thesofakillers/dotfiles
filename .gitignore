@@ -10,7 +10,6 @@
 .codex/models_cache.json
 .codex/rules/
 .codex/shell_snapshots/
-.codex/skills/
 .codex/sqlite/
 .codex/tmp/
 .codex/vendor_imports/

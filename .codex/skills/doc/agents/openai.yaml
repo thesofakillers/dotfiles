@@ -1,0 +1,4 @@
+interface:
+  display_name: "Doc"
+  short_description: "Keep docs current with code changes"
+  default_prompt: "Use $doc to create, update, or remove docs based on the current repository context."

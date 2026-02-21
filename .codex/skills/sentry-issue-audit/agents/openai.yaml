@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sentry Issue Audit"
+  short_description: "Audit and triage Sentry issues fast"
+  default_prompt: "Use $sentry-issue-audit to audit the latest Sentry issues or a specific issue ID."
