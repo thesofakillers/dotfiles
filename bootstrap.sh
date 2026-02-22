@@ -167,6 +167,27 @@ link_path() {
   log "Linked $dest -> $src"
 }
 
+link_config_entries() {
+  local repo_config_dir="$REPO_DIR/.config"
+  local home_config_dir="$HOME/.config"
+  local src entry_name
+
+  if [[ ! -d "$repo_config_dir" ]]; then
+    return
+  fi
+
+  mkdir -p "$home_config_dir"
+
+  while IFS= read -r entry_name; do
+    [[ -n "$entry_name" ]] || continue
+    src="$repo_config_dir/$entry_name"
+    if [[ ! -e "$src" && ! -L "$src" ]]; then
+      continue
+    fi
+    link_path "$src" "$home_config_dir/$entry_name"
+  done < <(git -C "$REPO_DIR" ls-files -- .config | awk -F/ 'NF >= 2 { print $2 }' | sort -u)
+}
+
 load_brew_shellenv() {
   if command -v brew > /dev/null 2>&1; then
     eval "$(brew shellenv)"
@@ -426,6 +447,40 @@ install_runtimes_if_requested() {
   install_node_if_missing
 }
 
+setup_nvim_python_host() {
+  local host_dir="$HOME/.local/share/nvim-py3"
+  local host_python="$host_dir/bin/python"
+
+  if ! command -v python3 > /dev/null 2>&1; then
+    log "Skipping Neovim Python host setup (python3 not found)."
+    return
+  fi
+
+  if [[ -x "$host_python" ]] && "$host_python" -c 'import pynvim' > /dev/null 2>&1; then
+    log "Neovim Python host already installed."
+    return
+  fi
+
+  if ! python3 -m venv --help > /dev/null 2>&1; then
+    log "Skipping Neovim Python host setup (python3 venv module missing)."
+    log "Install python3-venv, then rerun bootstrap."
+    return
+  fi
+
+  log "Setting up Neovim Python host at $host_dir."
+  if ! python3 -m venv "$host_dir"; then
+    log "Neovim Python host venv creation failed; continuing."
+    return
+  fi
+
+  if ! "$host_python" -m pip install -U pip pynvim; then
+    log "Neovim Python host package install failed; continuing."
+    return
+  fi
+
+  log "Neovim Python host is ready."
+}
+
 setup_links() {
   link_path "$REPO_DIR/.bash_profile" "$HOME/.bash_profile"
   link_path "$REPO_DIR/.bash_prompt" "$HOME/.bash_prompt"
@@ -434,16 +489,10 @@ setup_links() {
   link_path "$REPO_DIR/.installs" "$HOME/.installs"
   link_path "$REPO_DIR/.tmux.conf" "$HOME/.tmux.conf"
   link_path "$REPO_DIR/.scripts" "$HOME/.scripts"
+  link_path "$REPO_DIR/.codex" "$HOME/.codex"
+  link_path "$REPO_DIR/.vim" "$HOME/.vim"
 
-  link_path "$REPO_DIR/.config/git/config" "$HOME/.config/git/config"
-  link_path "$REPO_DIR/.config/git/config.aliases" "$HOME/.config/git/config.aliases"
-  link_path "$REPO_DIR/.config/git/ignore" "$HOME/.config/git/ignore"
-
-  link_path "$REPO_DIR/.config/nvim/init.lua" "$HOME/.config/nvim/init.lua"
-  link_path "$REPO_DIR/.config/nvim/coc-settings.json" "$HOME/.config/nvim/coc-settings.json"
-
-  link_path "$REPO_DIR/.vim/vimrc" "$HOME/.vim/vimrc"
-  link_path "$REPO_DIR/.vim/autoload/plug.vim" "$HOME/.vim/autoload/plug.vim"
+  link_config_entries
 }
 
 setup_local_files() {
@@ -542,6 +591,7 @@ print_plan() {
   printf '\n'
   printf '  - Install tmux TPM: %s\n' "$(bool_word "$INSTALL_TPM")"
   printf '  - Install runtimes (uv, bun, node): %s\n' "$(bool_word "$INSTALL_RUNTIMES")"
+  printf '  - Set up Neovim Python host: yes\n'
   printf '  - Install Neovim plugins now: %s\n\n' "$(bool_word "$INSTALL_NVIM_PLUGINS")"
 }
 
@@ -652,6 +702,7 @@ main() {
 
   setup_links
   setup_local_files
+  setup_nvim_python_host
 
   if [[ "$INSTALL_TPM" -eq 1 ]]; then
     setup_tpm

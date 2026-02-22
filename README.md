@@ -18,9 +18,10 @@ What `bootstrap.sh` does:
   - `apt`: `manifests/apt-packages.txt`
   - Homebrew: `Brewfile` (with fallback `manifests/brew-packages.txt`)
 - optionally installs developer runtimes (`uv`, `bun`, and `node` via `n`)
-- symlinks the main dotfiles and selected `.config/*` files
+- symlinks the main dotfiles and managed directories (`.codex`, `.vim`, and top-level entries under `.config`)
 - backs up any replaced files to `~/.dotfiles-backups/<timestamp>/...`
 - creates a local-only git template at `~/.config/git/config.secret`
+- sets up Neovim Python host in `~/.local/share/nvim-py3` with `pynvim`
 - installs `tmux` TPM plugin manager
 - skips package installation if no supported package manager is found
 

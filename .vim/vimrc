@@ -104,7 +104,12 @@ set ignorecase
 set smartcase
 set showmatch
 " Spelling
-set spell spelllang=en,it,es
+set spell spelllang=en
+for s:lang in ['it', 'es']
+  if filereadable(expand('$VIMRUNTIME/spell/' . s:lang . '.utf-8.spl'))
+    execute 'set spelllang+=' . s:lang
+  endif
+endfor
 set spellfile=$HOME/.vim/spell/en.utf-8.add,$HOME/.vim/spell/it.utf-8.add
 set spellsuggest=fast
 " Visualize tabs and newlines
