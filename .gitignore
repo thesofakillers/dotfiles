@@ -16,6 +16,8 @@
 .codex/worktrees/
 
 .mypy_cache/
+__pycache__/
+*.pyc
 .config/cagent/
 .config/github-copilot/versions.json
 .config/uv/

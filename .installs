@@ -18,12 +18,6 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 # }}}
 
-# {{{ conda/miniforge
-if [ -d "$HOME/miniforge3/bin" ]; then
-  export PATH="$HOME/miniforge3/bin:$PATH"
-fi
-# }}}
-
 # {{{ node version manager (https://github.com/tj/n)
 # using curl -L https://bit.ly/n-install | bash
 export BUN_INSTALL="$HOME/.bun"

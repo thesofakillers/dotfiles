@@ -4,7 +4,6 @@ set -euo pipefail
 REPO_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_ROOT="$HOME/.dotfiles-backups/$(date +%Y%m%d-%H%M%S)"
 OS_NAME="$(uname -s)"
-ARCH_NAME="$(uname -m)"
 BREWFILE_PATH="$REPO_DIR/Brewfile"
 APT_PACKAGES_MANIFEST="$REPO_DIR/manifests/apt-packages.txt"
 BREW_PACKAGES_MANIFEST="$REPO_DIR/manifests/brew-packages.txt"
@@ -14,14 +13,12 @@ DO_CONFIRM=1
 INSTALL_PACKAGES=1
 INSTALL_TPM=1
 INSTALL_HOMEBREW=0
-INSTALL_CONDA=0
 INSTALL_RUNTIMES=1
 INSTALL_NVIM_PLUGINS=0
 
 INSTALL_PACKAGES_SET=0
 INSTALL_TPM_SET=0
 INSTALL_HOMEBREW_SET=0
-INSTALL_CONDA_SET=0
 INSTALL_RUNTIMES_SET=0
 INSTALL_NVIM_PLUGINS_SET=0
 
@@ -59,8 +56,6 @@ Options:
       Enable/disable Homebrew installation when missing.
   --with-runtimes | --without-runtimes
       Enable/disable installing developer runtimes (uv, bun, node via n).
-  --with-conda | --without-conda
-      Enable/disable Conda (Miniforge) installation.
   --with-nvim-plugins | --without-nvim-plugins
       Enable/disable running Neovim plugin installation.
 
@@ -417,68 +412,6 @@ install_runtimes_if_requested() {
   install_node_if_missing
 }
 
-miniforge_installer_url() {
-  local os_tag arch_tag
-
-  case "$OS_NAME" in
-    Linux)
-      os_tag='Linux'
-      ;;
-    Darwin)
-      os_tag='MacOSX'
-      ;;
-    *)
-      return 1
-      ;;
-  esac
-
-  case "$ARCH_NAME" in
-    x86_64|amd64)
-      arch_tag='x86_64'
-      ;;
-    arm64|aarch64)
-      arch_tag='aarch64'
-      ;;
-    *)
-      return 1
-      ;;
-  esac
-
-  printf 'https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-%s-%s.sh' "$os_tag" "$arch_tag"
-}
-
-install_conda_if_requested() {
-  local installer_url installer_path
-
-  if [[ "$INSTALL_CONDA" -ne 1 ]]; then
-    return
-  fi
-
-  if command -v conda > /dev/null 2>&1; then
-    log "Conda already installed."
-    return
-  fi
-
-  if [[ -x "$HOME/miniforge3/bin/conda" ]]; then
-    log "Miniforge already present at $HOME/miniforge3."
-  else
-    if ! installer_url="$(miniforge_installer_url)"; then
-      log "Skipping Conda install (unsupported OS/architecture: $OS_NAME/$ARCH_NAME)."
-      return
-    fi
-
-    installer_path="$(mktemp "${TMPDIR:-/tmp}/miniforge.XXXXXX.sh")"
-    log "Downloading Miniforge installer."
-    curl -fsSL "$installer_url" -o "$installer_path"
-    bash "$installer_path" -b -p "$HOME/miniforge3"
-    rm -f "$installer_path"
-    log "Installed Miniforge to $HOME/miniforge3."
-  fi
-
-  log "Miniforge is installed at $HOME/miniforge3."
-  log "PATH will include it automatically via ~/.installs."
-}
-
 setup_links() {
   link_path "$REPO_DIR/.bash_profile" "$HOME/.bash_profile"
   link_path "$REPO_DIR/.bash_prompt" "$HOME/.bash_prompt"
@@ -571,10 +504,6 @@ configure_interactive() {
     prompt_yes_no "Install tmux TPM plugin manager?" 1 INSTALL_TPM
   fi
 
-  if [[ "$INSTALL_CONDA_SET" -eq 0 ]]; then
-    prompt_yes_no "Install Conda (Miniforge)?" 0 INSTALL_CONDA
-  fi
-
   if [[ "$INSTALL_RUNTIMES_SET" -eq 0 ]]; then
     prompt_yes_no "Install developer runtimes (uv, bun, node via n)?" 1 INSTALL_RUNTIMES
   fi
@@ -598,7 +527,6 @@ print_plan() {
   fi
   printf '\n'
   printf '  - Install tmux TPM: %s\n' "$(bool_word "$INSTALL_TPM")"
-  printf '  - Install Conda (Miniforge): %s\n' "$(bool_word "$INSTALL_CONDA")"
   printf '  - Install runtimes (uv, bun, node): %s\n' "$(bool_word "$INSTALL_RUNTIMES")"
   printf '  - Install Neovim plugins now: %s\n\n' "$(bool_word "$INSTALL_NVIM_PLUGINS")"
 }
@@ -656,14 +584,6 @@ parse_args() {
       --without-runtimes)
         INSTALL_RUNTIMES=0
         INSTALL_RUNTIMES_SET=1
-        ;;
-      --with-conda)
-        INSTALL_CONDA=1
-        INSTALL_CONDA_SET=1
-        ;;
-      --without-conda)
-        INSTALL_CONDA=0
-        INSTALL_CONDA_SET=1
         ;;
       --with-nvim-plugins)
         INSTALL_NVIM_PLUGINS=1
@@ -723,7 +643,6 @@ main() {
     setup_tpm
   fi
 
-  install_conda_if_requested
   install_nvim_plugins_if_requested
 
   log "Bootstrap complete."

@@ -3,7 +3,7 @@
 [[ -f "$HOME/.bash_prompt" ]] && source "$HOME/.bash_prompt"
 # Secrets
 [[ -f "$HOME/.secrets" ]] && source "$HOME/.secrets"
-# Installs (conda, rbenv, fzf, etc)
+# Installs (rbenv, fzf, etc)
 [[ -f "$HOME/.installs" ]] && source "$HOME/.installs"
 # My own scripts
 [[ -f "$HOME/.bash_scripts" ]] && source "$HOME/.bash_scripts"

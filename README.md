@@ -30,7 +30,7 @@ Useful flags:
 ./bootstrap.sh --non-interactive
 ./bootstrap.sh --skip-packages --without-runtimes
 ./bootstrap.sh --without-homebrew
-./bootstrap.sh --with-conda --with-nvim-plugins
+./bootstrap.sh --with-nvim-plugins
 ```
 
 After first login:
@@ -65,13 +65,10 @@ ln -s /path/to/dotfiles/.bashrc ~/.bashrc
 
 ## Additional Local Setup (Mac)
 
-You may wish to run or at least to refer to the contents of
+Most setup is covered by `bootstrap.sh`. For macOS terminal terminfo compatibility,
+you may still need:
 
-- [brew.sh](brew.sh)
-- [node.sh](node.sh)
-- [additional-installs.sh](additional-installs.sh)
-- [mac_finish.sh](mac_finish.sh) to complete the setup with necessary programs
-  and configuration.
+- [mac_finish.sh](mac_finish.sh)
 
 ### tmux without root
 
