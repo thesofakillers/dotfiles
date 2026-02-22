@@ -447,6 +447,36 @@ install_runtimes_if_requested() {
   install_node_if_missing
 }
 
+ensure_python_venv_support() {
+  local py_minor pkg_minor
+
+  if python3 -m venv --help > /dev/null 2>&1; then
+    return 0
+  fi
+
+  if ! command -v apt-get > /dev/null 2>&1; then
+    return 1
+  fi
+
+  py_minor="$(python3 -c 'import sys; print(f"{sys.version_info.major}.{sys.version_info.minor}")' 2>/dev/null || true)"
+  pkg_minor=""
+  if [[ -n "$py_minor" ]]; then
+    pkg_minor="python${py_minor}-venv"
+  fi
+
+  log "python3 venv module missing; attempting to install Debian/Ubuntu venv package."
+  run_with_sudo apt-get update
+
+  if [[ -n "$pkg_minor" ]]; then
+    if run_with_sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y "$pkg_minor"; then
+      return 0
+    fi
+    log "Could not install $pkg_minor; trying python3-venv."
+  fi
+
+  run_with_sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y python3-venv
+}
+
 setup_nvim_python_host() {
   local host_dir="$HOME/.local/share/nvim-py3"
   local host_python="$host_dir/bin/python"
@@ -462,15 +492,26 @@ setup_nvim_python_host() {
   fi
 
   if ! python3 -m venv --help > /dev/null 2>&1; then
-    log "Skipping Neovim Python host setup (python3 venv module missing)."
-    log "Install python3-venv, then rerun bootstrap."
-    return
+    if ! ensure_python_venv_support; then
+      log "Skipping Neovim Python host setup (python3 venv module missing)."
+      log "Install python3-venv (or python3.x-venv), then rerun bootstrap."
+      return
+    fi
   fi
 
   log "Setting up Neovim Python host at $host_dir."
+  rm -rf "$host_dir"
   if ! python3 -m venv "$host_dir"; then
-    log "Neovim Python host venv creation failed; continuing."
-    return
+    if ensure_python_venv_support; then
+      rm -rf "$host_dir"
+      if ! python3 -m venv "$host_dir"; then
+        log "Neovim Python host venv creation failed; continuing."
+        return
+      fi
+    else
+      log "Neovim Python host venv creation failed; continuing."
+      return
+    fi
   fi
 
   if ! "$host_python" -m pip install -U pip pynvim; then

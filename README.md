@@ -22,6 +22,7 @@ What `bootstrap.sh` does:
 - backs up any replaced files to `~/.dotfiles-backups/<timestamp>/...`
 - creates a local-only git template at `~/.config/git/config.secret`
 - sets up Neovim Python host in `~/.local/share/nvim-py3` with `pynvim`
+  - on Debian/Ubuntu, bootstrap auto-installs missing `python3-venv` support when needed
 - installs `tmux` TPM plugin manager
 - skips package installation if no supported package manager is found
 
