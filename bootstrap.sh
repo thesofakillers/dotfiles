@@ -370,6 +370,12 @@ install_bun_if_missing() {
 
 install_node_if_missing() {
   local n_path="$HOME/n/bin"
+  local install_url
+  local -a install_urls=(
+    "https://raw.githubusercontent.com/mklement0/n-install/stable/bin/n-install"
+    "https://bit.ly/n-install"
+  )
+  local installed=0
 
   if command -v node > /dev/null 2>&1 || [[ -x "$n_path/node" ]]; then
     log "Node already installed."
@@ -380,11 +386,19 @@ install_node_if_missing() {
       return
     fi
 
-    log "Installing node via n-install."
-    if ! curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n-install | bash -s -- -y; then
+    for install_url in "${install_urls[@]}"; do
+      log "Installing node via n-install ($install_url)."
+      if curl -fsSL "$install_url" | N_PREFIX="$HOME/n" PREFIX="$HOME/n" bash -s -- -y -n; then
+        installed=1
+        break
+      fi
+    done
+
+    if [[ "$installed" -ne 1 ]]; then
       log "node install failed; continuing."
       return
     fi
+
     export PATH="$n_path:$PATH"
   fi
 
