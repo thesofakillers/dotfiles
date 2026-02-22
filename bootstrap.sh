@@ -450,7 +450,7 @@ install_runtimes_if_requested() {
 ensure_python_venv_support() {
   local py_minor pkg_minor
 
-  if python3 -m venv --help > /dev/null 2>&1; then
+  if python3 -m venv --help > /dev/null 2>&1 && python3 -c 'import ensurepip' > /dev/null 2>&1; then
     return 0
   fi
 
@@ -464,7 +464,7 @@ ensure_python_venv_support() {
     pkg_minor="python${py_minor}-venv"
   fi
 
-  log "python3 venv module missing; attempting to install Debian/Ubuntu venv package."
+  log "python3 venv/ensurepip support missing; attempting to install Debian/Ubuntu venv package."
   run_with_sudo apt-get update
 
   if [[ -n "$pkg_minor" ]]; then
@@ -491,12 +491,10 @@ setup_nvim_python_host() {
     return
   fi
 
-  if ! python3 -m venv --help > /dev/null 2>&1; then
-    if ! ensure_python_venv_support; then
-      log "Skipping Neovim Python host setup (python3 venv module missing)."
-      log "Install python3-venv (or python3.x-venv), then rerun bootstrap."
-      return
-    fi
+  if ! ensure_python_venv_support; then
+    log "Skipping Neovim Python host setup (python3 venv/ensurepip support missing)."
+    log "Install python3-venv (or python3.x-venv), then rerun bootstrap."
+    return
   fi
 
   log "Setting up Neovim Python host at $host_dir."
