@@ -29,4 +29,3 @@ hide_gpt5_1_migration_prompt = true
 unified_exec = true
 apps = true
 multi_agent = true
-prevent_idle_sleep = true
