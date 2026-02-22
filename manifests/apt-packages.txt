@@ -1,0 +1,15 @@
+# Baseline apt packages for bootstrap.sh
+bash-completion
+build-essential
+ca-certificates
+curl
+fd-find
+fzf
+git
+htop
+neovim
+ripgrep
+tmux
+tree
+unzip
+zip

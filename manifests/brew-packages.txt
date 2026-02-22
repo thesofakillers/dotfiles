@@ -1,0 +1,12 @@
+# Fallback Homebrew formulae used by bootstrap.sh
+# Primary source of truth for Homebrew is Brewfile.
+bash-completion@2
+fd
+fzf
+git
+htop
+neovim
+ripgrep
+tmux
+tree
+unzip

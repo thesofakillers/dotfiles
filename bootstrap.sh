@@ -5,6 +5,9 @@ REPO_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_ROOT="$HOME/.dotfiles-backups/$(date +%Y%m%d-%H%M%S)"
 OS_NAME="$(uname -s)"
 ARCH_NAME="$(uname -m)"
+BREWFILE_PATH="$REPO_DIR/Brewfile"
+APT_PACKAGES_MANIFEST="$REPO_DIR/manifests/apt-packages.txt"
+BREW_PACKAGES_MANIFEST="$REPO_DIR/manifests/brew-packages.txt"
 
 INTERACTIVE=1
 DO_CONFIRM=1
@@ -24,6 +27,16 @@ INSTALL_NVIM_PLUGINS_SET=0
 
 log() {
   printf '[bootstrap] %s\n' "$*"
+}
+
+manifest_entries() {
+  local manifest="$1"
+
+  if [[ ! -f "$manifest" ]]; then
+    return 1
+  fi
+
+  sed -e 's/[[:space:]]*#.*$//' -e '/^[[:space:]]*$/d' "$manifest"
 }
 
 usage() {
@@ -212,23 +225,26 @@ install_homebrew_if_requested() {
 }
 
 install_packages_apt() {
-  log "Installing baseline packages with apt-get."
+  local -a packages=()
+  local pkg
+
+  if [[ ! -f "$APT_PACKAGES_MANIFEST" ]]; then
+    log "Skipping apt-get package install (missing manifest: $APT_PACKAGES_MANIFEST)."
+    return
+  fi
+
+  while IFS= read -r pkg; do
+    packages+=("$pkg")
+  done < <(manifest_entries "$APT_PACKAGES_MANIFEST")
+
+  if [[ "${#packages[@]}" -eq 0 ]]; then
+    log "Skipping apt-get package install (no packages listed in $APT_PACKAGES_MANIFEST)."
+    return
+  fi
+
+  log "Installing baseline packages with apt-get from $APT_PACKAGES_MANIFEST."
   run_with_sudo apt-get update
-  run_with_sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    bash-completion \
-    build-essential \
-    ca-certificates \
-    curl \
-    fd-find \
-    fzf \
-    git \
-    htop \
-    neovim \
-    ripgrep \
-    tmux \
-    tree \
-    unzip \
-    zip
+  run_with_sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y "${packages[@]}"
 
   if command -v fdfind > /dev/null 2>&1 && ! command -v fd > /dev/null 2>&1; then
     mkdir -p "$HOME/.local/bin"
@@ -238,25 +254,42 @@ install_packages_apt() {
 
 install_packages_brew() {
   load_brew_shellenv
+  local -a packages=()
+  local pkg
 
   if ! command -v brew > /dev/null 2>&1; then
     log "Skipping brew package install (brew not available in this shell)."
     return
   fi
 
-  log "Installing baseline packages with Homebrew."
+  log "Installing packages with Homebrew."
   brew update
-  brew install \
-    bash-completion@2 \
-    fd \
-    fzf \
-    git \
-    htop \
-    neovim \
-    ripgrep \
-    tmux \
-    tree \
-    unzip
+
+  if [[ -f "$BREWFILE_PATH" ]]; then
+    if brew bundle --file="$BREWFILE_PATH"; then
+      log "Installed packages from $BREWFILE_PATH."
+      return
+    fi
+    log "brew bundle failed; falling back to baseline package list."
+  else
+    log "Brewfile not found at $BREWFILE_PATH; using fallback package list."
+  fi
+
+  if [[ ! -f "$BREW_PACKAGES_MANIFEST" ]]; then
+    log "Skipping fallback brew install (missing manifest: $BREW_PACKAGES_MANIFEST)."
+    return
+  fi
+
+  while IFS= read -r pkg; do
+    packages+=("$pkg")
+  done < <(manifest_entries "$BREW_PACKAGES_MANIFEST")
+
+  if [[ "${#packages[@]}" -eq 0 ]]; then
+    log "Skipping fallback brew install (no packages listed in $BREW_PACKAGES_MANIFEST)."
+    return
+  fi
+
+  brew install "${packages[@]}"
 }
 
 planned_package_manager() {

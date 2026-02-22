@@ -14,7 +14,9 @@ exec bash -l
 What `bootstrap.sh` does:
 
 - asks a short interactive questionnaire first, then executes the selected setup plan
-- installs baseline packages (`git`, `tmux`, `neovim`, `ripgrep`, `fd`, etc.) via `apt` or Homebrew when available
+- installs baseline packages via manifests:
+  - `apt`: `manifests/apt-packages.txt`
+  - Homebrew: `Brewfile` (with fallback `manifests/brew-packages.txt`)
 - optionally installs developer runtimes (`uv`, `bun`, and `node` via `n`)
 - symlinks the main dotfiles and selected `.config/*` files
 - backs up any replaced files to `~/.dotfiles-backups/<timestamp>/...`
@@ -27,6 +29,7 @@ Useful flags:
 ```bash
 ./bootstrap.sh --non-interactive
 ./bootstrap.sh --skip-packages --without-runtimes
+./bootstrap.sh --without-homebrew
 ./bootstrap.sh --with-conda --with-nvim-plugins
 ```
 
