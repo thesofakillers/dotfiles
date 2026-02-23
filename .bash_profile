@@ -36,8 +36,8 @@ set -o vi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# Some remote terminals (including mosh) do not provide COLORTERM.
-if [[ -z "${COLORTERM:-}" && "${TERM:-}" == "xterm-256color" ]]; then
+# Some remote terminals (including mosh and nested tmux) do not provide COLORTERM.
+if [[ -z "${COLORTERM:-}" && ( "${TERM:-}" == "xterm-256color" || "${TERM:-}" == "tmux-256color" ) ]]; then
   export COLORTERM=truecolor
 fi
 # }}}
