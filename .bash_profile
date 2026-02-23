@@ -29,7 +29,8 @@ export HISTSIZE=10000
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+[[ ":$PATH:" == *":/usr/local/bin:"* ]] || PATH="/usr/local/bin:$PATH"
+[[ ":$PATH:" == *":/usr/local/sbin:"* ]] || PATH="/usr/local/sbin:$PATH"
 
 set -o vi
 

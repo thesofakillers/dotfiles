@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 OS_NAME="$(uname -s)"
+BREW_HELPER="$HOME/.scripts/lib/homebrew-shellenv.sh"
+
+if [[ ! -f "$BREW_HELPER" ]]; then
+  printf 'Missing required helper: %s\n' "$BREW_HELPER" >&2
+  return 1 2>/dev/null || exit 1
+fi
+
+# shellcheck source=/dev/null
+source "$BREW_HELPER"
 
 # {{{ general
 mkdir -p "$HOME/bin"
@@ -54,8 +63,9 @@ alias tree='tree -I "node_modules|\.git|\.DS_Store|__pycache__|venv|\.venv|\.myp
 # }}}
 
 # {{{ homebrew
+load_brew_shellenv
+
 if command -v brew > /dev/null 2>&1; then
-  eval "$(brew shellenv)"
   export HOMEBREW_NO_AUTO_UPDATE=1
 
   if ! command -v python > /dev/null 2>&1 && command -v python3 > /dev/null 2>&1; then
