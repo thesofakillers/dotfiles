@@ -7,6 +7,7 @@ OS_NAME="$(uname -s)"
 BREWFILE_PATH="$REPO_DIR/Brewfile"
 APT_PACKAGES_MANIFEST="$REPO_DIR/manifests/apt-packages.txt"
 BREW_PACKAGES_MANIFEST="$REPO_DIR/manifests/brew-packages.txt"
+BREW_SHELLENV_HELPER="$REPO_DIR/.scripts/lib/homebrew-shellenv.sh"
 
 INTERACTIVE=1
 DO_CONFIRM=1
@@ -25,6 +26,14 @@ INSTALL_NVIM_PLUGINS_SET=0
 log() {
   printf '[bootstrap] %s\n' "$*"
 }
+
+if [[ -f "$BREW_SHELLENV_HELPER" ]]; then
+  # shellcheck source=/dev/null
+  source "$BREW_SHELLENV_HELPER"
+else
+  printf '[bootstrap] Missing required helper: %s\n' "$BREW_SHELLENV_HELPER" >&2
+  exit 1
+fi
 
 manifest_entries() {
   local manifest="$1"
@@ -57,7 +66,7 @@ Options:
   --with-runtimes | --without-runtimes
       Enable/disable installing developer runtimes (uv, bun, node via n).
   --with-nvim-plugins | --without-nvim-plugins
-      Enable/disable running Neovim plugin installation.
+      Enable/disable running Vim/Neovim plugin installation.
 
   -h, --help
       Show this help.
@@ -186,21 +195,6 @@ link_config_entries() {
     fi
     link_path "$src" "$home_config_dir/$entry_name"
   done < <(git -C "$REPO_DIR" ls-files -- .config | awk -F/ 'NF >= 2 { print $2 }' | sort -u)
-}
-
-load_brew_shellenv() {
-  if command -v brew > /dev/null 2>&1; then
-    eval "$(brew shellenv)"
-    return
-  fi
-
-  if [[ -x "/opt/homebrew/bin/brew" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  elif [[ -x "/usr/local/bin/brew" ]]; then
-    eval "$(/usr/local/bin/brew shellenv)"
-  elif [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  fi
 }
 
 install_homebrew_if_requested() {
@@ -560,20 +554,38 @@ setup_tpm() {
 }
 
 install_nvim_plugins_if_requested() {
+  local installed_any=0
+
   if [[ "$INSTALL_NVIM_PLUGINS" -ne 1 ]]; then
     return
   fi
 
-  if ! command -v nvim > /dev/null 2>&1; then
+  if command -v nvim > /dev/null 2>&1; then
+    log "Installing Neovim plugins."
+    if nvim --headless '+PlugInstall --sync' '+qall'; then
+      log "Neovim plugins installed."
+      installed_any=1
+    else
+      log "Neovim plugin install failed. Run manually: nvim +PlugInstall +qall"
+    fi
+  else
     log "Skipping Neovim plugin install (nvim not found)."
-    return
   fi
 
-  log "Installing Neovim plugins."
-  if nvim --headless '+PlugInstall --sync' '+qall'; then
-    log "Neovim plugins installed."
+  if command -v vim > /dev/null 2>&1; then
+    log "Installing Vim plugins."
+    if vim -E -s '+PlugInstall --sync' '+qall'; then
+      log "Vim plugins installed."
+      installed_any=1
+    else
+      log "Vim plugin install failed. Run manually: vim +PlugInstall +qall"
+    fi
   else
-    log "Neovim plugin install failed. Run manually: nvim +PlugInstall +qall"
+    log "Skipping Vim plugin install (vim not found)."
+  fi
+
+  if [[ "$installed_any" -ne 1 ]]; then
+    log "No plugin install target found (neither nvim nor vim)."
   fi
 }
 
@@ -611,7 +623,7 @@ configure_interactive() {
   fi
 
   if [[ "$INSTALL_NVIM_PLUGINS_SET" -eq 0 ]]; then
-    prompt_yes_no "Install Neovim plugins now?" 0 INSTALL_NVIM_PLUGINS
+    prompt_yes_no "Install Vim/Neovim plugins now?" 0 INSTALL_NVIM_PLUGINS
   fi
 }
 
@@ -631,7 +643,7 @@ print_plan() {
   printf '  - Install tmux TPM: %s\n' "$(bool_word "$INSTALL_TPM")"
   printf '  - Install runtimes (uv, bun, node): %s\n' "$(bool_word "$INSTALL_RUNTIMES")"
   printf '  - Set up Neovim Python host: yes\n'
-  printf '  - Install Neovim plugins now: %s\n\n' "$(bool_word "$INSTALL_NVIM_PLUGINS")"
+  printf '  - Install Vim/Neovim plugins now: %s\n\n' "$(bool_word "$INSTALL_NVIM_PLUGINS")"
 }
 
 confirm_plan_or_exit() {

@@ -38,7 +38,7 @@ Useful flags:
 After first login:
 
 - start `tmux`, then press `prefix + I` to install tmux plugins
-- run `nvim +PlugInstall +qall` once to install Vim/Neovim plugins
+- run `nvim +PlugInstall +qall` and/or `vim +PlugInstall +qall` once to install plugins
 
 ## Manual Linking
 
