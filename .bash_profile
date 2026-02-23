@@ -36,8 +36,8 @@ set -o vi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# Preserve truecolor behavior in apps while connected over mosh.
-if [[ -n "${MOSH_IP:-}" ]]; then
+# Some remote terminals (including mosh) do not provide COLORTERM.
+if [[ -z "${COLORTERM:-}" && "${TERM:-}" == "xterm-256color" ]]; then
   export COLORTERM=truecolor
 fi
 # }}}
