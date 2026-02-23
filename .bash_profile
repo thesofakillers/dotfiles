@@ -35,6 +35,11 @@ export LANG=en_US.UTF-8
 set -o vi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Preserve truecolor behavior in apps while connected over mosh.
+if [[ -n "${MOSH_IP:-}" ]]; then
+  export COLORTERM=truecolor
+fi
 # }}}
 
 # {{{ custom functions
