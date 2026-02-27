@@ -35,8 +35,11 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export npm_execpath="${npm_execpath:-$BUN_INSTALL/bin/bun}"
 export npm_config_user_agent="${npm_config_user_agent:-bun/1}"
 
-export N_PREFIX="$HOME/n"
-[[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin" # Added by n-install (see http://git.io/n-install-repo).
+export N_PREFIX="${N_PREFIX:-$HOME/n}"
+if [[ -d "$N_PREFIX/bin" ]]; then
+  # Prefer n-managed Node over system/homebrew Node when available.
+  PATH="$N_PREFIX/bin:$PATH"
+fi
 # }}}
 
 # {{{ LaTeX
@@ -82,6 +85,13 @@ fi
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:$HOME/.cache/lm-studio/bin"
 # End of LM Studio CLI section
+# }}}
+
+# {{{ flyctl
+if [[ -d "$HOME/.fly/bin" ]]; then
+  export FLYCTL_INSTALL="${FLYCTL_INSTALL:-$HOME/.fly}"
+  [[ ":$PATH:" == *":$FLYCTL_INSTALL/bin:"* ]] || export PATH="$FLYCTL_INSTALL/bin:$PATH"
+fi
 # }}}
 
 # {{{ Docker
