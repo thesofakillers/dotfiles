@@ -7,6 +7,8 @@
 [[ -f "$HOME/.installs" ]] && source "$HOME/.installs"
 # My own scripts
 [[ -f "$HOME/.bash_scripts" ]] && source "$HOME/.bash_scripts"
+# Local machine-only shell settings
+[[ -f "$HOME/.bash_local" ]] && source "$HOME/.bash_local"
 # finally, clean up, removing duplicates from PATH (while keeping order)
 remove_duplicates() {
   local path new_path=
