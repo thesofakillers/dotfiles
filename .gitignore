@@ -14,6 +14,8 @@
 .codex/tmp/
 .codex/vendor_imports/
 .codex/worktrees/
+.codex/cache/
+.codex/state_5*
 
 .mypy_cache/
 __pycache__/
