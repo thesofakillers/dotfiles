@@ -11,11 +11,14 @@
 .codex/rules/
 .codex/shell_snapshots/
 .codex/sqlite/
+.codex/cache/
+.codex/state_*.sqlite
+.codex/state_*.sqlite-shm
+.codex/state_*.sqlite-wal
 .codex/tmp/
 .codex/vendor_imports/
 .codex/worktrees/
-.codex/cache/
-.codex/state_5*
+.bash_local
 
 .mypy_cache/
 __pycache__/
