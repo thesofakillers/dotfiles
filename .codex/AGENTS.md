@@ -16,6 +16,12 @@ When developing python:
   project directory for running things for a specific project
 - If available, run the pre-commit hooks (dont actually commit, just run them).
 
+When using sentry:
+
+- Avoid using the natural language search. You should be able to navigate to the
+  relevant events using vanilla CLI arguments and/or the API. The natural
+  language search is slow and should be avoided.
+
 ## Repo-specific Instructions
 
 Of course, you should also follow any repo-specific instructions and, if
