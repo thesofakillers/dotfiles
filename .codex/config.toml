@@ -6,6 +6,9 @@ oss_provider = "lmstudio"
 web_search = "cached"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
+[tui]
+notifications = true
+notification_method = "bel"
 
 [projects."/Users/thesofakillers/repos/interview_prep"]
 trust_level = "trusted"
