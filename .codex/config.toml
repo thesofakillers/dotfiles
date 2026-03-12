@@ -6,7 +6,9 @@ oss_provider = "lmstudio"
 web_search = "cached"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
+
 [tui]
+status_line = ["model-with-reasoning", "context-remaining", "current-dir", "five-hour-limit", "weekly-limit"]
 notifications = true
 notification_method = "bel"
 
@@ -50,5 +52,3 @@ unified_exec = true
 apps = true
 multi_agent = true
 
-[tui]
-status_line = ["model-with-reasoning", "context-remaining", "current-dir", "five-hour-limit", "weekly-limit"]
