@@ -19,6 +19,21 @@ trust_level = "trusted"
 [projects."/Users/thesofakillers/repos/flywheel"]
 trust_level = "trusted"
 
+[projects."/home/giulio/repos/paradigma1"]
+trust_level = "trusted"
+
+[projects."/home/giulio/repos/paradigma"]
+trust_level = "trusted"
+
+[projects."/home/giulio"]
+trust_level = "trusted"
+
+[projects."/home/giulio/repos/paradigma2"]
+trust_level = "trusted"
+
+[projects."/home/giulio/repos/paradigma3"]
+trust_level = "trusted"
+
 [notice]
 hide_full_access_warning = true
 hide_gpt5_1_migration_prompt = true
@@ -34,3 +49,6 @@ hide_gpt5_1_migration_prompt = true
 unified_exec = true
 apps = true
 multi_agent = true
+
+[tui]
+status_line = ["model-with-reasoning", "context-remaining", "current-dir", "five-hour-limit", "weekly-limit"]

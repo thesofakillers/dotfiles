@@ -32,3 +32,9 @@ working in.
 
 Keep in mind that ~/.secrets has been sourced, setting a number of env vars that
 can help or get in the way of developing. Be aware of it when working.
+
+## Git Workflow Defaults
+
+- Avoid rebases unless the user explicitly asks for a rebase.
+- Avoid force pushes (including `--force-with-lease`) unless the user explicitly asks for one.
+- When bringing target branch updates into a feature branch, prefer merge (for example: merge `staging` into the current branch) instead of rebasing.
