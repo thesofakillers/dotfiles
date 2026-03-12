@@ -19,6 +19,7 @@
 .codex/vendor_imports/
 .codex/worktrees/
 .bash_local
+.codex/logs_*
 
 .mypy_cache/
 __pycache__/
