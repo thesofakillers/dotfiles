@@ -13,16 +13,19 @@ exec bash -l
 
 What `bootstrap.sh` does:
 
-- asks a short interactive questionnaire first, then executes the selected setup plan
+- asks a short interactive questionnaire first, then executes the selected
+  setup plan
 - installs baseline packages via manifests:
   - `apt`: `manifests/apt-packages.txt`
   - Homebrew: `Brewfile` (with fallback `manifests/brew-packages.txt`)
 - optionally installs developer runtimes (`uv`, `bun`, and `node` via `n`)
-- symlinks the main dotfiles and managed directories (`.codex`, `.vim`, and top-level entries under `.config`)
+- symlinks the main dotfiles and managed directories (`.codex`, `.vim`, and
+  top-level entries under `.config`)
 - backs up any replaced files to `~/.dotfiles-backups/<timestamp>/...`
 - creates a local-only git template at `~/.config/git/config.secret`
 - sets up Neovim Python host in `~/.local/share/nvim-py3` with `pynvim`
-  - on Debian/Ubuntu, bootstrap auto-installs missing `python3-venv` support when needed
+  - on Debian/Ubuntu, bootstrap auto-installs missing `python3-venv` support
+    when needed
 - installs `tmux` TPM plugin manager
 - skips package installation if no supported package manager is found
 
@@ -38,7 +41,8 @@ Useful flags:
 After first login:
 
 - start `tmux`, then press `prefix + I` to install tmux plugins
-- run `nvim +PlugInstall +qall` and/or `vim +PlugInstall +qall` once to install plugins
+- run `nvim +PlugInstall +qall` and/or `vim +PlugInstall +qall` once to
+  install plugins
 
 ## Manual Linking
 
@@ -59,7 +63,8 @@ ln -s /path/to/dotfiles/.bashrc ~/.bashrc
 - Coc extensions live in `~/.config/coc/extensions`; run `:CocUpdate` after
   changing Node.
 - Neovim Python host lives in `~/.local/share/nvim-py3` with `pynvim` installed
-  (recreate with `python3 -m venv ~/.local/share/nvim-py3 && ~/.local/share/nvim-py3/bin/pip install -U pynvim`).
+  (recreate with `python3 -m venv ~/.local/share/nvim-py3 &&
+~/.local/share/nvim-py3/bin/pip install -U pynvim`).
 - Built-in node/perl/ruby providers are disabled; only Coc’s node host is used.
 - Coc-pyright is installed. Ruff lint/format uses `~/.scripts/ruff-fallback`:
   looks for `./.venv/ruff`, then PATH ruff, else no-op (prevents EPIPE when
