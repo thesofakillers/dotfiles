@@ -36,6 +36,27 @@ trust_level = "trusted"
 [projects."/home/giulio/repos/paradigma3"]
 trust_level = "trusted"
 
+[projects."/Users/thesofakillers/repos/paradigma3"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/repos/personal_website"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/repos/paradigma4"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/repos/paradigma"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/repos/paradigma2"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/temp"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/repos/dotfiles"]
+trust_level = "trusted"
+
 [notice]
 hide_full_access_warning = true
 hide_gpt5_1_migration_prompt = true
@@ -51,4 +72,7 @@ hide_gpt5_1_migration_prompt = true
 unified_exec = true
 apps = true
 multi_agent = true
+
+[mcp_servers.flywheel-staging-personal]
+url = "https://flywheel-staging.paradigma.inc/mcp-server"
 
