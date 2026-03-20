@@ -73,4 +73,5 @@ sshfwd() {
 # ls --group-directories-first on mac
 # https://unix.stackexchange.com/a/581394/376432
 alias ll='ls -lh | sort -r | awk '\''NF==9 { if ($1~/^d/) { printf $1 "/" $2 "/" $3 "/" $4 "/" $5 "/" $6 " " $7 "/" $8 " " "\033[1;34m" $9 "\033[0m" "\n" } else { printf $1 "/" $2 "/" $3 "/" $4 "/" $5 "/" $6 " " $7 "/" $8 " " "\033[1;32m" $9 "\033[0m" "\n" } }'\'' | column -t -s"/"'
+alias cdsp='claude --dangerously-skip-permissions'
 # }}}
