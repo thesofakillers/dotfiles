@@ -18,6 +18,15 @@
 .codex/tmp/
 .codex/vendor_imports/
 .codex/worktrees/
+.codex/.tmp/
+.codex/plugins/
+.codex/computer-use/
+.codex/installation_id
+.codex/session_index.jsonl
+.codex/transcription-history.jsonl
+.codex/.codex-global-state.json.bak
+.codex/skills/.system/*/
+.codex/skills/emil-design-eng/
 .bash_local
 .codex/logs_*
 
@@ -63,3 +72,5 @@ node_modules/
 .config/gtk*
 .config/iterm2
 .config/git/config.secret
+.config/stripe/
+.env.example
