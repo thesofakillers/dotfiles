@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flywheel Tree"
+  short_description: "Render Flywheel DAGs as terminal tree views with low-latency MCP wrapper"
+  default_prompt: "Resolve a Flywheel node id or slug, then run scripts/render_tree_via_mcp.py once using auto-discovered MCP config/alias (Codex or Claude) (selector -> MCP resolve/get_node_tree -> in-process render) and return stdout exactly."

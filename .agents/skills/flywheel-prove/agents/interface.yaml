@@ -1,0 +1,4 @@
+interface:
+  display_name: "Flywheel Prove"
+  short_description: "Local Lean theorem proving pipeline"
+  default_prompt: "Use $flywheel-prove to scaffold and run a local Lean theorem proving pipeline."

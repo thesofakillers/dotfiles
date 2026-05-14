@@ -1,0 +1,3 @@
+Fill all sorry placeholders in this Lean project.
+Keep theorem statements unchanged.
+Prefer using existing lemmas from this project and Mathlib.

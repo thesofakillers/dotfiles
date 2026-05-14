@@ -1,0 +1,12 @@
+interface:
+  display_name: "flywheel-to-graph"
+  short_description: "Turn source material into a Flywheel graph"
+  default_prompt: "Use $flywheel-to-graph to turn this source corpus into a concept-first Flywheel graph that preserves the logical structure and relationships without mirroring the source layout verbatim."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "flywheel"
+      description: "Flywheel MCP server"
+      transport: "streamable_http"
+      url: "https://flywheel.paradigma.inc/mcp-server"

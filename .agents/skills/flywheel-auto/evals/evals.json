@@ -1,0 +1,26 @@
+[
+  {
+    "id": "continuation-from-existing-frontier",
+    "prompt": "Use $flywheel-auto to continue a Flywheel frontier that already has a persisted control node. Keep going under the existing credit cap and do not ask again for the objective or budget unless the control node is missing or contradictory.",
+    "expected_output": "Read the persisted contract from the control node content before replanning, continue from that stored objective and budget, avoid re-asking for the objective or budget when the control node is coherent, and leave behind an updated control node plus staged or committed frontier work.",
+    "files": []
+  },
+  {
+    "id": "cold-start-with-non-credit-budget",
+    "prompt": "Use $flywheel-auto to explore this frontier autonomously with at most $25 of managed-compute spend. Persist the dollar-denominated cap verbatim and derive whatever operational compute approval cap is needed before acquisition.",
+    "expected_output": "Persist the dollar-denominated budget ceiling and unit verbatim in the control node, derive an operational compute approval cap before acquisition, record both values before any compute request is made, and leave a coherent run contract behind for later continuation.",
+    "files": []
+  },
+  {
+    "id": "cold-start-budget-only-auto-exhaustion",
+    "prompt": "Use $flywheel-auto to continue autonomously under a budget ceiling when only the budget contract is explicit at cold start.",
+    "expected_output": "When terminal condition is missing but budget ceiling and budget unit are explicit, derive terminal condition as budget ceiling reached, continue autonomously without premature user handoff, and persist stop_reason in the committed control contract before termination.",
+    "files": []
+  },
+  {
+    "id": "cold-start-with-no-objective",
+    "prompt": "Use $flywheel-auto to go autonomous on this Flywheel graph until you find something interesting. If I refuse to specify an objective, infer one from the graph context and make it explicit before you execute.",
+    "expected_output": "Ask for an objective first, infer one from graph context if the user refuses, write that objective explicitly into the control node, and only then proceed toward execution with a coherent control node and frontier plan.",
+    "files": []
+  }
+]

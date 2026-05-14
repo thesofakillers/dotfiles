@@ -1,0 +1,26 @@
+[
+  {
+    "id": "claim-bearing-paper-with-no-budget-yet",
+    "prompt": "Use $flywheel-reproduce to validate the central empirical claims from this paper in Flywheel. I have not given you a max budget yet, but I do want the source structured and the validation plan prepared.",
+    "expected_output": "Create a parent paper node under the requested root, decompose the paper into section child nodes, keep section narratives in each child `content`, attach the PDF to the parent node, and stage explicit validation branch plans. Ask once for a hard max budget before any compute acquisition, and do not execute branches until the budget is explicit. Do NOT produce a single `insight` node with the PDF as the only artifact.",
+    "files": []
+  },
+  {
+    "id": "paper-pdf-decomposes-into-section-children",
+    "prompt": "Use $flywheel-reproduce on the paper PDF in the current folder, attach results under an existing root, plan validation branches, and do not launch execution yet.",
+    "expected_output": "Create a parent paper node under the root, add one child node per top-level paper section, place section narratives in child `content`, and attach the PDF artifact on the parent. Plan at least one explicit validation branch and keep execution unlaunched until budget gating is satisfied. Do NOT emit a single `insight` node with only a summary and the PDF artifact.",
+    "files": []
+  },
+  {
+    "id": "existing-graph-needs-validation-branches",
+    "prompt": "Use $flywheel-reproduce to validate the main claim nodes that already exist in this Flywheel graph under a hard budget ceiling of 20 credits. Prioritize the cheapest high-information checks first.",
+    "expected_output": "Recover the existing claim nodes from graph state, persist a validation contract, split the work into explicit validation branches, and execute the cheapest high-information branches first within the stated hard max budget.",
+    "files": []
+  },
+  {
+    "id": "markdown-wiki-should-not-use-import-subgraph",
+    "prompt": "Use $flywheel-reproduce to validate the strong empirical claims in this markdown wiki. The source is a raw README-style corpus, not a normalized Flywheel graph export.",
+    "expected_output": "Port the markdown/wiki source with explicit node and artifact authoring rather than `flywheel_import_subgraph`, then split the claim-bearing work into explicit validation branches for later or budgeted execution.",
+    "files": []
+  }
+]

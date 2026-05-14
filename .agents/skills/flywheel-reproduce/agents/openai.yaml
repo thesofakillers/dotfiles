@@ -1,0 +1,12 @@
+interface:
+  display_name: "flywheel-reproduce"
+  short_description: "Validate claim-bearing work in Flywheel"
+  default_prompt: "Use $flywheel-reproduce to structure this claim-bearing source in Flywheel and run budgeted validation."
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "flywheel"
+      description: "Flywheel MCP server"
+      transport: "streamable_http"
+      url: "https://flywheel.paradigma.inc/mcp-server"
