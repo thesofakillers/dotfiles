@@ -44,6 +44,30 @@ After first login:
 - run `nvim +PlugInstall +qall` and/or `vim +PlugInstall +qall` once to
   install plugins
 
+## Agent Skills
+
+Vercel's Skills CLI treats `.agents/skills/` as a standard project-scoped
+skills directory, and uses `.agents/.skill-lock.json` to track installed
+GitHub-backed skills. In this dotfiles repo, version-control skill source only
+when it is intentionally maintained here or represented by the lock file.
+
+Do track:
+
+- custom skills authored for this dotfiles setup
+- small, stable project skills that should travel with the repo
+- `.agents/.skill-lock.json`, when third-party skills should be reproducible
+
+Do not track:
+
+- host/runtime-managed skills such as `.codex/skills/.system/`
+- generated local runtime state such as `.codex/app-server-control/`
+- installer-managed vendor bundles such as `.agents/skills/flywheel*/`
+
+Install or refresh third-party skills through their installer instead of
+committing copied vendor output. For example, restore Skills CLI-managed
+entries from `.agents/.skill-lock.json`, and reinstall Flywheel skills with the
+Flywheel installer only when that host integration is needed locally.
+
 ## Manual Linking
 
 If you prefer manual setup, clone this repository and create symlinks from files

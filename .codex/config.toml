@@ -79,9 +79,6 @@ remote_connections = true
 command = "npx"
 args = ["-y", "@upstash/context7-mcp"]
 
-[mcp_servers.flywheel]
-url = "https://flywheel.paradigma.inc/mcp-server"
-
 [plugins."github@openai-curated"]
 enabled = true
 
