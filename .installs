@@ -23,8 +23,10 @@ elif command -v ag > /dev/null 2>&1; then
 fi
 # }}}
 
-# {{{ python poetry
-export PATH="$HOME/.local/bin:$PATH"
+# {{{ user-local CLIs (poetry, flywheel, uv, etc)
+if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
 # }}}
 
 # {{{ node version manager (https://github.com/tj/n)
