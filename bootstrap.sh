@@ -523,6 +523,8 @@ setup_links() {
   link_path "$REPO_DIR/.tmux.conf" "$HOME/.tmux.conf"
   link_path "$REPO_DIR/.scripts" "$HOME/.scripts"
   link_path "$REPO_DIR/.codex" "$HOME/.codex"
+  mkdir -p "$HOME/.claude"
+  link_path "$REPO_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
   link_path "$REPO_DIR/.vim" "$HOME/.vim"
 
   link_config_entries
