@@ -1,4 +1,4 @@
-model = "gpt-5.3-codex"
+model = "gpt-5.5"
 model_reasoning_effort = "xhigh"
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
@@ -6,11 +6,12 @@ oss_provider = "lmstudio"
 web_search = "cached"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
+service_tier = "fast"
 
 [tui]
-status_line = ["model-with-reasoning", "context-remaining", "current-dir", "five-hour-limit", "weekly-limit"]
+status_line = ["model-with-reasoning", "context-remaining", "current-dir", "five-hour-limit", "weekly-limit", "git-branch"]
 notifications = true
-notification_method = "bel"
+notification_method = "auto"
 
 [projects."/Users/thesofakillers/repos/interview_prep"]
 trust_level = "trusted"
@@ -61,18 +62,88 @@ trust_level = "trusted"
 hide_full_access_warning = true
 hide_gpt5_1_migration_prompt = true
 "hide_gpt-5.1-codex-max_migration_prompt" = true
+fast_default_opt_out = true
 
 [notice.model_migrations]
 "gpt-5.1-codex-max" = "gpt-5.2-codex"
 "gpt-5.2" = "gpt-5.3-codex"
 "gpt-5.3-codex" = "gpt-5.4"
 
-
 [features]
 unified_exec = true
 apps = true
 multi_agent = true
 
-[mcp_servers.flywheel-staging-personal]
-url = "https://flywheel-staging.paradigma.inc/mcp-server"
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp"]
 
+[mcp_servers.flywheel]
+url = "https://flywheel.paradigma.inc/mcp-server"
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[marketplaces.paradigma-monorepo]
+last_updated = "2026-04-24T14:57:49Z"
+source_type = "local"
+source = "/Users/thesofakillers/repos/paradigma"
+
+[marketplaces.openai-bundled]
+last_updated = "2026-05-14T13:45:34Z"
+source_type = "local"
+source = "/Users/thesofakillers/repos/dotfiles/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-05-12T20:38:44Z"
+source_type = "local"
+source = "/Users/thesofakillers/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[plugins."paradigma@paradigma-monorepo"]
+enabled = true
+[plugins."psf@paradigma-monorepo"]
+enabled = true
+[plugins."plan@paradigma-monorepo"]
+enabled = true
+[plugins."execute@paradigma-monorepo"]
+enabled = true
+[plugins."dev@paradigma-monorepo"]
+enabled = true
+[plugins."git@paradigma-monorepo"]
+enabled = true
+
+[plugins."linear@openai-curated"]
+enabled = true
+
+[plugins."slack@openai-curated"]
+enabled = true
+
+[plugins."linear@paradigma-monorepo"]
+enabled = true
+
+[plugins."granola@openai-curated"]
+enabled = true
+
+[plugins."google-drive@openai-curated"]
+enabled = true
+
+[plugins."google-calendar@openai-curated"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."gmail@openai-curated"]
+enabled = true
+
+[plugins."figma@openai-curated"]
+enabled = true
+
+[plugins."browser-use@openai-bundled"]
+enabled = true
