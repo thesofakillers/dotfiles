@@ -73,6 +73,7 @@ fast_default_opt_out = true
 unified_exec = true
 apps = true
 multi_agent = true
+remote_connections = true
 
 [mcp_servers.context7]
 command = "npx"
