@@ -38,3 +38,7 @@ can help or get in the way of developing. Be aware of it when working.
 - Avoid rebases unless the user explicitly asks for a rebase.
 - Avoid force pushes (including `--force-with-lease`) unless the user explicitly asks for one.
 - When bringing target branch updates into a feature branch, prefer merge (for example: merge `staging` into the current branch) instead of rebasing.
+
+## Email Defaults
+
+- Do not send emails unless the user explicitly asks you to send that specific email.
