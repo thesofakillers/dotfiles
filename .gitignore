@@ -27,9 +27,14 @@
 .codex/.codex-global-state.json.bak
 # Agent and Codex runtime-managed state.
 .codex/app-server-control/
-.codex/skills/.system/
-.codex/skills/emil-design-eng/
+.codex/app-server-daemon/
+.codex/attachments/
+.codex/goals_*.sqlite*
+.codex/memories_*.sqlite*
+.codex/packages/
+.codex/skills/
 .agents/skills/flywheel*/
+.agents/skills/.flywheel-installed-by-codex
 .bash_local
 .codex/logs_*
 
@@ -50,6 +55,7 @@ __pycache__/
 .vim/view/
 .tmux/
 .config/github-copilot/hosts.json
+.config/github-copilot/auth.db*
 .config/nvim/pack/
 .config/configstore/
 .config/menus/
