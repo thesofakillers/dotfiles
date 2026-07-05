@@ -7,11 +7,15 @@ web_search = "cached"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
 service_tier = "fast"
+approvals_reviewer = "user"
 
 [tui]
 status_line = ["model-with-reasoning", "context-remaining", "current-dir", "five-hour-limit", "weekly-limit", "git-branch"]
 notifications = true
 notification_method = "auto"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
 
 [projects."/Users/thesofakillers/repos/interview_prep"]
 trust_level = "trusted"
@@ -37,25 +41,94 @@ trust_level = "trusted"
 [projects."/home/giulio/repos/paradigma3"]
 trust_level = "trusted"
 
-[projects."/Users/thesofakillers/repos/paradigma3"]
-trust_level = "trusted"
 
 [projects."/Users/thesofakillers/repos/personal_website"]
 trust_level = "trusted"
 
-[projects."/Users/thesofakillers/repos/paradigma4"]
+[projects."/home/giulio/repos/paradigma4"]
 trust_level = "trusted"
 
-[projects."/Users/thesofakillers/repos/paradigma"]
-trust_level = "trusted"
 
-[projects."/Users/thesofakillers/repos/paradigma2"]
-trust_level = "trusted"
 
 [projects."/Users/thesofakillers/temp"]
 trust_level = "trusted"
 
 [projects."/Users/thesofakillers/repos/dotfiles"]
+trust_level = "trusted"
+
+[projects."/home/giulio/repos/dotfiles"]
+trust_level = "trusted"
+
+[projects."/home/giulio/repos"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-05-27/prepare-me-a-brief-for-today"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-06-07/can-u-tell-me-all-the"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-06-17/can-you-draft-an-email-asking"]
+trust_level = "trusted"
+
+[projects."/home/giulio/.codex/worktrees/res103-fractal/paradigma1"]
+trust_level = "trusted"
+
+[projects."/home/giulio/.codex/worktrees/res104-synth/paradigma1"]
+trust_level = "trusted"
+
+[projects."/home/giulio/.codex/worktrees/res109-neural/paradigma1"]
+trust_level = "trusted"
+
+[projects."/home/giulio/.codex/worktrees/res114-chorale/paradigma1"]
+trust_level = "trusted"
+
+[projects."/home/giulio/repos/dotfiles/.codex/worktrees/res103-fractal/paradigma1"]
+trust_level = "trusted"
+
+[projects."/home/giulio/repos/dotfiles/.codex/worktrees/res104-synth/paradigma1"]
+trust_level = "trusted"
+
+[projects."/home/giulio/repos/dotfiles/.codex/worktrees/res109-neural/paradigma1"]
+trust_level = "trusted"
+
+[projects."/home/giulio/repos/dotfiles/.codex/worktrees/res114-chorale/paradigma1"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-06-20/please-check-the-nanogpt-speedrun-campaign"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-06-20/please-check-the-nanogpt-speedrun-campaign-2"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-06-21/irene"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-06-21/alessandro"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-06-21/sprind-funke"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-06-23/u-able-to-access-figma-and"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-06-23/dev-projectless"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-06-25"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-06-25/dev-projectless-2"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-06-25/dev-projectless-3"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-06-26/look-at-all-the-tickets-in"]
+trust_level = "trusted"
+
+[projects."/home/giulio/Documents/Codex/2026-07-02/find-me-a-train-ideally-on"]
 trust_level = "trusted"
 
 [notice]
@@ -77,25 +150,43 @@ remote_connections = true
 
 [mcp_servers.context7]
 command = "npx"
+# API key comes from CONTEXT7_API_KEY, exported in ~/.secrets (untracked)
 args = ["-y", "@upstash/context7-mcp"]
 
 [plugins."github@openai-curated"]
 enabled = true
 
-[marketplaces.paradigma-monorepo]
-last_updated = "2026-04-24T14:57:49Z"
-source_type = "local"
-source = "/Users/thesofakillers/repos/paradigma"
-
 [marketplaces.openai-bundled]
 last_updated = "2026-05-14T13:45:34Z"
 source_type = "local"
-source = "/Users/thesofakillers/repos/dotfiles/.codex/.tmp/bundled-marketplaces/openai-bundled"
+source = "/home/giulio/repos/dotfiles/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
 last_updated = "2026-05-12T20:38:44Z"
 source_type = "local"
-source = "/Users/thesofakillers/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+source = "/home/giulio/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
+[marketplaces.paradigma-monorepo]
+last_updated = "2026-06-05T09:52:59Z"
+source_type = "local"
+source = "/home/giulio/repos/paradigma1"
+
+[marketplaces.ponytail]
+last_updated = "2026-07-02T08:15:06Z"
+last_revision = "40e50d9e03242aa5dd53ac771950f9127362b25f"
+source_type = "git"
+source = "https://github.com/DietrichGebert/ponytail.git"
+
+[hooks.state]
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:session_start:0:0"]
+trusted_hash = "sha256:10e0ac0497512b279dc2b073d0d559fb9fb252bc18b9c943d2f0a6d58152b1f4"
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:2a3c9015a1fe10f0809ffec8da3d67c326e27c38ebf720725099283b1e2085a8"
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:subagent_start:0:0"]
+trusted_hash = "sha256:4765354e31cc783c9cc7379f8beac7ac7ff68743c3cd7dad333d1f6a64e7a6f3"
 
 [plugins."paradigma@paradigma-monorepo"]
 enabled = true
@@ -114,9 +205,6 @@ enabled = true
 enabled = true
 
 [plugins."slack@openai-curated"]
-enabled = true
-
-[plugins."linear@paradigma-monorepo"]
 enabled = true
 
 [plugins."granola@openai-curated"]
@@ -144,4 +232,25 @@ enabled = true
 enabled = true
 
 [plugins."browser-use@openai-bundled"]
+enabled = true
+[plugins."verify@paradigma-monorepo"]
+enabled = true
+[plugins."review@paradigma-monorepo"]
+enabled = true
+[plugins."codex@paradigma-monorepo"]
+enabled = true
+[plugins."fumadocs@paradigma-monorepo"]
+enabled = true
+[plugins."hermes@paradigma-monorepo"]
+enabled = true
+[plugins."lin@paradigma-monorepo"]
+enabled = true
+[plugins."clarify@paradigma-monorepo"]
+enabled = true
+[plugins."spec@paradigma-monorepo"]
+enabled = true
+[plugins."cc@paradigma-monorepo"]
+enabled = true
+
+[plugins."ponytail@ponytail"]
 enabled = true
