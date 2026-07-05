@@ -11,13 +11,3 @@ export PATH
 [[ $- == *i* ]] || return
 
 [[ -f "$HOME/.bash_profile" ]] && source "$HOME/.bash_profile"
-
-# >>> flywheel PATH >>>
-if ! printf "%s" ":$PATH:" | grep -F -q ':/home/giulio/.local/bin:'; then
-  export PATH='/home/giulio/.local/bin':$PATH
-fi
-# <<< flywheel PATH <<<
-
-# >>> Codex installer >>>
-export PATH="/home/giulio/.local/bin:$PATH"
-# <<< Codex installer <<<
