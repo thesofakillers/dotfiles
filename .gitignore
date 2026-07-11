@@ -28,13 +28,23 @@
 # Agent and Codex runtime-managed state.
 .codex/app-server-control/
 .codex/app-server-daemon/
+.codex/.app-server-state-reconciled-v1
 .codex/attachments/
+.codex/browser/
+.codex/chrome-native-hosts*.json
+.codex/generated_images/
 .codex/goals_*.sqlite*
+.codex/hooks.json
 .codex/memories_*.sqlite*
+.codex/mcp-oauth-locks/
 .codex/packages/
+.codex/pets/
+.codex/process_manager/
 .codex/skills/
 .agents/skills/flywheel*/
+.agents/skills/humanizer/
 .agents/skills/.flywheel-installed-by-codex
+.config/flywheel-cli/
 .bash_local
 .codex/logs_*
 
