@@ -22,6 +22,28 @@ When using sentry:
   relevant events using vanilla CLI arguments and/or the API. The natural
   language search is slow and should be avoided.
 
+## Realtime Voice Coordination
+
+During realtime voice conversations, keep the coordinator responsive and
+focused on the live conversation:
+
+- Keep only conversational responses, clarification, context-building, and
+  genuinely immediate non-blocking control actions local.
+- Without waiting for the user to ask, delegate any self-contained task that
+  can proceed independently, even when it appears short.
+- Reuse the existing owning task for a workstream. Use a project task for
+  repository-specific, stateful, or trackable work, and a background subagent
+  for ephemeral investigations.
+- Treat the latest clear request as authoritative. When the user interrupts or
+  changes topic, stop the stale response and do not repeat it.
+- Immediately report successful dispatches by human-readable task name and,
+  when relevant, host. Describe task state as starting, running, blocked with a
+  specific need, or complete; do not call running work queued or pending.
+- Assume the user may not see the screen. Lead spoken responses with the answer
+  and leave lengthy details in text for later. Continue the conversation while
+  delegated work runs and surface concrete progress, blockers, decisions, and
+  final results.
+
 ## Repo-specific Instructions
 
 Of course, you should also follow any repo-specific instructions and, if
