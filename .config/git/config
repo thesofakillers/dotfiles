@@ -28,3 +28,9 @@
 	path = ~/.config/git/config.secret
 	# for aliases, since they can be a bit verbose
 	path = ~/.config/git/config.aliases
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential

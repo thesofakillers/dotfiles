@@ -25,6 +25,8 @@
 .codex/session_index.jsonl
 .codex/transcription-history.jsonl
 .codex/.codex-global-state.json.bak
+.codex/..codex-global-state.json.tmp-*
+.codex/.sandbox_migration
 # Agent and Codex runtime-managed state.
 .codex/app-server-control/
 .codex/app-server-daemon/
@@ -41,6 +43,11 @@
 .codex/pets/
 .codex/process_manager/
 .codex/skills/
+.codex/automations/.run-jitter-salt
+.codex/outputs/
+.codex/realtime-voice-continuity.json
+.codex/thread-writer-locks/
+.codex/visualizations/
 .agents/skills/flywheel*/
 .agents/skills/humanizer/
 .agents/skills/.flywheel-installed-by-codex
@@ -70,6 +77,7 @@ __pycache__/
 .config/configstore/
 .config/menus/
 .config/gh/
+.config/context7/
 .config/coc/memos.json
 node_modules/
 .config/coc/*history*

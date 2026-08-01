@@ -1,4 +1,9 @@
 # {{{ sourcing
+# Homebrew
+if [[ -f "$HOME/.scripts/lib/homebrew-shellenv.sh" ]]; then
+  source "$HOME/.scripts/lib/homebrew-shellenv.sh"
+  load_brew_shellenv || true
+fi
 # Prompt
 [[ -f "$HOME/.bash_prompt" ]] && source "$HOME/.bash_prompt"
 # Secrets
