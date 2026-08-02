@@ -1,0 +1,4 @@
+interface:
+  display_name: "Linear Status"
+  short_description: "Fresh unblocked Linear ticket status"
+  default_prompt: "Use $linear-status to show my fresh unblocked Linear tickets."
