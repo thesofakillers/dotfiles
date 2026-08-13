@@ -20,9 +20,13 @@ hunts over-engineering. Keeping their contexts separate is the point.
 
 Inspect the repository and choose exactly one target for both passes:
 
-- Use `--base <branch>` for committed branch work. Use the merge target
-  (`staging` in paradigma; otherwise the explicit target, default branch, or
-  branch implied by the merge base).
+- Use `--base <ref>` for committed branch work. If the branch has not been
+  reviewed yet, use the merge target (`staging` in paradigma; otherwise the
+  explicit target, default branch, or branch implied by the merge base). If an
+  earlier double review already covered the branch, use the exact previously
+  reviewed head commit as the base and review only commits added since it. Use
+  prior review output or the user's statement as evidence; do not infer that a
+  commit was reviewed.
 - Use `--uncommitted` for staged, unstaged, and untracked work.
 - Use `--commit <sha>` for one commit.
 
@@ -31,9 +35,12 @@ stray uncommitted files, state the chosen target and why before launching the
 reviews. Do not silently combine targets. Both reviewers must cover the same
 diff.
 
-Materialize the ponytail pass's exact diff before launching either subprocess:
+Materialize the ponytail pass's exact diff before launching either subprocess.
+Run the corresponding `git diff --stat` first; if it unexpectedly includes
+already-reviewed work, correct the target instead of repeating the review.
 
-- Base target: `git diff origin/<base>...HEAD`.
+- Merge-base target: `git diff origin/<base>...HEAD`.
+- Incremental target: `git diff <previous-reviewed-head>...HEAD`.
 - Commit target: use the patch introduced by `<sha>`.
 - Uncommitted target: include staged, unstaged, and untracked files, matching
   the semantics of `codex exec review --uncommitted`; ordinary `git diff` alone
@@ -82,7 +89,8 @@ custom prompt. Therefore, never use the ponytail instructions as a custom
 embedded in stdin. Precede the block with this explicit instruction:
 
 ```text
-The diff is embedded below. Do NOT fetch from GitHub or use MCP tools; use local files only for surrounding context.
+The diff is embedded below. Do NOT fetch from GitHub or use MCP tools; use
+local files only for surrounding context.
 ```
 
 Embed this ponytail instruction block verbatim:
