@@ -22,6 +22,22 @@ When using sentry:
   relevant events using vanilla CLI arguments and/or the API. The natural
   language search is slow and should be avoided.
 
+## Binary File and Large Output Safety
+
+- Keep binary files binary. Never transfer or reconstruct images, archives,
+  fonts, PDFs, or other binary files by placing base64 or data URLs in chat,
+  tool output, shell output, or `apply_patch`.
+- Download binary files directly to disk using a native file reference, an
+  authenticated download, a browser download, or a connector that writes to a
+  local path. Report only the resulting path, size, checksum, and validation
+  results.
+- Use `apply_patch` only for ordinary text-file edits, not binary
+  materialization.
+- Redirect potentially large textual output to a scratch file and inspect it
+  selectively instead of printing it into the conversation.
+- If a connector can only return a large binary inline, stop and use another
+  transfer method rather than materializing the response.
+
 ## Realtime Voice Coordination
 
 During realtime voice conversations, keep the coordinator responsive and
