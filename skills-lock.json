@@ -1,23 +1,4 @@
 {
   "version": 1,
-  "skills": {
-    "cmux": {
-      "source": "manaflow-ai/cmux",
-      "sourceType": "github",
-      "skillPath": "skills/cmux/SKILL.md",
-      "computedHash": "75b2d4a46f84a04b23fac4fdcaafeb2b11310d44b9bcc0e9aa44a7ef5413a45e"
-    },
-    "cmux-browser": {
-      "source": "manaflow-ai/cmux",
-      "sourceType": "github",
-      "skillPath": "skills/cmux-browser/SKILL.md",
-      "computedHash": "5be161a426e14a65ef16cba7a2276eb33c0d910cf10dd120094b13b5baf9f572"
-    },
-    "cmux-diagnostics": {
-      "source": "manaflow-ai/cmux",
-      "sourceType": "github",
-      "skillPath": "skills/cmux-diagnostics/SKILL.md",
-      "computedHash": "321d2b89fb13523dc1945da92cf04f383c9fb665354b601fa6face49a4a1fa6a"
-    }
-  }
+  "skills": {}
 }
