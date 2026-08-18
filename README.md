@@ -46,16 +46,36 @@ After first login:
 
 ## Agent Skills
 
-Vercel's Skills CLI treats `.agents/skills/` as a standard project-scoped
-skills directory, and uses `.agents/.skill-lock.json` to track installed
-GitHub-backed skills. In this dotfiles repo, version-control skill source only
-when it is intentionally maintained here or represented by the lock file.
+Vercel's Skills CLI treats `.agents/skills/` as the standard skills directory.
+This repo uses the root-level `skills-lock.json` as the reproducible dependency
+manifest and lock file for third-party skills. Because bootstrap links
+`~/.agents` to this repo, restored skills are available globally to compatible
+agents, including Codex.
+
+Add a dependency from the dotfiles root without `--global` so the project lock
+file is updated:
+
+```bash
+npx skills add owner/repo --agent codex -y
+```
+
+Restore locked skills on a fresh machine, or update them later:
+
+```bash
+npx skills experimental_install
+npx skills update --project -y
+```
+
+The similarly named `.agents/.skill-lock.json` is state for global (`-g`)
+installs. It supports listing and updating already-installed global skills, but
+the Skills CLI cannot use it to restore a fresh machine. Prefer project installs
+and the root `skills-lock.json` for dotfiles-managed dependencies.
 
 Do track:
 
 - custom skills authored for this dotfiles setup
 - small, stable project skills that should travel with the repo
-- `.agents/.skill-lock.json`, when third-party skills should be reproducible
+- `skills-lock.json`, when third-party skills should be reproducible
 
 Do not track:
 
@@ -64,9 +84,9 @@ Do not track:
 - installer-managed vendor bundles such as `.agents/skills/flywheel*/`
 
 Install or refresh third-party skills through their installer instead of
-committing copied vendor output. For example, restore Skills CLI-managed
-entries from `.agents/.skill-lock.json`, and reinstall Flywheel skills with the
-Flywheel installer only when that host integration is needed locally.
+committing copied vendor output. Restore Skills CLI-managed entries from
+`skills-lock.json`, and reinstall Flywheel skills with the Flywheel installer
+only when that host integration is needed locally.
 
 ## Manual Linking
 
