@@ -6,8 +6,10 @@ oss_provider = "lmstudio"
 web_search = "cached"
 personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
-service_tier = "priority"
 approvals_reviewer = "user"
+
+notify = ["/Users/giulio/repos/dotfiles/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+service_tier = "default"
 
 [tui]
 status_line = ["model-with-reasoning", "context-remaining", "current-dir", "five-hour-limit", "weekly-limit", "git-branch"]
@@ -17,121 +19,52 @@ notification_method = "auto"
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 
-[projects."/Users/thesofakillers/repos/interview_prep"]
+[projects."/Users/giulio/Documents/Codex/2026-08-01/new-realtime-voice-chat"]
 trust_level = "trusted"
 
-[projects."/Users/thesofakillers/workspace"]
+[projects."/Users/giulio/repos/dotfiles"]
 trust_level = "trusted"
 
-[projects."/Users/thesofakillers/repos/flywheel"]
+[projects."/Users/giulio/Documents/Codex/2026-08-01/new-realtime-voice-chat-2"]
 trust_level = "trusted"
 
-[projects."/home/giulio/repos/paradigma1"]
+[projects."/Users/giulio/Documents/Codex/2026-08-01/new-realtime-voice-chat-3"]
 trust_level = "trusted"
 
-[projects."/home/giulio/repos/paradigma"]
+[projects."/Users/giulio/Documents/Codex/2026-08-01/new-realtime-voice-chat-4"]
 trust_level = "trusted"
 
-[projects."/home/giulio"]
+[projects."/Users/giulio/repos/paradigma"]
 trust_level = "trusted"
 
-[projects."/home/giulio/repos/paradigma2"]
+[projects."/Users/giulio/Documents/Codex"]
 trust_level = "trusted"
 
-[projects."/home/giulio/repos/paradigma3"]
+[projects."/Users/giulio/Documents/Codex/2026-08-02/simplenote-fresh-thread-check"]
 trust_level = "trusted"
 
-
-[projects."/Users/thesofakillers/repos/personal_website"]
+[projects."/Users/giulio/Documents/Codex/2026-08-03/i-g"]
 trust_level = "trusted"
 
-[projects."/home/giulio/repos/paradigma4"]
+[projects."/Users/giulio/Documents/Codex/2026-08-03/earlier-today-we-put-in-a"]
 trust_level = "trusted"
 
-
-
-[projects."/Users/thesofakillers/temp"]
+[projects."/Users/giulio/GitHub/paradigma/tasks/staging/inf-69"]
 trust_level = "trusted"
 
-[projects."/Users/thesofakillers/repos/dotfiles"]
+[projects."/Users/giulio/Documents/Codex/2026-08-04/new-realtime-voice-chat"]
 trust_level = "trusted"
 
-[projects."/home/giulio/repos/dotfiles"]
+[projects."/Users/giulio/GitHub/paradigma/tasks/staging/inf-71"]
 trust_level = "trusted"
 
-[projects."/home/giulio/repos"]
+[projects."/Users/giulio/Documents/Codex/2026-08-06/garb"]
 trust_level = "trusted"
 
-[projects."/home/giulio/Documents/Codex/2026-05-27/prepare-me-a-brief-for-today"]
+[projects."/Users/giulio/Documents/Codex/2026-08-14/https-cluster-dashboard-tailc3617f-ts-net"]
 trust_level = "trusted"
 
-[projects."/home/giulio/Documents/Codex/2026-06-07/can-u-tell-me-all-the"]
-trust_level = "trusted"
-
-[projects."/home/giulio/Documents/Codex/2026-06-17/can-you-draft-an-email-asking"]
-trust_level = "trusted"
-
-[projects."/home/giulio/.codex/worktrees/res103-fractal/paradigma1"]
-trust_level = "trusted"
-
-[projects."/home/giulio/.codex/worktrees/res104-synth/paradigma1"]
-trust_level = "trusted"
-
-[projects."/home/giulio/.codex/worktrees/res109-neural/paradigma1"]
-trust_level = "trusted"
-
-[projects."/home/giulio/.codex/worktrees/res114-chorale/paradigma1"]
-trust_level = "trusted"
-
-[projects."/home/giulio/repos/dotfiles/.codex/worktrees/res103-fractal/paradigma1"]
-trust_level = "trusted"
-
-[projects."/home/giulio/repos/dotfiles/.codex/worktrees/res104-synth/paradigma1"]
-trust_level = "trusted"
-
-[projects."/home/giulio/repos/dotfiles/.codex/worktrees/res109-neural/paradigma1"]
-trust_level = "trusted"
-
-[projects."/home/giulio/repos/dotfiles/.codex/worktrees/res114-chorale/paradigma1"]
-trust_level = "trusted"
-
-[projects."/home/giulio/Documents/Codex/2026-06-20/please-check-the-nanogpt-speedrun-campaign"]
-trust_level = "trusted"
-
-[projects."/home/giulio/Documents/Codex/2026-06-20/please-check-the-nanogpt-speedrun-campaign-2"]
-trust_level = "trusted"
-
-[projects."/home/giulio/Documents/Codex/2026-06-21/irene"]
-trust_level = "trusted"
-
-[projects."/home/giulio/Documents/Codex/2026-06-21/alessandro"]
-trust_level = "trusted"
-
-[projects."/home/giulio/Documents/Codex/2026-06-21/sprind-funke"]
-trust_level = "trusted"
-
-[projects."/home/giulio/Documents/Codex/2026-06-23/u-able-to-access-figma-and"]
-trust_level = "trusted"
-
-[projects."/home/giulio/Documents/Codex/2026-06-23/dev-projectless"]
-trust_level = "trusted"
-
-[projects."/home/giulio/Documents/Codex/2026-06-25"]
-trust_level = "trusted"
-
-[projects."/home/giulio/Documents/Codex/2026-06-25/dev-projectless-2"]
-trust_level = "trusted"
-
-[projects."/home/giulio/Documents/Codex/2026-06-25/dev-projectless-3"]
-trust_level = "trusted"
-
-[projects."/home/giulio/Documents/Codex/2026-06-26/look-at-all-the-tickets-in"]
-trust_level = "trusted"
-
-[projects."/home/giulio/Documents/Codex/2026-07-02/find-me-a-train-ideally-on"]
-trust_level = "trusted"
-
-[projects."/Users/thesofakillers/repos/paradigma"]
+[projects."/Users/giulio"]
 trust_level = "trusted"
 
 [notice]
@@ -144,9 +77,11 @@ fast_default_opt_out = true
 "gpt-5.1-codex-max" = "gpt-5.2-codex"
 "gpt-5.2" = "gpt-5.3-codex"
 "gpt-5.3-codex" = "gpt-5.4"
+"gpt-5.4" = "gpt-5.6-terra"
 
 [features]
 unified_exec = true
+guardian_approval = false
 apps = true
 multi_agent = true
 remote_connections = true
@@ -154,11 +89,31 @@ js_repl = false
 
 [mcp_servers.context7]
 command = "npx"
-# API key comes from CONTEXT7_API_KEY, exported in ~/.secrets (untracked)
 args = ["-y", "@upstash/context7-mcp"]
 
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
+
+[mcp_servers.node_repl]
+args = []
+command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/giulio/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/giulio/.codex"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e86beb821b9afc846211798e0113bd4b9e79312dfcd135eb447bdb154f64071"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunction with the Chrome Plugin. Prefer this method of controlling Chrome over alternatives (such as Computer Use) unless the user explicitly mentions an alternative."
+NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.803.61601"
+SKY_CUA_SERVICE_PATH = "/Users/giulio/.codex/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
 [mcp_servers.simplenote]
 command = "npx"
@@ -166,27 +121,6 @@ args = ["-y", "@automattic/simplenote-mcp"]
 
 [plugins."github@openai-curated"]
 enabled = true
-
-[marketplaces.openai-bundled]
-last_updated = "2026-05-14T13:45:34Z"
-source_type = "local"
-source = "/home/giulio/repos/dotfiles/.codex/.tmp/bundled-marketplaces/openai-bundled"
-
-[marketplaces.openai-primary-runtime]
-last_updated = "2026-05-12T20:38:44Z"
-source_type = "local"
-source = "/home/giulio/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
-
-[marketplaces.paradigma-monorepo]
-last_updated = "2026-06-05T09:52:59Z"
-source_type = "local"
-source = "/home/giulio/repos/paradigma1"
-
-[marketplaces.ponytail]
-last_updated = "2026-07-16T06:38:59Z"
-last_revision = "16f29800fd2681bdf24f3eb4ccffe38be3baec6b"
-source_type = "git"
-source = "https://github.com/DietrichGebert/ponytail.git"
 
 [[skills.config]]
 name = "ponytail:ponytail"
@@ -198,6 +132,24 @@ conversationDetailMode = "STEPS_COMMANDS"
 enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "ultra", "max"]
 show-ultra-in-model-picker-slider = false
 show-context-window-usage = true
+
+[shell_environment_policy.set]
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e86beb821b9afc846211798e0113bd4b9e79312dfcd135eb447bdb154f64071"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/giulio/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+
+[apps.asdk_app_69a089a326dc8191b32a3f2553f5be2c.tools."linear.save_issue"]
+approval_mode = "approve"
+
+[marketplaces.openai-bundled]
+last_updated = "2026-08-18T09:38:57Z"
+source_type = "local"
+source = "/Users/giulio/repos/dotfiles/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+last_updated = "2026-08-14T08:05:35Z"
+source_type = "local"
+source = "/Users/giulio/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [plugins."paradigma@paradigma-monorepo"]
 enabled = true
@@ -228,9 +180,6 @@ enabled = true
 enabled = true
 
 [plugins."documents@openai-primary-runtime"]
-enabled = true
-
-[plugins."spreadsheets@openai-primary-runtime"]
 enabled = true
 
 [plugins."presentations@openai-primary-runtime"]
@@ -272,7 +221,7 @@ enabled = true
 [plugins."template-creator@openai-primary-runtime"]
 enabled = true
 
-[plugins."chrome@openai-bundled"]
+[plugins."browser@openai-bundled"]
 enabled = true
 
 [plugins."computer-use@openai-bundled"]
@@ -281,8 +230,43 @@ enabled = true
 [plugins."visualize@openai-bundled"]
 enabled = true
 
+[plugins."gran@paradigma-monorepo"]
+enabled = true
+
+[plugins."style@paradigma-monorepo"]
+enabled = true
+
+[plugins."postgres@paradigma-monorepo"]
+enabled = true
+
+[plugins."simplex@paradigma-monorepo"]
+enabled = true
+
+[plugins."dependabot@paradigma-monorepo"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."1pass@paradigma-monorepo"]
+enabled = true
+
 [plugins."sites@openai-bundled"]
 enabled = true
 
-[plugins."browser@openai-bundled"]
+[plugins."chrome@openai-bundled"]
 enabled = true
+
+[marketplaces.ponytail]
+last_updated = "2026-08-07T21:45:24Z"
+last_revision = "2ed6c52c9d7e5e56942508591085fd45dea277d3"
+source_type = "git"
+source = "https://github.com/DietrichGebert/ponytail.git"
+
+[marketplaces.paradigma-monorepo]
+last_updated = "2026-08-17T22:01:27Z"
+last_revision = "bd6f5a51572d59c51b005374e062b2839c935650"
+source_type = "git"
+source = "git@github.com:paradigma-inc/paradigma.git"
+ref = "staging"
+sparse_paths = [".agents/plugins", ".claude-plugin", "plugins"]
