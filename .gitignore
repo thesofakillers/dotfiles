@@ -54,6 +54,9 @@
 .agents/skills/flywheel*/
 .agents/skills/humanizer/
 .agents/skills/.flywheel-installed-by-codex
+# Skills CLI-managed cmux copies are restored from skills-lock.json.
+.agents/skills/blacksmith-testbox/
+.agents/skills/cmux*/
 .config/flywheel-cli/
 .bash_local
 .codex/logs_*
