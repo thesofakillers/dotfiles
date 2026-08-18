@@ -47,6 +47,9 @@
 .codex/outputs/
 .codex/realtime-voice-continuity.json
 .codex/thread-writer-locks/
+.codex/dictation-history/
+.codex/queue_*.sqlite*
+.codex/thread_history_*.sqlite*
 .codex/visualizations/
 .agents/skills/flywheel*/
 .agents/skills/humanizer/
