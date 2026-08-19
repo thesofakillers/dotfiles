@@ -51,6 +51,9 @@
 .codex/queue_*.sqlite*
 .codex/thread_history_*.sqlite*
 .codex/visualizations/
+.codex/repair-backups/
+.codex/computer-use.disabled-*/
+.codex/external_agent_session_imports.json
 .agents/skills/flywheel*/
 .agents/skills/humanizer/
 .agents/skills/.flywheel-installed-by-codex

@@ -19,8 +19,10 @@ What `bootstrap.sh` does:
   - `apt`: `manifests/apt-packages.txt`
   - Homebrew: `Brewfile` (with fallback `manifests/brew-packages.txt`)
 - optionally installs developer runtimes (`uv`, `bun`, and `node` via `n`)
-- symlinks the main dotfiles and managed directories (`.codex`, `.vim`, and
+- symlinks the main dotfiles and managed directories (`.vim`, `.agents`, and
   top-level entries under `.config`)
+- keeps `~/.codex` as a real runtime directory and links only Git-tracked Codex
+  configuration and custom-skill files into it
 - backs up any replaced files to `~/.dotfiles-backups/<timestamp>/...`
 - creates a local-only git template at `~/.config/git/config.secret`
 - sets up Neovim Python host in `~/.local/share/nvim-py3` with `pynvim`
@@ -82,6 +84,30 @@ Do not track:
 - host/runtime-managed skills such as `.codex/skills/.system/`
 - generated local runtime state such as `.codex/app-server-control/`
 - installer-managed vendor bundles such as `.agents/skills/flywheel*/`
+
+## Codex State Boundary
+
+`~/.codex` must be a real directory, not a symlink to this repository. The
+[official Codex state documentation](https://learn.chatgpt.com/docs/config-file/config-advanced#config-and-state-locations)
+defines this as the per-user state root; this setup stores SQLite databases,
+session rollouts, archives, logs, packages, plugins, and worktrees there.
+Keeping the whole directory behind a symlink can give the same rollout two path
+spellings and break lifecycle operations such as archive and unarchive.
+
+The bootstrapper runs [`.scripts/setup-codex-home`](.scripts/setup-codex-home),
+which links only Git-tracked files from this repository's `.codex/` directory
+into the real runtime directory. On an older checkout where `~/.codex` still
+points at the repository, quit the Codex desktop app and CLI sessions, then run:
+
+```bash
+./.scripts/setup-codex-home --apply
+./.scripts/setup-codex-home --check
+codex doctor --summary
+```
+
+The migration moves runtime state rather than deleting it. Conflicting managed
+files are backed up under `~/.dotfiles-backups/`, and existing Codex-managed Git
+worktrees are repaired after their runtime directory moves.
 
 Install or refresh third-party skills through their installer instead of
 committing copied vendor output. Restore Skills CLI-managed entries from

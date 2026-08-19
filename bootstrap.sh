@@ -522,7 +522,7 @@ setup_links() {
   link_path "$REPO_DIR/.installs" "$HOME/.installs"
   link_path "$REPO_DIR/.tmux.conf" "$HOME/.tmux.conf"
   link_path "$REPO_DIR/.scripts" "$HOME/.scripts"
-  link_path "$REPO_DIR/.codex" "$HOME/.codex"
+  "$REPO_DIR/.scripts/setup-codex-home" --apply
   link_path "$REPO_DIR/.agents" "$HOME/.agents"
   mkdir -p "$HOME/.claude"
   link_path "$REPO_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
