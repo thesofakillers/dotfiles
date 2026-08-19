@@ -529,7 +529,7 @@ setup_links() {
   # Do not replace this with `link_path "$REPO_DIR/.codex" "$HOME/.codex"`.
   # ~/.codex is Codex's mutable runtime home. The helper keeps it as a real
   # directory and links only Git-tracked configuration files into it. See
-  # docs/codex.md for the layout, migration, and recovery contract.
+  # docs/codex.md for the ownership contract.
   log "Configuring the split Codex config/runtime layout."
   "$REPO_DIR/.scripts/setup-codex-home" --apply
 

@@ -24,9 +24,9 @@ On machines managed by this dotfiles repository:
 
 Before changing `.codex`, bootstrap linking, `CODEX_HOME`, or worktree paths,
 read `docs/codex.md` in the dotfiles repository. Use
-`.scripts/setup-codex-home --check` for read-only verification and require
-Codex desktop, CLI, and remote app-server processes to be stopped before
-`--apply`. Do not use `--force` for normal setup.
+`.scripts/setup-codex-home --check` for read-only verification. `--apply` may
+repair managed links, but it must never inspect, move, or rewrite Codex runtime
+state.
 
 When developing python:
 

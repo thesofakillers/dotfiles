@@ -114,26 +114,24 @@ from `~/.codex` back into this repository. The `~/.codex` directory itself must
 never be a symlink, and `CODEX_HOME` must never point at this repository.
 
 Sessions, archives, authentication, SQLite databases, plugins, logs, caches,
-and Codex-managed worktrees belong directly under `~/.codex`. Mixing those
-files into the repository can make remote tasks fail with `no rollout found`
-or invalid worktree paths.
+and Codex-managed worktrees belong directly under `~/.codex`. They are
+runtime-owned and must not be copied into the repository.
 
-The complete setup, migration, `paradevbox`, verification, recovery, and backup
-runbook is [docs/codex.md](docs/codex.md). Read it before changing
-`.codex`, `CODEX_HOME`, bootstrap linking, or Codex worktree paths.
+The complete ownership, setup, and `paradevbox` notes are in
+[docs/codex.md](docs/codex.md). Read them before changing `.codex`,
+`CODEX_HOME`, bootstrap linking, or skill locations.
 
 The bootstrapper runs [`.scripts/setup-codex-home`](.scripts/setup-codex-home).
-For a repair, fully quit Codex desktop/CLI/remote sessions first, then run:
+To repair the managed links, run:
 
 ```bash
 ./.scripts/setup-codex-home --apply
 ./.scripts/setup-codex-home --check
 ```
 
-`--check` is read-only. `--apply` preserves recoverability: conflicting files
-are quarantined under `~/.dotfiles-backups/`, database and rollout repairs are
-backed up under `~/.codex/repair-backups/`, and worktree metadata is repaired
-after moves. Do not use `--force` during normal setup.
+`--check` is read-only. `--apply` only creates links and backs up conflicting
+link destinations under `~/.dotfiles-backups/`. It does not inspect or migrate
+Codex runtime state and refuses a whole-directory `~/.codex` symlink.
 
 Install or refresh third-party skills through their installer instead of
 committing copied vendor output. Restore Skills CLI-managed entries from
