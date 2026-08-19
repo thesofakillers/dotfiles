@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dev Projectless Chat"
+  short_description: "Start app-indexed dev projectless chats"
+  default_prompt: "Use $dev-projectless-chat to start another projectless Codex chat on the dev remote."

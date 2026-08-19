@@ -8,6 +8,8 @@ On a fresh machine, logged in as your regular user:
 git clone <your-dotfiles-repo-url> ~/dotfiles
 cd ~/dotfiles
 ./bootstrap.sh
+npx --yes skills experimental_install
+./.scripts/setup-codex-home --check
 exec bash -l
 ```
 
@@ -22,7 +24,8 @@ What `bootstrap.sh` does:
 - symlinks the main dotfiles and managed directories (`.vim`, `.agents`, and
   top-level entries under `.config`)
 - keeps `~/.codex` as a real runtime directory and links only Git-tracked Codex
-  configuration and custom-skill files into it
+  configuration files into it; user skills are exposed separately through
+  `~/.agents/skills`
 - backs up any replaced files to `~/.dotfiles-backups/<timestamp>/...`
 - creates a local-only git template at `~/.config/git/config.secret`
 - sets up Neovim Python host in `~/.local/share/nvim-py3` with `pynvim`
@@ -54,6 +57,15 @@ manifest and lock file for third-party skills. Because bootstrap links
 `~/.agents` to this repo, restored skills are available globally to compatible
 agents, including Codex.
 
+Standalone personal skills authored in this repository must also live under
+`.agents/skills/`. Do not put them under `.codex/skills/`: current Codex loads
+user-global skills from `~/.agents/skills`, so the legacy location can make a
+skill appear in one task but disappear from tasks in other repositories or on
+remote hosts. The same rule applies to the runtime path `~/.codex/skills/`:
+only Codex-managed content such as `.system` belongs there. Codex normally
+detects changes automatically; restart Codex if a skill picker that was
+already open remains stale.
+
 Add a dependency from the dotfiles root without `--global` so the project lock
 file is updated:
 
@@ -75,39 +87,53 @@ and the root `skills-lock.json` for dotfiles-managed dependencies.
 
 Do track:
 
-- custom skills authored for this dotfiles setup
+- custom skills authored for this dotfiles setup under `.agents/skills/`
 - small, stable project skills that should travel with the repo
 - `skills-lock.json`, when third-party skills should be reproducible
 
 Do not track:
 
 - host/runtime-managed skills such as `.codex/skills/.system/`
+- standalone authored skills under the legacy `.codex/skills/` location
+- standalone user skills under the legacy `~/.codex/skills/` location
 - generated local runtime state such as `.codex/app-server-control/`
-- installer-managed vendor bundles such as `.agents/skills/flywheel*/`
+- installer-managed vendor copies under `.agents/skills/`; track their source
+  and content hash in `skills-lock.json` instead
 
-## Codex State Boundary
+## Codex Setup: Read This Before Changing `.codex`
 
-`~/.codex` must be a real directory, not a symlink to this repository. The
-[official Codex state documentation](https://learn.chatgpt.com/docs/config-file/config-advanced#config-and-state-locations)
-defines this as the per-user state root; this setup stores SQLite databases,
-session rollouts, archives, logs, packages, plugins, and worktrees there.
-Keeping the whole directory behind a symlink can give the same rollout two path
-spellings and break lifecycle operations such as archive and unarchive.
+The required layout is:
 
-The bootstrapper runs [`.scripts/setup-codex-home`](.scripts/setup-codex-home),
-which links only Git-tracked files from this repository's `.codex/` directory
-into the real runtime directory. On an older checkout where `~/.codex` still
-points at the repository, quit the Codex desktop app and CLI sessions, then run:
+```text
+<dotfiles>/.codex/  = Git-tracked configuration source
+~/.codex/           = real, mutable Codex runtime directory
+```
+
+Tracked files such as `config.toml` and `AGENTS.md` are symlinked individually
+from `~/.codex` back into this repository. The `~/.codex` directory itself must
+never be a symlink, and `CODEX_HOME` must never point at this repository.
+
+Sessions, archives, authentication, SQLite databases, plugins, logs, caches,
+and Codex-managed worktrees belong directly under `~/.codex`. Mixing those
+files into the repository can make remote tasks fail with `no rollout found`
+or invalid worktree paths.
+
+The complete setup, migration, `paradevbox`, verification, recovery, and backup
+runbook is [docs/codex.md](docs/codex.md). Read it before changing
+`.codex`, `CODEX_HOME`, bootstrap linking, or Codex worktree paths.
+
+The bootstrapper runs [`.scripts/setup-codex-home`](.scripts/setup-codex-home).
+For a repair, fully quit Codex desktop/CLI/remote sessions first, then run:
 
 ```bash
 ./.scripts/setup-codex-home --apply
 ./.scripts/setup-codex-home --check
-codex doctor --summary
 ```
 
-The migration moves runtime state rather than deleting it. Conflicting managed
-files are backed up under `~/.dotfiles-backups/`, and existing Codex-managed Git
-worktrees are repaired after their runtime directory moves.
+`--check` is read-only. `--apply` preserves recoverability: conflicting files
+are quarantined under `~/.dotfiles-backups/`, database and rollout repairs are
+backed up under `~/.codex/repair-backups/`, and worktree metadata is repaired
+after moves. Do not use `--force` during normal setup.
 
 Install or refresh third-party skills through their installer instead of
 committing copied vendor output. Restore Skills CLI-managed entries from

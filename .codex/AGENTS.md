@@ -3,6 +3,31 @@
 When available, read up on README.md to familiarize yourself with what we're
 doing and how we're doing it.
 
+## Codex Home Boundary
+
+On machines managed by this dotfiles repository:
+
+- `<dotfiles>/.codex/` is the Git-tracked source for personal Codex
+  configuration.
+- `~/.codex/` is the real per-user runtime directory and must not be a
+  whole-directory symlink.
+- Only tracked configuration files are symlinked individually from
+  `~/.codex/` back into the dotfiles repository.
+- Sessions, auth, SQLite state, logs, plugins, caches, and worktrees must remain
+  directly under `~/.codex/`.
+- Never set `CODEX_HOME` to the dotfiles repository's `.codex` directory.
+- Standalone personal skills belong in `<dotfiles>/.agents/skills/`, exposed
+  globally through `~/.agents/skills/`. Do not author them under
+  `<dotfiles>/.codex/skills/` or `~/.codex/skills/`; those are legacy user-skill
+  locations. The only supported content under `~/.codex/skills/` is
+  runtime-managed content such as `.system`.
+
+Before changing `.codex`, bootstrap linking, `CODEX_HOME`, or worktree paths,
+read `docs/codex.md` in the dotfiles repository. Use
+`.scripts/setup-codex-home --check` for read-only verification and require
+Codex desktop, CLI, and remote app-server processes to be stopped before
+`--apply`. Do not use `--force` for normal setup.
+
 When developing python:
 
 - you almost always probably need to prefix your command with `uv run`. See

@@ -1,3 +1,7 @@
+# Codex runtime state belongs in the real $CODEX_HOME (normally ~/.codex),
+# never in this repository. These ignores are a containment guard for legacy
+# layouts and accidental writes; `.scripts/setup-codex-home --check` still
+# treats matching files here as a setup error.
 .codex/auth.json
 .codex/internal_storage.json
 .codex/history.jsonl
@@ -54,8 +58,20 @@
 .codex/repair-backups/
 .codex/computer-use.disabled-*/
 .codex/external_agent_session_imports.json
+# Installer-managed skill copies. Their reproducible sources and content
+# hashes live in the root skills-lock.json; authored skills are not ignored.
 .agents/skills/flywheel*/
+.agents/skills/general-video/
 .agents/skills/humanizer/
+.agents/skills/hyperframes/
+.agents/skills/hyperframes-animation/
+.agents/skills/hyperframes-audio/
+.agents/skills/hyperframes-cli/
+.agents/skills/hyperframes-core/
+.agents/skills/hyperframes-creative/
+.agents/skills/hyperframes-keyframes/
+.agents/skills/hyperframes-registry/
+.agents/skills/media-use/
 .agents/skills/.flywheel-installed-by-codex
 .config/flywheel-cli/
 .bash_local

@@ -522,8 +522,17 @@ setup_links() {
   link_path "$REPO_DIR/.installs" "$HOME/.installs"
   link_path "$REPO_DIR/.tmux.conf" "$HOME/.tmux.conf"
   link_path "$REPO_DIR/.scripts" "$HOME/.scripts"
-  "$REPO_DIR/.scripts/setup-codex-home" --apply
+  # Current Codex discovers user-global authored skills under ~/.agents/skills.
+  # Link this before validating Codex so missing global skills fail bootstrap.
   link_path "$REPO_DIR/.agents" "$HOME/.agents"
+
+  # Do not replace this with `link_path "$REPO_DIR/.codex" "$HOME/.codex"`.
+  # ~/.codex is Codex's mutable runtime home. The helper keeps it as a real
+  # directory and links only Git-tracked configuration files into it. See
+  # docs/codex.md for the layout, migration, and recovery contract.
+  log "Configuring the split Codex config/runtime layout."
+  "$REPO_DIR/.scripts/setup-codex-home" --apply
+
   mkdir -p "$HOME/.claude"
   link_path "$REPO_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
   link_path "$REPO_DIR/.vim" "$HOME/.vim"

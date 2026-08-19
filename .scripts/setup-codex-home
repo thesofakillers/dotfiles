@@ -6,9 +6,27 @@ usage() {
   cat <<'EOF'
 Usage: setup-codex-home [--apply | --check] [--force]
 
-Keep Codex runtime state in a real ~/.codex directory while linking only
-Git-tracked dotfiles into it. --apply migrates the legacy whole-directory
-symlink when needed. --check makes no changes.
+Required layout:
+  <dotfiles>/.codex/  Git-tracked configuration source
+  ~/.codex/           Real per-user runtime directory (never a root symlink)
+  ~/.codex/<tracked>  Individual symlinks back to <dotfiles>/.codex/<tracked>
+  <dotfiles>/.agents/ Git-tracked personal skills source
+  ~/.agents/          Symlink to <dotfiles>/.agents for global skill discovery
+
+Runtime state such as auth, sessions, SQLite databases, plugins, logs, caches,
+and worktrees belongs directly under ~/.codex. Never set CODEX_HOME to the
+dotfiles repository's .codex directory. Author standalone skills under
+<dotfiles>/.agents/skills, never <dotfiles>/.codex/skills or ~/.codex/skills.
+The helper detects and migrates legacy user skills while leaving Codex's
+runtime-managed ~/.codex/skills/.system directory alone.
+
+Modes:
+  --check  Read-only verification. This is the default.
+  --apply  Migrate/repair the layout and create the managed file symlinks.
+           Quit Codex desktop, CLI, and remote app-server sessions first.
+  --force  Bypass the active-process safety check. Disaster recovery only.
+
+Full runbook: docs/codex.md
 EOF
 }
 
@@ -24,7 +42,9 @@ die() {
 script_dir="$(cd -P -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$(cd -- "$script_dir/.." && pwd)"
 repo_codex="$repo_root/.codex"
+repo_agents="$repo_root/.agents"
 codex_home_path="${CODEX_HOME:-$HOME/.codex}"
+agents_home_path="$HOME/.agents"
 mode=check
 force=0
 
@@ -52,6 +72,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 [[ -d "$repo_codex" ]] || die "missing repository Codex directory: $repo_codex"
+[[ -d "$repo_agents" ]] || die "missing repository agents directory: $repo_agents"
 [[ "$codex_home_path" != "$repo_codex" ]] || die "CODEX_HOME must not be the repository .codex directory"
 
 managed_files=()
@@ -83,7 +104,13 @@ fi
 check_layout() {
   local failures=0
   local managed_path relative_path source destination
-  local ignored_count untracked_count state_db alias_count old_prefix_sql
+  local ignored_count untracked_count state_db old_prefix_sql
+  local global_skill_count legacy_skill_count legacy_runtime_skill_count=0
+  local legacy_runtime_skill_manifest legacy_runtime_skill_name
+  local legacy_runtime_skill_names=()
+  local rollout_alias_count cwd_alias_count
+  local rollout_file first_line rollout_metadata_alias_count=0
+  local rollout_roots=()
 
   if [[ "$legacy_root_link" -eq 1 ]]; then
     log "$codex_home_path is still a whole-directory symlink"
@@ -103,6 +130,30 @@ check_layout() {
     done
   fi
 
+  if [[ ! -d "$agents_home_path" ]] || [[ ! "$agents_home_path" -ef "$repo_agents" ]]; then
+    log "$agents_home_path must resolve to the repository agents directory: $repo_agents"
+    failures=$((failures + 1))
+  fi
+
+  global_skill_count="$(find -L "$agents_home_path/skills" -mindepth 2 -maxdepth 2 -type f -name SKILL.md 2>/dev/null | wc -l | tr -d ' ')"
+  legacy_skill_count="$(git -C "$repo_root" ls-files -- '.codex/skills/*/SKILL.md' | wc -l | tr -d ' ')"
+  if [[ "$legacy_skill_count" -ne 0 ]]; then
+    log "repository contains $legacy_skill_count authored skills in legacy .codex/skills; move them to .agents/skills"
+    failures=$((failures + 1))
+  fi
+
+  for legacy_runtime_skill_manifest in "$codex_home_path"/skills/*/SKILL.md; do
+    [[ -f "$legacy_runtime_skill_manifest" ]] || continue
+    legacy_runtime_skill_name="$(basename "$(dirname "$legacy_runtime_skill_manifest")")"
+    legacy_runtime_skill_names+=("$legacy_runtime_skill_name")
+    legacy_runtime_skill_count=$((legacy_runtime_skill_count + 1))
+  done
+  if [[ "$legacy_runtime_skill_count" -ne 0 ]]; then
+    log "$codex_home_path/skills contains $legacy_runtime_skill_count legacy user skills: ${legacy_runtime_skill_names[*]}"
+    log "move user skills to $agents_home_path/skills; only runtime-managed .system belongs under $codex_home_path/skills"
+    failures=$((failures + 1))
+  fi
+
   ignored_count="$(git -C "$repo_root" ls-files --others --ignored --exclude-standard -- .codex | wc -l | tr -d ' ')"
   untracked_count="$(git -C "$repo_root" ls-files --others --exclude-standard -- .codex | wc -l | tr -d ' ')"
   if [[ "$ignored_count" -ne 0 || "$untracked_count" -ne 0 ]]; then
@@ -117,30 +168,56 @@ check_layout() {
       if [[ "$(sqlite3 "$state_db" "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='threads';")" -ne 1 ]]; then
         continue
       fi
-      alias_count="$(sqlite3 "$state_db" "SELECT COUNT(*) FROM threads WHERE substr(rollout_path, 1, length('${old_prefix_sql}')) = '${old_prefix_sql}';")"
-      if [[ "$alias_count" -ne 0 ]]; then
-        log "$state_db contains $alias_count repository-prefixed rollout paths"
+      rollout_alias_count="$(sqlite3 "$state_db" "SELECT COUNT(*) FROM threads WHERE substr(rollout_path, 1, length('${old_prefix_sql}')) = '${old_prefix_sql}';")"
+      cwd_alias_count="$(sqlite3 "$state_db" "SELECT COUNT(*) FROM threads WHERE substr(cwd, 1, length('${old_prefix_sql}')) = '${old_prefix_sql}';")"
+      if [[ "$rollout_alias_count" -ne 0 || "$cwd_alias_count" -ne 0 ]]; then
+        log "$state_db contains repository-prefixed paths (rollouts=$rollout_alias_count cwd=$cwd_alias_count)"
         failures=$((failures + 1))
       fi
     done
+  fi
+
+  [[ -d "$codex_home_path/sessions" ]] && rollout_roots+=("$codex_home_path/sessions")
+  [[ -d "$codex_home_path/archived_sessions" ]] && rollout_roots+=("$codex_home_path/archived_sessions")
+  if [[ ${#rollout_roots[@]} -gt 0 ]]; then
+    while IFS= read -r -d '' rollout_file; do
+      IFS= read -r first_line < "$rollout_file" || continue
+      case "$first_line" in
+        *\"cwd\":\""$repo_codex/"*)
+          rollout_metadata_alias_count=$((rollout_metadata_alias_count + 1))
+          ;;
+      esac
+    done < <(find "${rollout_roots[@]}" -type f -name '*.jsonl' -print0)
+  fi
+  if [[ "$rollout_metadata_alias_count" -ne 0 ]]; then
+    log "$codex_home_path contains $rollout_metadata_alias_count rollouts with repository-prefixed cwd metadata"
+    failures=$((failures + 1))
   fi
 
   if [[ "$failures" -ne 0 ]]; then
     return 1
   fi
 
-  log "layout is healthy: real runtime directory plus ${#managed_files[@]} managed links"
+  log "configuration source: $repo_codex"
+  log "runtime home: $codex_home_path"
+  log "global skills root: $agents_home_path -> $repo_agents"
+  log "managed worktree root: $codex_home_path/worktrees"
+  log "layout is healthy: real runtime directory plus ${#managed_files[@]} managed config links and $global_skill_count global skills"
 }
 
 assert_codex_is_stopped() {
   local open_targets=()
   local candidate
 
-  [[ "$force" -eq 0 ]] || return
+  [[ "$force" -eq 0 ]] || return 0
   command -v lsof >/dev/null 2>&1 || \
     die "lsof is required to verify Codex is stopped; install it or rerun with --force after quitting Codex"
 
   for candidate in \
+    "$codex_home_path"/state_*.sqlite \
+    "$codex_home_path"/logs_*.sqlite \
+    "$codex_home_path"/queue_*.sqlite \
+    "$codex_home_path"/thread_history_*.sqlite \
     "$repo_codex"/state_*.sqlite \
     "$repo_codex"/logs_*.sqlite \
     "$repo_codex"/queue_*.sqlite \
@@ -156,7 +233,7 @@ assert_codex_is_stopped() {
 validate_worktrees_for_move() {
   local git_file admin_gitdir
 
-  [[ -d "$repo_codex/worktrees" ]] || return
+  [[ -d "$repo_codex/worktrees" ]] || return 0
   while IFS= read -r -d '' git_file; do
     admin_gitdir="$(sed -n 's/^gitdir: //p' "$git_file")"
     [[ -n "$admin_gitdir" && -d "$admin_gitdir" ]] || \
@@ -168,7 +245,7 @@ validate_worktrees_for_move() {
 repair_moved_worktrees() {
   local git_file worktree_path admin_gitdir common_gitdir
 
-  [[ -d "$codex_home_path/worktrees" ]] || return
+  [[ -d "$codex_home_path/worktrees" ]] || return 0
   while IFS= read -r -d '' git_file; do
     worktree_path="$(dirname "$git_file")"
     admin_gitdir="$(sed -n 's/^gitdir: //p' "$git_file")"
@@ -178,11 +255,11 @@ repair_moved_worktrees() {
 }
 
 normalize_state_paths() {
-  local state_db table_count alias_count changed_count
+  local state_db table_count rollout_alias_count cwd_alias_count
   local backup_dir backup_path backup_path_sql old_prefix_sql new_prefix_sql
 
   command -v sqlite3 >/dev/null 2>&1 || {
-    log "sqlite3 is unavailable; skipping rollout-path normalization"
+    log "sqlite3 is unavailable; skipping state-path normalization"
     return
   }
 
@@ -194,24 +271,184 @@ normalize_state_paths() {
     [[ -f "$state_db" ]] || continue
     table_count="$(sqlite3 "$state_db" "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='threads';")"
     [[ "$table_count" -eq 1 ]] || continue
-    alias_count="$(sqlite3 "$state_db" "SELECT COUNT(*) FROM threads WHERE substr(rollout_path, 1, length('${old_prefix_sql}')) = '${old_prefix_sql}';")"
-    [[ "$alias_count" -gt 0 ]] || continue
+    rollout_alias_count="$(sqlite3 "$state_db" "SELECT COUNT(*) FROM threads WHERE substr(rollout_path, 1, length('${old_prefix_sql}')) = '${old_prefix_sql}';")"
+    cwd_alias_count="$(sqlite3 "$state_db" "SELECT COUNT(*) FROM threads WHERE substr(cwd, 1, length('${old_prefix_sql}')) = '${old_prefix_sql}';")"
+    [[ "$rollout_alias_count" -gt 0 || "$cwd_alias_count" -gt 0 ]] || continue
 
     mkdir -p "$backup_dir"
     backup_path="$backup_dir/$(basename "$state_db" .sqlite)-before-codex-home-migration-$(date +%Y%m%d-%H%M%S).sqlite"
     backup_path_sql="$(printf '%s' "$backup_path" | sed "s/'/''/g")"
     sqlite3 "$state_db" ".backup '$backup_path_sql'"
-    changed_count="$(sqlite3 "$state_db" "
+    sqlite3 "$state_db" "
 BEGIN IMMEDIATE;
 UPDATE threads
 SET rollout_path = replace(rollout_path, '${old_prefix_sql}', '${new_prefix_sql}')
 WHERE substr(rollout_path, 1, length('${old_prefix_sql}')) = '${old_prefix_sql}';
-SELECT changes();
+UPDATE threads
+SET cwd = replace(cwd, '${old_prefix_sql}', '${new_prefix_sql}')
+WHERE substr(cwd, 1, length('${old_prefix_sql}')) = '${old_prefix_sql}';
 COMMIT;
-")"
+"
     [[ "$(sqlite3 "$state_db" 'PRAGMA quick_check;')" == ok ]] || die "SQLite integrity check failed for $state_db"
-    log "normalized $changed_count rollout paths in $state_db (backup: $backup_path)"
+    log "normalized state paths in $state_db (rollouts=$rollout_alias_count cwd=$cwd_alias_count backup=$backup_path)"
   done
+}
+
+normalize_rollout_cwds() {
+  local rollout_file first_line relative_path first_line_backup
+  local changed_count=0
+  local backup_root="$codex_home_path/repair-backups/rollout-cwd-first-lines-before-migration-$(date +%Y%m%d-%H%M%S)"
+  local rollout_roots=()
+
+  command -v perl >/dev/null 2>&1 || {
+    log "perl is unavailable; skipping rollout cwd normalization"
+    return
+  }
+
+  [[ -d "$codex_home_path/sessions" ]] && rollout_roots+=("$codex_home_path/sessions")
+  [[ -d "$codex_home_path/archived_sessions" ]] && rollout_roots+=("$codex_home_path/archived_sessions")
+  [[ ${#rollout_roots[@]} -gt 0 ]] || return 0
+
+  while IFS= read -r -d '' rollout_file; do
+    IFS= read -r first_line < "$rollout_file" || continue
+    case "$first_line" in
+      *\"cwd\":\""$repo_codex/"*) ;;
+      *) continue ;;
+    esac
+
+    relative_path="${rollout_file#"$codex_home_path/"}"
+    first_line_backup="$backup_root/$relative_path.first-line"
+    mkdir -p "$(dirname "$first_line_backup")"
+    printf '%s\n' "$first_line" > "$first_line_backup"
+
+    CODEX_OLD_PREFIX="$repo_codex/" CODEX_NEW_PREFIX="$codex_home_path/" \
+      perl -e '
+use strict;
+use warnings;
+
+my ($path) = @ARGV;
+my $old = $ENV{CODEX_OLD_PREFIX};
+my $new = $ENV{CODEX_NEW_PREFIX};
+my $needle = qq{"cwd":"$old};
+
+open my $handle, "+<:raw", $path or die "open $path: $!\n";
+my $line = <$handle>;
+defined $line or die "empty rollout: $path\n";
+my $offset = index($line, $needle);
+$offset >= 0 or die "cwd token missing: $path\n";
+substr($line, $offset + length(q{"cwd":"}), length($old), $new);
+
+my $padding = length($old) - length($new);
+$padding > 0 or die "replacement must shrink the cwd prefix: $path\n";
+if ($line =~ /\r?\n\z/) {
+  $line =~ s/(\r?\n)\z/(" " x $padding) . $1/e;
+} else {
+  $line .= " " x $padding;
+}
+
+seek($handle, 0, 0) or die "seek $path: $!\n";
+my $written = 0;
+while ($written < length($line)) {
+  my $count = syswrite($handle, $line, length($line) - $written, $written);
+  defined $count or die "write $path: $!\n";
+  $written += $count;
+}
+close $handle or die "close $path: $!\n";
+' "$rollout_file"
+    changed_count=$((changed_count + 1))
+  done < <(find "${rollout_roots[@]}" -type f -name '*.jsonl' -print0)
+
+  if [[ "$changed_count" -gt 0 ]]; then
+    log "normalized cwd metadata in $changed_count rollouts (first-line backups: $backup_root)"
+  fi
+}
+
+reconcile_repository_runtime() {
+  local repository_path relative_path source destination backup_path
+  local moved_count=0 conflict_count=0
+  local conflict_root="$HOME/.dotfiles-backups/$(date +%Y%m%d-%H%M%S)-codex-repo-runtime-conflicts"
+
+  while IFS= read -r -d '' repository_path; do
+    relative_path="${repository_path#.codex/}"
+    source="$repo_root/$repository_path"
+    destination="$codex_home_path/$relative_path"
+    [[ -e "$source" || -L "$source" ]] || continue
+
+    # Never merge SQLite files from different database generations. Even a
+    # lone WAL/SHM file can corrupt an otherwise healthy destination database.
+    if [[ "$relative_path" == *.sqlite || "$relative_path" == *.sqlite-* ]]; then
+      backup_path="$conflict_root/$relative_path"
+      mkdir -p "$(dirname "$backup_path")"
+      mv "$source" "$backup_path"
+      conflict_count=$((conflict_count + 1))
+      continue
+    fi
+
+    if [[ ! -e "$destination" && ! -L "$destination" ]]; then
+      mkdir -p "$(dirname "$destination")"
+      mv "$source" "$destination"
+      moved_count=$((moved_count + 1))
+      continue
+    fi
+
+    backup_path="$conflict_root/$relative_path"
+    mkdir -p "$(dirname "$backup_path")"
+    mv "$source" "$backup_path"
+    conflict_count=$((conflict_count + 1))
+  done < <(git -C "$repo_root" ls-files --others --ignored --exclude-standard -z -- .codex)
+
+  if [[ "$moved_count" -gt 0 ]]; then
+    log "moved $moved_count repository runtime files into $codex_home_path"
+  fi
+  if [[ "$conflict_count" -gt 0 ]]; then
+    log "quarantined $conflict_count conflicting runtime files under $conflict_root"
+  fi
+}
+
+migrate_legacy_runtime_skills() {
+  local legacy_skill_manifest legacy_skill_source legacy_skill_name
+  local destination resolved_source backup_path
+  local migrated_count=0 duplicate_count=0
+  local backup_root="$HOME/.dotfiles-backups/$(date +%Y%m%d-%H%M%S)-legacy-codex-skills"
+
+  mkdir -p "$repo_agents/skills"
+  for legacy_skill_manifest in "$codex_home_path"/skills/*/SKILL.md; do
+    [[ -f "$legacy_skill_manifest" ]] || continue
+    legacy_skill_source="$(dirname "$legacy_skill_manifest")"
+    legacy_skill_name="$(basename "$legacy_skill_source")"
+    destination="$repo_agents/skills/$legacy_skill_name"
+
+    if [[ -e "$destination" || -L "$destination" ]]; then
+      backup_path="$backup_root/$legacy_skill_name"
+      mkdir -p "$(dirname "$backup_path")"
+      mv "$legacy_skill_source" "$backup_path"
+      duplicate_count=$((duplicate_count + 1))
+      continue
+    fi
+
+    if [[ -L "$legacy_skill_source" ]]; then
+      command -v tar >/dev/null 2>&1 || \
+        die "tar is required to migrate symlinked legacy skills"
+      resolved_source="$(cd -P -- "$legacy_skill_source" && pwd)"
+      mkdir -p "$destination"
+      tar -C "$resolved_source" -cf - . | tar -C "$destination" -xf -
+      backup_path="$backup_root/$legacy_skill_name"
+      mkdir -p "$(dirname "$backup_path")"
+      mv "$legacy_skill_source" "$backup_path"
+    else
+      mv "$legacy_skill_source" "$destination"
+    fi
+    migrated_count=$((migrated_count + 1))
+  done
+
+  if [[ "$migrated_count" -gt 0 ]]; then
+    log "migrated $migrated_count legacy user skills to $repo_agents/skills"
+  fi
+  if [[ "$duplicate_count" -gt 0 ]]; then
+    log "quarantined $duplicate_count duplicate legacy user skills under $backup_root"
+  elif [[ -d "$backup_root" ]]; then
+    log "backed up legacy skill links under $backup_root"
+  fi
 }
 
 link_managed_files() {
@@ -265,6 +502,7 @@ migrate_legacy_root() {
   done
 
   normalize_state_paths
+  normalize_rollout_cwds
   repair_moved_worktrees
 
   legacy_root_link=0
@@ -279,7 +517,13 @@ fi
 if [[ "$legacy_root_link" -eq 1 ]]; then
   migrate_legacy_root
 else
+  assert_codex_is_stopped
+  reconcile_repository_runtime
   link_managed_files
+  normalize_state_paths
+  normalize_rollout_cwds
+  repair_moved_worktrees
 fi
 
+migrate_legacy_runtime_skills
 check_layout
