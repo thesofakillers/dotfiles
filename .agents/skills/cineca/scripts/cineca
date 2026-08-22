@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+cineca_email_file="${CINECA_EMAIL_FILE:-$HOME/.step/cineca-email}"
+
+# Remote SSH sessions on macOS do not inherit the GUI launchd agent socket.
+# Recover the owning user's persistent agent so the certificate survives this
+# shell and remains available to later sessions.
+if [[ -z "${SSH_AUTH_SOCK:-}" || ! -S "${SSH_AUTH_SOCK:-}" ]]; then
+  if command -v launchctl >/dev/null 2>&1; then
+    launchd_agent_socket=$(
+      launchctl print "gui/$(id -u)/com.openssh.ssh-agent" 2>/dev/null |
+        awk '$1 == "SSH_AUTH_SOCK" && $2 == "=>" { print $3; exit }'
+    )
+    if [[ -n "$launchd_agent_socket" && -S "$launchd_agent_socket" ]]; then
+      export SSH_AUTH_SOCK="$launchd_agent_socket"
+    fi
+  fi
+fi
+
+if [[ -z "${SSH_AUTH_SOCK:-}" || ! -S "${SSH_AUTH_SOCK:-}" ]]; then
+  printf 'No usable SSH agent is available for the CINECA certificate.\n' >&2
+  exit 1
+fi
+
+for required_command in step jq ssh; do
+  if ! command -v "$required_command" >/dev/null 2>&1; then
+    printf 'Missing required command: %s\n' "$required_command" >&2
+    exit 1
+  fi
+done
+
+if [[ ! -r "$cineca_email_file" ]]; then
+  printf 'Missing CINECA identity file: %s\n' "$cineca_email_file" >&2
+  exit 1
+fi
+
+cineca_email=$(tr -d '\r\n' <"$cineca_email_file")
+needs_certificate=true
+
+if certificate_json=$(step ssh list --raw "$cineca_email" 2>/dev/null | step ssh inspect --format json 2>/dev/null); then
+  valid_before=$(jq -r '.ValidBefore // empty' <<<"$certificate_json")
+  if [[ -n "$valid_before" ]]; then
+    normalized_valid_before=$(sed -E 's/([+-][0-9]{2}):([0-9]{2})$/\1\2/' <<<"$valid_before")
+    if expiry_epoch=$(date -j -f '%Y-%m-%dT%H:%M:%S%z' "$normalized_valid_before" '+%s' 2>/dev/null); then
+      now_epoch=$(date '+%s')
+      if ((expiry_epoch > now_epoch + 60)); then
+        needs_certificate=false
+      fi
+    fi
+  fi
+fi
+
+if [[ "$needs_certificate" == true ]]; then
+  step ssh login "$cineca_email" --provisioner cineca-hpc
+fi
+
+exec ssh cineca "$@"

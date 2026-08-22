@@ -1,0 +1,4 @@
+interface:
+  display_name: "CINECA Access"
+  short_description: "Set up and use Leonardo SSH access"
+  default_prompt: "Use $cineca to set up, renew, diagnose, or use my Leonardo SSH access."
