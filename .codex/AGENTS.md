@@ -51,7 +51,11 @@ When using sentry:
 
 - Keep binary files binary. Never transfer or reconstruct images, archives,
   fonts, PDFs, or other binary files by placing base64 or data URLs in chat,
-  tool output, shell output, or `apply_patch`.
+  user- or model-visible tool I/O, shell output, logs, temporary text files, or
+  `apply_patch`.
+- Bounded in-memory encoding passed directly to a trusted tool or API is allowed
+  when that interface requires encoded bytes, provided the value is never
+  surfaced, logged, or persisted by an intermediary.
 - Download binary files directly to disk using a native file reference, an
   authenticated download, a browser download, or a connector that writes to a
   local path. Report only the resulting path, size, checksum, and validation
