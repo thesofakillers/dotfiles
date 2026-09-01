@@ -20,9 +20,19 @@ official source of truth is CINECA's current
 
 The UserDB email, password, TOTP seed/codes, recovery codes, certificate private
 key, and browser state are machine/user secrets. Keep them out of Git, prompts,
-tool output, shell arguments, and temporary files. The email identity file is
-`~/.step/cineca-email`, mode `0600`; inspect its existence and mode, not its
-contents.
+tool input and output, shell arguments, the clipboard, and temporary files. The
+email identity file is `~/.step/cineca-email`, mode `0600`; inspect its existence
+and mode, not its contents.
+
+Credential entry is agent-operated by default. Use the 1Password CLI through a
+single no-output child process that contains credential values in memory and
+transmits them only to CINECA's authentication surface. The agent may pass a
+non-secret field selector to that child, but secret values must never return to
+the agent, browser tool calls, or logs. The user's normal role is limited to
+unlocking or approving 1Password when it is locked. Do not ask the user to
+reveal, copy, paste, or type a credential merely because automation is
+inconvenient; report a missing value-contained browser bridge as a capability
+blocker.
 
 ## Diagnose first
 
@@ -107,12 +117,19 @@ before replacement.
 CINECA's `step-ca` OIDC client does not permit the device-authorization grant,
 so `step ssh login --console` fails. Use the normal loopback browser flow.
 
-On a graphical Mac, this is sufficient:
+On a graphical Mac, this starts the authorization flow:
 
 ```bash
 step ssh login "$(tr -d '\r\n' < ~/.step/cineca-email)" \
   --provisioner cineca-hpc
 ```
+
+Use the in-app Browser explicitly for the authorization page. Do not use a URL
+selector that may silently choose another browser. Enter username, password,
+and OTP through the agent-operated, no-output 1Password child-process boundary
+described above. If the in-app Browser backend or a value-contained credential
+bridge is unavailable, stop and report which capability is missing. Use Chrome
+only after the user explicitly requests it or approves that switch.
 
 For a login running on Paradevbox while the browser runs on the controlling
 Mac:
@@ -142,10 +159,10 @@ Mac:
    `127.0.0.1:10000` crosses the SSH tunnel to Paradevbox. Reuse an authenticated
    CINECA session when available.
 
-4. If CINECA asks for username, password, or OTP, keep entry in 1Password's own
-   autofill/reveal UI under user control. Do not retrieve or paste secret values
-   through agent or browser-tool context. Never send email or start account
-   recovery.
+4. If CINECA asks for username, password, or OTP, operate the 1Password CLI
+   child-process boundary without returning values to the agent or browser tool
+   context. Ask the user only to unlock or approve 1Password when required.
+   Never send email or start account recovery.
 
 5. Wait for `CA: https://sshproxy.hpc.cineca.it` and `SSH Agent: yes`, stop the
    temporary tunnel, then run the live doctor.
