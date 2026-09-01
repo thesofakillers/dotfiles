@@ -1,6 +1,6 @@
 ---
 name: cineca
-description: Set up, renew, diagnose, and use Giulio's CINECA Leonardo SSH access for the IsB33_INSIGHT project on personal macOS machines or Paradevbox. Use for CINECA, Leonardo, the cineca SSH alias, Smallstep SSH certificates, IsB33_INSIGHT or IscrB_INSIGHT, and Leonardo host-key rotation.
+description: Set up, renew, diagnose, and use Giulio's CINECA Leonardo SSH access for the IsB33_INSIGHT project on personal macOS machines or Paradevbox. Use only when the request explicitly concerns CINECA, Leonardo, the cineca SSH alias, Smallstep SSH certificates, IsB33_INSIGHT or IscrB_INSIGHT, or Leonardo host-key rotation. Do not use for generic Slurm or HPC work, or for Nebius or Soperator cluster incidents.
 ---
 
 # CINECA Leonardo access
