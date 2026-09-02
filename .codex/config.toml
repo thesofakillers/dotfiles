@@ -8,7 +8,7 @@ personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
 approvals_reviewer = "user"
 
-notify = ["/Users/giulio/repos/dotfiles/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
+notify = ["/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules/@oai/sky/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 service_tier = "default"
 
 [tui]
@@ -103,8 +103,7 @@ startup_timeout_sec = 120
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
 NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
-NODE_REPL_TRUSTED_CODE_PATHS = "/Users/giulio/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
-CODEX_HOME = "/Users/giulio/.codex"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules:/Applications/ChatGPT.app/Contents/Resources/plugins/openai-bundled"
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e86beb821b9afc846211798e0113bd4b9e79312dfcd135eb447bdb154f64071"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = "Control the in-app browser in conjunction with the Browser Plugin."
@@ -112,7 +111,7 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = "Control the Chrome browser in conjunct
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = "Control desktop apps on macOS through Computer Use."
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
 BROWSER_USE_CODEX_APP_VERSION = "26.803.61601"
-SKY_CUA_SERVICE_PATH = "/Users/giulio/.codex/computer-use/Codex Computer Use.app"
+SKY_CUA_SERVICE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules/@oai/sky/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
 
 [mcp_servers.simplenote]
@@ -136,7 +135,6 @@ show-context-window-usage = true
 [shell_environment_policy.set]
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e86beb821b9afc846211798e0113bd4b9e79312dfcd135eb447bdb154f64071"
-NODE_REPL_TRUSTED_CODE_PATHS = "/Users/giulio/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 
 [apps.asdk_app_69a089a326dc8191b32a3f2553f5be2c.tools."linear.save_issue"]
 approval_mode = "approve"
@@ -144,7 +142,7 @@ approval_mode = "approve"
 [marketplaces.openai-bundled]
 last_updated = "2026-08-18T09:38:57Z"
 source_type = "local"
-source = "/Users/giulio/repos/dotfiles/.codex/.tmp/bundled-marketplaces/openai-bundled"
+source = "/Users/giulio/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
 last_updated = "2026-08-14T08:05:35Z"
