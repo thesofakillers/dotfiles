@@ -122,6 +122,12 @@ setup, that path resolves to `<dotfiles>/.agents/skills`.
 - Do not author user skills under `<dotfiles>/.codex/skills` or
   `~/.codex/skills`.
 
+Paradigma's internal skills belong to its checkout, exposed through that
+checkout's `.agents/skills/`. Do not enable the obsolete `paradigma-monorepo`
+marketplace or its plugins in this user-global configuration. Existing installs
+migrate through the current Paradigma checkout's
+`./scripts/dev/plugins_bootstrap.sh --repair --agent codex` command.
+
 The required `linear-status` manifest should therefore be readable at:
 
 ```text
@@ -150,6 +156,14 @@ ssh paradevbox \
 
 Leave remote `CODEX_HOME` unset, or set it only to the real runtime directory
 `/Users/giulio/.codex`.
+
+## Missing Desktop Task Tools
+
+If an SSH-backed task lacks `create_thread` or `send_message_to_thread`, use
+the [Codex task fallback skill](../.agents/skills/codex-task-fallback/SKILL.md).
+It connects the installed interactive CLI to the existing App Server and
+verifies the resulting task through Desktop. This works around the Desktop
+tool-exposure regression without changing plugins or Codex runtime state.
 
 ## Official References
 

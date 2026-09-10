@@ -149,19 +149,6 @@ last_updated = "2026-08-14T08:05:35Z"
 source_type = "local"
 source = "/Users/giulio/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
-[plugins."paradigma@paradigma-monorepo"]
-enabled = true
-[plugins."psf@paradigma-monorepo"]
-enabled = true
-[plugins."plan@paradigma-monorepo"]
-enabled = true
-[plugins."execute@paradigma-monorepo"]
-enabled = true
-[plugins."dev@paradigma-monorepo"]
-enabled = true
-[plugins."git@paradigma-monorepo"]
-enabled = true
-
 [plugins."linear@openai-curated"]
 enabled = true
 
@@ -191,25 +178,6 @@ enabled = true
 
 [plugins."browser-use@openai-bundled"]
 enabled = true
-[plugins."verify@paradigma-monorepo"]
-enabled = true
-[plugins."review@paradigma-monorepo"]
-enabled = true
-[plugins."codex@paradigma-monorepo"]
-enabled = true
-[plugins."fumadocs@paradigma-monorepo"]
-enabled = true
-[plugins."hermes@paradigma-monorepo"]
-enabled = true
-[plugins."lin@paradigma-monorepo"]
-enabled = true
-[plugins."clarify@paradigma-monorepo"]
-enabled = true
-[plugins."spec@paradigma-monorepo"]
-enabled = true
-[plugins."cc@paradigma-monorepo"]
-enabled = true
-
 [plugins."ponytail@ponytail"]
 enabled = true
 
@@ -228,25 +196,7 @@ enabled = true
 [plugins."visualize@openai-bundled"]
 enabled = true
 
-[plugins."gran@paradigma-monorepo"]
-enabled = true
-
-[plugins."style@paradigma-monorepo"]
-enabled = true
-
-[plugins."postgres@paradigma-monorepo"]
-enabled = true
-
-[plugins."simplex@paradigma-monorepo"]
-enabled = true
-
-[plugins."dependabot@paradigma-monorepo"]
-enabled = true
-
 [plugins."spreadsheets@openai-primary-runtime"]
-enabled = true
-
-[plugins."1pass@paradigma-monorepo"]
 enabled = true
 
 [plugins."sites@openai-bundled"]
@@ -260,11 +210,3 @@ last_updated = "2026-08-07T21:45:24Z"
 last_revision = "2ed6c52c9d7e5e56942508591085fd45dea277d3"
 source_type = "git"
 source = "https://github.com/DietrichGebert/ponytail.git"
-
-[marketplaces.paradigma-monorepo]
-last_updated = "2026-08-17T22:01:27Z"
-last_revision = "bd6f5a51572d59c51b005374e062b2839c935650"
-source_type = "git"
-source = "git@github.com:paradigma-inc/paradigma.git"
-ref = "staging"
-sparse_paths = [".agents/plugins", ".claude-plugin", "plugins"]
