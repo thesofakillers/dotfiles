@@ -74,7 +74,7 @@
 .agents/skills/media-use/
 .agents/skills/.flywheel-installed-by-codex
 .config/flywheel-cli/
-# Local Flywheel graph database, objects, and trial evidence.
+# Local Flywheel repository data.
 .flywheel/
 .bash_local
 .codex/logs_*
