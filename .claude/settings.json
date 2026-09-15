@@ -1,10 +1,6 @@
 {
   "permissions": {
-    "allow": [
-      "Read(/Users/thesofakillers/.fieldtheory/handoffs/*)",
-      "Write(/Users/thesofakillers/.fieldtheory/handoffs/*)",
-      "Edit(/Users/thesofakillers/.fieldtheory/handoffs/*)"
-    ]
+    "allow": []
   },
   "hooks": {
     "Notification": [
@@ -14,17 +10,6 @@
           {
             "type": "command",
             "command": "printf '\\a'"
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "matcher": "Read|Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 \"/Users/thesofakillers/.claude/fieldtheory-read-permission-hook.py\""
           }
         ]
       }
