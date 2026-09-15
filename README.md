@@ -28,6 +28,10 @@ What `bootstrap.sh` does:
   `~/.agents/skills`
 - backs up any replaced files to `~/.dotfiles-backups/<timestamp>/...`
 - creates a local-only git template at `~/.config/git/config.secret`
+- on macOS, configures new Apple Terminal windows and the account login shell
+  to use Bash, so both Apple Terminal and Codex's integrated terminal load the
+  managed prompt and shell setup (changing the login shell may request
+  authentication)
 - sets up Neovim Python host in `~/.local/share/nvim-py3` with `pynvim`
   - on Debian/Ubuntu, bootstrap auto-installs missing `python3-venv` support
     when needed
