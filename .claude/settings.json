@@ -21,6 +21,8 @@
   },
   "syntaxHighlightingDisabled": false,
   "alwaysThinkingEnabled": true,
+  "autoUpdatesChannel": "stable",
   "skipDangerousModePermissionPrompt": true,
-  "autoUpdatesChannel": "stable"
+  "theme": "dark",
+  "autoCompactWindow": 400000
 }
