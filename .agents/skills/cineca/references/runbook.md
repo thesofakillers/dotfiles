@@ -132,45 +132,41 @@ bridge is unavailable, stop and report which capability is missing. Use Chrome
 only after the user explicitly requests it or approves that switch.
 
 For a login running on Paradevbox while the browser runs on the controlling
-Mac:
+Mac, install the repository's socket-activated callback relay once on that Mac:
 
-1. Start an SSH tunnel from the controlling Mac:
+```bash
+project/cluster-monitor-ui/macos/install-cineca-callback-relay install
+```
 
-   ```bash
-   ssh -N -o ExitOnForwardFailure=yes \
-     -L 10000:127.0.0.1:10000 paradevbox
-   ```
+The LaunchAgent owns only `127.0.0.1:10000`. It starts the relay for an incoming
+callback and keeps no persistent process, SSH connection, or background network
+traffic. Check it with:
 
-2. In a separate Paradevbox SSH session, recover the persistent macOS agent
-   socket, then start the browser flow without trying to open a remote browser:
+```bash
+project/cluster-monitor-ui/macos/install-cineca-callback-relay check
+```
 
-   ```bash
-   agent_socket=$(
-     launchctl print "gui/$(id -u)/com.openssh.ssh-agent" |
-       awk '$1 == "SSH_AUTH_SOCK" && $2 == "=>" { print $3; exit }'
-   )
-   export SSH_AUTH_SOCK="$agent_socket"
-   STEP_OPEN_BROWSER=0 step ssh login \
-     "$(tr -d '\r\n' < ~/.step/cineca-email)" \
-     --provisioner cineca-hpc
-   ```
+Then open `https://cluster-dashboard.tailc3617f.ts.net`, select CINECA, and use
+**Sign in**. The dashboard starts Smallstep on Paradevbox and opens the one-time
+authorization URL. CINECA returns to the registered `127.0.0.1:10000` URL. The
+on-demand relay redirects the browser to the dashboard, which forwards the
+callback to Smallstep on Paradevbox.
 
-3. Open the printed one-time URL in the in-app Browser. The callback to
-   `127.0.0.1:10000` crosses the SSH tunnel to Paradevbox. Reuse an authenticated
-   CINECA session when available.
+If CINECA asks for username, password, or OTP, operate the 1Password CLI
+child-process boundary without returning values to the agent or browser tool
+context. Ask the user only to unlock or approve 1Password when required. Never
+send email or start account recovery.
 
-4. If CINECA asks for username, password, or OTP, operate the 1Password CLI
-   child-process boundary without returning values to the agent or browser tool
-   context. Ask the user only to unlock or approve 1Password when required.
-   Never send email or start account recovery.
-
-5. Wait for `CA: https://sshproxy.hpc.cineca.it` and `SSH Agent: yes`, stop the
-   temporary tunnel, then run the live doctor.
+After the browser returns to the dashboard, wait for the session to show valid,
+then run the live doctor.
 
 ## Recovery
 
 - **Certificate missing or expired:** run the normal browser login. Do not copy
   a certificate from the other Mac.
+- **Callback helper unavailable:** as a temporary recovery path only, forward
+  the loopback listener with
+  `ssh -N -o ExitOnForwardFailure=yes -L 10000:127.0.0.1:10000 paradevbox`.
 - **No SSH agent in a Paradevbox SSH shell:** use the launchd socket discovery
   above. The version-controlled launcher already does this automatically.
 - **Host identification changed:** use CINECA's current documented Leonardo
