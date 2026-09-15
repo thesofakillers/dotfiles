@@ -72,6 +72,7 @@
 .agents/skills/hyperframes-keyframes/
 .agents/skills/hyperframes-registry/
 .agents/skills/media-use/
+.agents/skills/motion-graphics/
 .agents/skills/.flywheel-installed-by-codex
 .config/flywheel-cli/
 # Local Flywheel repository data.
