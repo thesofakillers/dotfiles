@@ -24,5 +24,10 @@
   "autoUpdatesChannel": "stable",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
-  "autoCompactWindow": 400000
+  "autoCompactWindow": 400000,
+  "includeCoAuthoredBy": false,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  }
 }
