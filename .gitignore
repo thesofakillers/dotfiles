@@ -21,6 +21,7 @@
 .codex/state_*.sqlite-wal
 .codex/tmp/
 .codex/vendor_imports/
+.claude/worktrees/
 .codex/worktrees/
 .codex/.tmp/
 .codex/plugins/
