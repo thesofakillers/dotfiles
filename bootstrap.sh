@@ -535,6 +535,9 @@ setup_links() {
 
   mkdir -p "$HOME/.claude"
   link_path "$REPO_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
+  # Claude Code reads ~/.claude/CLAUDE.md as user-level instructions; it imports
+  # ~/.codex/AGENTS.md so both agents share the same shared instructions.
+  link_path "$REPO_DIR/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
   link_path "$REPO_DIR/.vim" "$HOME/.vim"
 
   link_config_entries
