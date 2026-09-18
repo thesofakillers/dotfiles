@@ -26,6 +26,7 @@
   "autoUpdatesChannel": "stable",
   "skipDangerousModePermissionPrompt": true,
   "theme": "dark",
+  "outputStyle": "Concise",
   "autoCompactWindow": 400000,
   "includeCoAuthoredBy": false,
   "attribution": {
