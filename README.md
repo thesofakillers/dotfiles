@@ -61,6 +61,12 @@ manifest and lock file for third-party skills. Because bootstrap links
 `~/.agents` to this repo, restored skills are available globally to compatible
 agents, including Codex.
 
+`~/.agents/skills/` is the single user-level skills directory. Codex and
+OpenCode read it natively; Claude Code only reads `~/.claude/skills/`, so
+bootstrap links that whole directory to `~/.agents/skills/`. Every skill added
+here is therefore visible to all three agents with no per-skill step, and
+nothing agent-specific should be installed into `~/.claude/skills/` directly.
+
 Standalone personal skills authored in this repository must also live under
 `.agents/skills/`. Do not put them under `.codex/skills/`: current Codex loads
 user-global skills from `~/.agents/skills`, so the legacy location can make a

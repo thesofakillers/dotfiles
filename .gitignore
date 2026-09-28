@@ -75,6 +75,7 @@
 .agents/skills/media-use/
 .agents/skills/motion-graphics/
 .agents/skills/.flywheel-installed-by-codex
+.agents/skills/.flywheel-installed-by-claude
 .config/flywheel-cli/
 # Local Flywheel repository data.
 .flywheel/
