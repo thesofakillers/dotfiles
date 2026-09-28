@@ -130,3 +130,8 @@ node_modules/
 .config/git/config.secret
 .config/stripe/
 .env.example
+# Local credentials and CLI runtime state (~/.config is this repo's .config).
+.config/1Password/
+.config/gcloud/
+.config/gws/
+.config/op/
