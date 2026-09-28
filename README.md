@@ -26,6 +26,8 @@ What `bootstrap.sh` does:
 - keeps `~/.codex` as a real runtime directory and links only Git-tracked Codex
   configuration files into it; user skills are exposed separately through
   `~/.agents/skills`
+- links `~/.claude/skills` to `~/.agents/skills` so Claude Code sees the same
+  skills as Codex and OpenCode (see [Agent Skills](#agent-skills))
 - backs up any replaced files to `~/.dotfiles-backups/<timestamp>/...`
 - creates a local-only git template at `~/.config/git/config.secret`
 - on macOS, configures new Apple Terminal windows and the account login shell
@@ -55,26 +57,44 @@ After first login:
 
 ## Agent Skills
 
-Vercel's Skills CLI treats `.agents/skills/` as the standard skills directory.
-This repo uses the root-level `skills-lock.json` as the reproducible dependency
-manifest and lock file for third-party skills. Because bootstrap links
-`~/.agents` to this repo, restored skills are available globally to compatible
-agents, including Codex.
+### One skills directory for every agent
 
-`~/.agents/skills/` is the single user-level skills directory. Codex and
-OpenCode read it natively; Claude Code only reads `~/.claude/skills/`, so
-bootstrap links that whole directory to `~/.agents/skills/`. Every skill added
-here is therefore visible to all three agents with no per-skill step, and
-nothing agent-specific should be installed into `~/.claude/skills/` directly.
+`.agents/skills/` in this repo is the single source of truth for user-level
+skills. Bootstrap links `~/.agents` to this repo and then points the other
+agents' global skill directories at it:
 
-Standalone personal skills authored in this repository must also live under
-`.agents/skills/`. Do not put them under `.codex/skills/`: current Codex loads
-user-global skills from `~/.agents/skills`, so the legacy location can make a
-skill appear in one task but disappear from tasks in other repositories or on
-remote hosts. The same rule applies to the runtime path `~/.codex/skills/`:
-only Codex-managed content such as `.system` belongs there. Codex normally
-detects changes automatically; restart Codex if a skill picker that was
-already open remains stale.
+| Agent       | Reads user skills from | How it sees `.agents/skills/`                  |
+| ----------- | ---------------------- | ---------------------------------------------- |
+| Codex       | `~/.agents/skills/`    | natively                                       |
+| OpenCode    | `~/.agents/skills/`    | natively (also reads `~/.claude/skills/`)      |
+| Claude Code | `~/.claude/skills/`    | `~/.claude/skills` is a symlink to it          |
+
+So a skill added under `.agents/skills/<name>/SKILL.md` is available to all of
+them immediately; there is no per-skill linking, sync, or install step.
+
+Rules that keep this working:
+
+- Author skills in `.agents/skills/<name>/`. Never put skills directly in
+  `~/.claude/skills/`, `~/.config/opencode/skills/`, or `~/.codex/skills/`.
+  `~/.claude/skills` is the same directory, and the other two are not read for
+  user skills (`~/.codex/skills/` is Codex-managed runtime state such as
+  `.system`; `.config/opencode/skills/` is gitignored because OpenCode reads
+  `~/.agents/skills` itself).
+- Do not replace the `~/.claude/skills` symlink with a real directory. If an
+  existing machine has one, re-run `./bootstrap.sh`: it backs the directory up
+  to `~/.dotfiles-backups/<timestamp>/` and creates the link.
+- The Skills CLI is safe with this layout. When it installs a skill for Claude
+  Code it detects that `~/.claude/skills/<name>` already resolves to
+  `~/.agents/skills/<name>` and skips creating a link.
+- Codex normally detects changes automatically; restart Codex or Claude Code
+  if an already-open skill picker is stale.
+
+### Third-party skills
+
+Vercel's Skills CLI uses `.agents/skills/` as its standard directory, and this
+repo uses the root-level `skills-lock.json` as the reproducible manifest and
+lock file for third-party skills. Installer-managed copies are gitignored; the
+lock file records their source and content hash.
 
 Add a dependency from the dotfiles root without `--global` so the project lock
 file is updated:
@@ -106,6 +126,8 @@ Do not track:
 - host/runtime-managed skills such as `.codex/skills/.system/`
 - standalone authored skills under the legacy `.codex/skills/` location
 - standalone user skills under the legacy `~/.codex/skills/` location
+- skill links under `.config/opencode/skills/` (gitignored; OpenCode reads
+  `~/.agents/skills` directly)
 - generated local runtime state such as `.codex/app-server-control/`
 - installer-managed vendor copies under `.agents/skills/`; track their source
   and content hash in `skills-lock.json` instead
