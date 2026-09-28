@@ -76,6 +76,8 @@
 .agents/skills/motion-graphics/
 .agents/skills/.flywheel-installed-by-codex
 .agents/skills/.flywheel-installed-by-claude
+# OpenCode already reads ~/.agents/skills; ignore Skills CLI links here.
+.config/opencode/skills/
 .config/flywheel-cli/
 # Local Flywheel repository data.
 .flywheel/
