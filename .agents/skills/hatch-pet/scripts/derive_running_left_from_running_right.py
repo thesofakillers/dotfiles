@@ -97,7 +97,10 @@ def main() -> None:
     if right_job.get("status") != "complete":
         raise SystemExit("running-right must be complete before deriving running-left")
     mirror_policy = left_job.get("mirror_policy")
-    if not isinstance(mirror_policy, dict) or mirror_policy.get("may_derive_from") != "running-right":
+    if (
+        not isinstance(mirror_policy, dict)
+        or mirror_policy.get("may_derive_from") != "running-right"
+    ):
         raise SystemExit("running-left is not configured for conditional mirroring")
 
     source = run_dir / "decoded" / "running-right.png"

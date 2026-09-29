@@ -75,6 +75,9 @@
 .agents/skills/media-use/
 .agents/skills/motion-graphics/
 .agents/skills/.flywheel-installed-by-codex
+.agents/skills/.flywheel-installed-by-claude
+# OpenCode already reads ~/.agents/skills; ignore Skills CLI links here.
+.config/opencode/skills/
 .config/flywheel-cli/
 # Local Flywheel repository data.
 .flywheel/
@@ -127,3 +130,8 @@ node_modules/
 .config/git/config.secret
 .config/stripe/
 .env.example
+# Local credentials and CLI runtime state (~/.config is this repo's .config).
+.config/1Password/
+.config/gcloud/
+.config/gws/
+.config/op/

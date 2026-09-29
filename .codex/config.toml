@@ -1,5 +1,5 @@
 model = "gpt-5.6-sol"
-model_reasoning_effort = "xhigh"
+model_reasoning_effort = "medium"
 approval_policy = "never"
 sandbox_mode = "danger-full-access"
 oss_provider = "lmstudio"
@@ -8,9 +8,10 @@ personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
 approvals_reviewer = "user"
 
-
-notify = ["/Users/giulio/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 service_tier = "default"
+
+
+notify = ["/Users/thesofakillers/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 
 [tui]
 status_line = ["model-with-reasoning", "context-remaining", "current-dir", "five-hour-limit", "weekly-limit", "git-branch"]
@@ -69,6 +70,249 @@ trust_level = "trusted"
 [projects."/Users/giulio"]
 trust_level = "trusted"
 
+[projects."/Users/thesofakillers"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-01/jspace-status"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-04/can-you-remove-the-background-from"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-04/scp-secrets-paradevbox-secrets-the-authenticity"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-05/plea"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-05/soc2-screenshot-audit"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-06/any"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-06/do-we-use-openrouter-in-flywheel"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-06/files-mentioned-by-the-user-codex"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-06/in"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-07/ca"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-08/soc2ext-47-spreadsheet-runtime-check"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-09/https-paradigma-xjs9058-slack-com-archives"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-09/i-need-to-buy-alessio-morosini"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-10/handle-the-contractor-to-employee-onboarding"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-10/handle-the-employee-onboarding-work-tracked"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-10/handle-the-employee-onboarding-work-tracked-2"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-11/can"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-11/can-2"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-12/please-youtube-dl-or-ffmpeg-download"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-12/what"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-13/codex-threads-019ff785-4ce2-7ae0-abfb"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/h"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hi"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hi-10"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hi-11"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hi-2"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hi-3"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hi-4"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hi-5"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hi-6"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hi-7"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hi-8"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hi-9"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hia"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hia-2"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/hia-3"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/i-thi"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/m-os"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-14/nt"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-16/https-arxiv-org-html-2603-12228"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-16/https-github-com-openai-codex-issues"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-17/can"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-17/hello"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-17/https-cluster-dashboard-tailc3617f-ts-net"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-17/ill-check-if-theyre-set-up"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/repos/paradigma"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/repos/dotfiles"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-19/li"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-19/li-2"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-24/any-reason-not-to-get-this"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-08-25/can-x20"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-01/can"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-01/https-arxiv-org-html-2608-13940v2"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-03/li"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-03/why"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-04/c7a942a62929ffa490fb34fcb084ae12"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-05/i-m-in-rome-with-an"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-08/im-the-mailing-list-got-this"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-08/is-i"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-08/can"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-09/lin"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-09/am-i-overpaying-over-consuming"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-10/how-x20"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-10/deepmind-fair-and-applied-frontier-ai"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-10/https-www-youtube-com-shorts-dy3pbl3ntp4"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-10/mi"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-10/i-ran-out-of-codex-should"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-10/put-x20"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-12/we-want-to-open-a-conversation"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-12/as-you-may-know-we-re"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-13/this-is-our-company-logo-or"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-14/can"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-14/https-flywheel-paradigma-inc-node-00ee719f"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-14/https-flywheel-paradigma-inc-node-00ee719f-2"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-16/hatch-pet-users-thesofakillers-codex-skills"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-16/realtime-voice-chat"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-21/alex-debayo-doherty-investor-at-insight"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-21/but-x20"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-21/how-x20"]
+trust_level = "trusted"
+
+[projects."/Users/thesofakillers/Documents/Codex/2026-09-23/can"]
+trust_level = "trusted"
+
 [projects."/Users/giulio/GitHub/paradigma/tasks/staging/inf-79"]
 trust_level = "trusted"
 
@@ -92,6 +336,7 @@ hide_full_access_warning = true
 hide_gpt5_1_migration_prompt = true
 "hide_gpt-5.1-codex-max_migration_prompt" = true
 fast_default_opt_out = true
+hide_rate_limit_model_nudge = true
 
 [notice.model_migrations]
 "gpt-5.1-codex-max" = "gpt-5.2-codex"
@@ -106,6 +351,7 @@ apps = true
 multi_agent = true
 remote_connections = true
 js_repl = false
+computer_use = true
 
 [mcp_servers.context7]
 command = "npx"
@@ -123,18 +369,18 @@ startup_timeout_sec = 120
 NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
 NODE_REPL_NODE_MODULE_DIRS = "/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
 NODE_REPL_NODE_PATH = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node"
-NODE_REPL_TRUSTED_CODE_PATHS = "/Users/giulio/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
-CODEX_HOME = "/Users/giulio/.codex"
+NODE_REPL_TRUSTED_CODE_PATHS = "/Users/thesofakillers/.codex:/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules"
+CODEX_HOME = "/Users/thesofakillers/.codex"
 BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab"
 BROWSER_USE_TINYSKY_ENABLED = "1"
 NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.901.41123"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/giulio/.codex/plugins/cache/openai-bundled/browser/26.901.41123/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
-SKY_CUA_SERVICE_PATH = "/Users/giulio/.codex/computer-use/Codex Computer Use.app"
-CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex"
+BROWSER_USE_CODEX_APP_VERSION = "26.924.22138"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/Users/thesofakillers/.codex/plugins/cache/openai-bundled/browser/26.924.22138/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+SKY_CUA_SERVICE_PATH = "/Users/thesofakillers/.codex/computer-use/Codex Computer Use.app"
+CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
 
 [mcp_servers.simplenote]
 command = "npx"
@@ -162,20 +408,23 @@ conversationDetailMode = "STEPS_COMMANDS"
 enabled-reasoning-efforts = ["low", "medium", "high", "xhigh", "ultra", "max"]
 show-ultra-in-model-picker-slider = false
 show-context-window-usage = true
+realtimeVoiceScreenContextEnabled = true
+computerUseAlwaysHidePictureInPicture = true
+selected-avatar-id = "custom:alex-fazio"
 
 [shell_environment_policy.set]
-NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "8e86beb821b9afc846211798e0113bd4b9e79312dfcd135eb447bdb154f64071"
+NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "9230e2bd8b24b7ac7a0ba6774c64bf0d78ecdabbdd91d0ed627b02a587bae2df"
 
 [apps.asdk_app_69a089a326dc8191b32a3f2553f5be2c.tools."linear.save_issue"]
 approval_mode = "approve"
 
 [marketplaces.openai-bundled]
 source_type = "local"
-source = "/Users/giulio/.codex/.tmp/bundled-marketplaces/openai-bundled"
+source = "/Users/thesofakillers/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [marketplaces.openai-primary-runtime]
 source_type = "local"
-source = "/Users/giulio/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+source = "/Users/thesofakillers/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
 
 [plugins."linear@openai-curated"]
 enabled = true
@@ -208,7 +457,7 @@ enabled = true
 enabled = true
 
 [plugins."ponytail@ponytail"]
-enabled = true
+enabled = false
 
 [plugins."pdf@openai-primary-runtime"]
 enabled = true
@@ -217,9 +466,6 @@ enabled = true
 enabled = true
 
 [plugins."browser@openai-bundled"]
-enabled = true
-
-[plugins."computer-use@openai-bundled"]
 enabled = true
 
 [plugins."visualize@openai-bundled"]
@@ -234,14 +480,14 @@ enabled = true
 [plugins."codex-app-tools@openai-bundled"]
 enabled = true
 
-[plugins."sites@openai-bundled"]
-enabled = true
-
 [plugins."unified-computer-use@openai-bundled"]
 enabled = true
 
+[plugins."computer-use@openai-bundled"]
+enabled = true
+
 [marketplaces.ponytail]
-last_updated = "2026-08-07T21:45:24Z"
+last_updated = "2026-08-07T22:14:40Z"
 last_revision = "2ed6c52c9d7e5e56942508591085fd45dea277d3"
 source_type = "git"
 source = "https://github.com/DietrichGebert/ponytail.git"

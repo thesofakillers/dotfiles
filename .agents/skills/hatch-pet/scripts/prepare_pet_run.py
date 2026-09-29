@@ -11,10 +11,9 @@ import shutil
 from datetime import datetime, timezone
 from pathlib import Path
 
-from PIL import Image
-from PIL import ImageDraw
+from PIL import Image, ImageDraw
 
-ATLAS = {"columns": 8, "rows": 9, "cell_width": 192, "cell_height": 208}
+ATLAS = {"columns": 8, "rows": 11, "cell_width": 192, "cell_height": 208}
 ATLAS["width"] = ATLAS["columns"] * ATLAS["cell_width"]
 ATLAS["height"] = ATLAS["rows"] * ATLAS["cell_height"]
 
@@ -28,6 +27,28 @@ ROWS = [
     ("waiting", 6, 6, "waiting for approval, help, or user input"),
     ("running", 7, 6, "active task work or processing"),
     ("review", 8, 6, "ready or completed output review"),
+]
+
+LOOK_ROWS = [
+    (
+        "look-row-9",
+        9,
+        ["000", "022.5", "045", "067.5", "090", "112.5", "135", "157.5"],
+        "clockwise look directions from up through down-right",
+    ),
+    (
+        "look-row-10",
+        10,
+        ["180", "202.5", "225", "247.5", "270", "292.5", "315", "337.5"],
+        "clockwise look directions from down through up-left",
+    ),
+]
+
+LOOK_CARDINALS = [
+    ("000", "up"),
+    ("090", "right"),
+    ("180", "down"),
+    ("270", "left"),
 ]
 
 STATE_PROMPTS = {
@@ -362,10 +383,18 @@ def create_layout_guide(path: Path, state: str, frames: int) -> dict[str, object
 
 def create_layout_guides(run_dir: Path) -> list[dict[str, object]]:
     guide_dir = run_dir / LAYOUT_GUIDE_DIR
-    return [
+    standard_guides = [
         create_layout_guide(guide_dir / f"{state}.png", state, frames)
         for state, _row, frames, _purpose in ROWS
     ]
+    look_guides = [
+        create_layout_guide(guide_dir / f"{state}.png", state, len(directions))
+        for state, _row, directions, _purpose in LOOK_ROWS
+    ]
+    cardinal_guide = create_layout_guide(
+        guide_dir / "look-cardinals.png", "look-cardinals", len(LOOK_CARDINALS)
+    )
+    return [*standard_guides, *look_guides, cardinal_guide]
 
 
 def parse_hex_color(value: str) -> tuple[int, int, int]:
@@ -396,9 +425,7 @@ def sampled_reference_pixels(paths: list[Path]) -> list[tuple[int, int, int]]:
                 pixels.append((red, green, blue))
 
     non_background = [
-        pixel
-        for pixel in pixels
-        if not (pixel[0] > 244 and pixel[1] > 244 and pixel[2] > 244)
+        pixel for pixel in pixels if not (pixel[0] > 244 and pixel[1] > 244 and pixel[2] > 244)
     ]
     return non_background or pixels
 
@@ -449,9 +476,7 @@ def resolved_style_contract(style_preset: str, raw_style_notes: str) -> str:
     style_preset = style_preset.strip().lower()
     if style_preset not in STYLE_PRESETS:
         allowed = ", ".join(sorted(STYLE_PRESETS))
-        raise SystemExit(
-            f"invalid style preset: {style_preset}; expected one of: {allowed}"
-        )
+        raise SystemExit(f"invalid style preset: {style_preset}; expected one of: {allowed}")
     raw_style_notes = raw_style_notes.strip()
     preset_contract = STYLE_PRESETS[style_preset]
     if not raw_style_notes:
@@ -499,9 +524,7 @@ Style: {style_contract}
 Place a single centered pose on a perfectly flat pure {chroma_name} {chroma_key} chroma-key background. Keep the full pet visible, compact, readable at 192x208, and easy to animate. Preserve approved reference identity cues. No scenery, text, borders, checkerboard transparency, shadows, glows, detached effects, or extra props. Keep {chroma_key} and close colors out of the pet, props, highlights, and effects."""
 
 
-def row_prompt(
-    args: argparse.Namespace, state: str, row: int, frames: int, purpose: str
-) -> str:
+def row_prompt(args: argparse.Namespace, state: str, row: int, frames: int, purpose: str) -> str:
     pet_notes = args.pet_notes or "the same pet from the approved base reference"
     style_contract = resolved_style_contract(args.style_preset, args.style_notes)
     chroma_key = args.chroma_key["hex"]
@@ -548,8 +571,192 @@ State requirements:
 One centered complete pose per invisible slot. No text, boxes, guide marks, scenery, shadows, glows, motion blur, speed lines, dust, detached effects, stray pixels, or {chroma_key} colors in the pet."""
 
 
+def look_row_boundary_contract(row: int) -> str:
+    if row == 9:
+        return (
+            "ROW-BOUNDARY LOCK: 157.5 must be one even 22.5-degree step before 180. "
+            "Match the approved 180 pose's body size, baseline, planted anchor, "
+            "expression, and construction. Preserve the overall right-hand arc, but "
+            "do not distort pupils, nose, or body geometry merely to exaggerate the subtle horizontal component."
+        )
+    return (
+        "ROW-BOUNDARY LOCK: 180 must continue directly from row 9's 157.5, matching "
+        "its body size, baseline, planted anchor, expression, and construction. "
+        "337.5 must be one even 22.5-degree step before 000: nearly up-facing while "
+        "remaining on the overall left-hand arc. Do not distort pupils, nose, or body "
+        "geometry merely to exaggerate the subtle horizontal component."
+    )
+
+
+def look_row_layout_contract() -> str:
+    return """HARD LAYOUT AND CONTINUITY CONTRACT — DETERMINISTIC REGISTRATION: draw exactly eight separated pose groups in left-to-right direction order. Keep enough chroma-only space between neighboring poses that each complete pose can be detected without cutting through foreground. Approximate the guide's equal spacing, but do not distort a pose merely to hit an exact source-canvas coordinate; deterministic assembly will crop the eight ordered groups, then apply one shared scale and baseline.
+
+Use the same body height, head size, baseline, and planted-body position across the generated family. Never overlap neighboring poses, merge two poses into one connected group, crop foreground at the outer canvas edge, or resize one pose independently.
+
+Keep the feet, base, or lower torso planted at the same coordinates across all eight frames. Express direction through the eyes, face, head, upper body, and physically appropriate prop movement, not by moving, rotating, or rescaling the entire sprite."""
+
+
+def look_row_screen_coordinate_contract(row: int) -> str:
+    if row == 9:
+        return (
+            "SCREEN-COORDINATE LOCK: screen-right means the viewer's right image edge, "
+            "never the character's own right. The row should travel naturally through "
+            "the right half of the loop. Near-vertical 022.5 and 157.5 may have subtle "
+            "horizontal cues; prioritize a coherent arc over exact pupil or nose placement."
+        )
+    return (
+        "SCREEN-COORDINATE LOCK: screen-left means the viewer's left image edge, never "
+        "the character's own left. The row should travel naturally through the left half "
+        "of the loop. Near-vertical 202.5 and 337.5 may have subtle horizontal cues; "
+        "prioritize a coherent arc over exact pupil or nose placement."
+    )
+
+
+def look_row_axis_contract(row: int) -> str:
+    if row == 9:
+        slots = [
+            "1. `000`: vertical UP; no horizontal requirement.",
+            "2. `022.5`: horizontal SCREEN-RIGHT and vertical UP.",
+            "3. `045`: horizontal SCREEN-RIGHT and vertical UP.",
+            "4. `067.5`: horizontal SCREEN-RIGHT and vertical UP.",
+            "5. `090`: horizontal SCREEN-RIGHT; no vertical requirement.",
+            "6. `112.5`: horizontal SCREEN-RIGHT and vertical DOWN.",
+            "7. `135`: horizontal SCREEN-RIGHT and vertical DOWN.",
+            "8. `157.5`: horizontal SCREEN-RIGHT and vertical DOWN.",
+        ]
+    else:
+        slots = [
+            "1. `180`: vertical DOWN; no horizontal requirement.",
+            "2. `202.5`: horizontal SCREEN-LEFT and vertical DOWN.",
+            "3. `225`: horizontal SCREEN-LEFT and vertical DOWN.",
+            "4. `247.5`: horizontal SCREEN-LEFT and vertical DOWN.",
+            "5. `270`: horizontal SCREEN-LEFT; no vertical requirement.",
+            "6. `292.5`: horizontal SCREEN-LEFT and vertical UP.",
+            "7. `315`: horizontal SCREEN-LEFT and vertical UP.",
+            "8. `337.5`: horizontal SCREEN-LEFT and vertical UP.",
+        ]
+    return """DIRECTION TARGETS — use these to shape the coherent row, not as pixel-level landmark gates:
+
+{slots}
+
+Cardinals must be unmistakable. Intermediate poses should broadly occupy the intended quadrant and advance naturally through the ordered loop. Minor pupil, nose, eyelid, or aiming-feature deviations are acceptable when the overall direction, continuity, identity, and motion remain coherent. Do not deform the character merely to make every intermediate axis independently obvious.""".format(
+        slots="\n".join(slots)
+    )
+
+
+def look_row_pre_return_check(row: int) -> str:
+    boundary_check = (
+        "157.5 does not flow evenly into 180"
+        if row == 9
+        else "180 does not continue from 157.5 or 337.5 does not flow evenly into 000"
+    )
+    return f"""PRE-RETURN CHECK: reject this result if it does not contain eight separated pose groups in the required order; neighboring poses overlap; foreground is cropped at the outer canvas edge; any frame changes sprite scale, body or head size, baseline, or planted-body position; the row visibly reverses into the wrong half of the loop; or {boundary_check}. Minor intermediate pupil or nose deviations are not rejection reasons. Exact cell cropping, resizing, and recentering happen deterministically after generation."""
+
+
+def look_row_prompt(
+    args: argparse.Namespace,
+    row: int,
+    directions: list[str],
+) -> str:
+    direction_list = ", ".join(directions)
+    chroma_key = args.chroma_key["hex"]
+    chroma_name = args.chroma_key["name"]
+    reference_instruction = (
+        "The approved cardinal strip is authoritative for the up, screen-right, down, "
+        "and screen-left pose families. Interpolate the intermediate directions as "
+        "even 22.5-degree steps between those anchors."
+        if row == 9
+        else "The approved cardinal strip and completed coherent row 9 are authoritative. "
+        "Use the cardinals for direction meaning and row 9 for cross-row identity, scale, "
+        "registration, and continuity."
+    )
+    return f"""Create one horizontal look-direction strip for Codex pet `{args.pet_id}`, atlas row {row}.
+
+Use the attached canonical base, completed standard contact sheet, layout guide, and approved four-cardinal strip for identity, scale, registration, spacing, direction semantics, and cross-row continuity. Read `qa/look-mechanics.md` and follow its pet-specific movement and eye/prop mechanics. {reference_instruction}
+
+COHERENT SYNTHESIS LOCK: produce one unified eight-pose row. Do not paste, tile, or independently restyle individual cells. Every final cell must be drawn together with the same face construction, body proportions, line/render quality, lighting, materials, scale, baseline, and registration.
+
+Output exactly 8 complete full-body frames in this exact left-to-right order: {direction_list}. Degrees are clockwise: 000 is up, 090 right, 180 down, and 270 left. Neutral/front is not part of this row.
+
+{look_row_axis_contract(row)}
+
+{look_row_screen_coordinate_contract(row)}
+
+{look_row_layout_contract()}
+
+Place one centered pose in each invisible equal-width slot on flat pure {chroma_name} {chroma_key}. Change only the natural parts needed to express gaze: eyes, eyelids, head, face, neck, upper body, appendages, and constrained prop follow-through. Keep identity, silhouette, materials, palette, markings, and props consistent.
+
+{look_row_boundary_contract(row)}
+
+{look_row_pre_return_check(row)}
+
+Do not rotate, skew, or tilt the whole sprite to fake gaze. Do not add replacement/googly eyes, labels, degree text, arrows, clocks, grids, shadows, glows, scenery, detached effects, or chroma-key colors inside the pet."""
+
+
+def retry_look_row_prompt(
+    args: argparse.Namespace,
+    row: int,
+    directions: list[str],
+) -> str:
+    direction_list = ", ".join(directions)
+    chroma_key = args.chroma_key["hex"]
+    chroma_name = args.chroma_key["name"]
+    return f"""Create Codex v2 pet look row {row} for `{args.pet_id}` as exactly 8 full-body frames in this order: {direction_list}.
+
+Use the canonical base, standard contact sheet, layout guide, approved four-cardinal strip, and `qa/look-mechanics.md`. Draw the complete eight-pose row as one coherent animation family, interpolating even 22.5-degree steps between the cardinal pose families. Keep the same pet identity, face construction, materials, palette, markings, and props. Each direction must read correctly at pet size and join continuously at the 000 and 180 boundaries.
+
+{look_row_axis_contract(row)}
+
+{look_row_layout_contract()}
+
+{look_row_boundary_contract(row)}
+
+{look_row_pre_return_check(row)}
+
+Use a flat pure {chroma_name} {chroma_key} background. One complete unclipped pose per invisible slot. No whole-sprite rotation, replacement eyes, labels, guide marks, shadows, glows, scenery, detached effects, or {chroma_key} colors in the pet."""
+
+
+def look_cardinal_prompt(args: argparse.Namespace) -> str:
+    chroma_key = args.chroma_key["hex"]
+    chroma_name = args.chroma_key["name"]
+    return f"""Create one horizontal four-cardinal anchor strip for Codex pet `{args.pet_id}`.
+
+Use the attached canonical base, completed standard contact sheet, and layout guide for exact identity, style, scale, baseline, face construction, materials, palette, markings, props, and spacing. Read `qa/look-mechanics.md` and use the pet's natural gaze mechanism.
+
+Output exactly four centered complete full-body poses in this exact left-to-right order: `000 up`, `090 screen-right`, `180 down`, `270 screen-left`. Screen-left and screen-right always mean the viewer's image edges, never the character's own left or right.
+
+For `000`, keep the face broadly frontal and point the eyes and natural head mechanism toward the TOP edge. For `090`, put the nose tip, pupils, face surface, or natural aiming feature on the screen-right side of the head center. For `180`, keep the face broadly frontal and point toward the BOTTOM edge. For `270`, apply the inverse screen-left landmark rule. Every cardinal must be unmistakable without labels.
+
+Place one pose in each invisible equal-width slot on a flat pure {chroma_name} {chroma_key} background with generous padding. Keep scale, feet/base, lower body, and registration consistent across all four slots.
+
+Do not rotate, skew, or tilt the whole sprite to fake gaze. Do not add replacement eyes, labels, degree text, arrows, boxes, guide marks, shadows, scenery, detached effects, or chroma-key colors inside the pet."""
+
+
+def look_cardinal_repair_prompt(
+    args: argparse.Namespace,
+    label: str,
+    expected_direction: str,
+) -> str:
+    chroma_key = args.chroma_key["hex"]
+    chroma_name = args.chroma_key["name"]
+    screen_rule = {
+        "000": "Keep the face broadly frontal and point the eyes and natural head mechanism toward the TOP edge.",
+        "090": "Put the nose tip, pupils, face surface, or natural aiming feature on the screen-right side of the head center.",
+        "180": "Keep the face broadly frontal and point the eyes and natural head mechanism toward the BOTTOM edge.",
+        "270": "Put the nose tip, pupils, face surface, or natural aiming feature on the screen-left side of the head center.",
+    }[label]
+    return f"""Repair one cardinal anchor for Codex pet `{args.pet_id}`: `{label}` means looking {expected_direction}.
+
+Use the canonical base, completed standard contact sheet, approved cardinal-strip cells, and `qa/look-mechanics.md` for identity, scale, registration, and pet-specific gaze mechanics. {screen_rule} Screen coordinates are viewer-relative.
+
+Output one centered complete full-body pose on a flat pure {chroma_name} {chroma_key} background with generous padding. Keep the feet/base and lower body registered to the approved anchors. The requested cardinal must be unmistakable at final 192x208 display size.
+
+Do not rotate, skew, or tilt the whole sprite to fake gaze. Do not add replacement eyes, labels, arrows, guide marks, shadows, scenery, detached effects, or chroma-key colors inside the pet."""
+
+
 def make_jobs(
-    run_dir: Path, copied_refs: list[dict[str, object]]
+    run_dir: Path,
+    copied_refs: list[dict[str, object]],
 ) -> list[dict[str, object]]:
     reference_inputs = [
         {"path": rel(Path(str(ref["copied_path"])), run_dir), "role": "pet reference"}
@@ -624,6 +831,109 @@ def make_jobs(
                 "mirror_policy": derivation_policy if state == "running-left" else {},
             }
         )
+    standard_job_ids = [state for state, _row, _frames, _purpose in ROWS]
+    jobs.append(
+        {
+            "id": "look-cardinals",
+            "kind": "look-cardinal-strip",
+            "status": "pending",
+            "prompt_file": "prompts/look-cardinals.md",
+            "repair_prompt_files": {
+                label: f"prompts/look-anchor-repairs/{label}.md"
+                for label, _direction in LOOK_CARDINALS
+            },
+            "input_images": [
+                *reference_inputs,
+                {
+                    "path": f"{LAYOUT_GUIDE_DIR}/look-cardinals.png",
+                    "role": "layout guide for four cardinal slots; use for spacing only, do not copy guide lines",
+                },
+                {
+                    "path": CANONICAL_BASE_PATH,
+                    "role": "canonical identity reference",
+                },
+                {
+                    "path": "qa/contact-sheet.png",
+                    "role": "approved standard-row identity, scale, and baseline reference",
+                },
+            ],
+            "output_path": "decoded/look-cardinals.png",
+            "extracted_output_paths": [
+                f"decoded/look-anchors/{label}.png" for label, _direction in LOOK_CARDINALS
+            ],
+            "approved_strip_path": "decoded/look-anchors-approved.png",
+            "depends_on": standard_job_ids,
+            "generation_skill": "$imagegen",
+            "requires_grounded_generation": True,
+            "allow_prompt_only_generation": False,
+            "identity_reference_paths": identity_reference_paths,
+            "look_mechanics_file": "qa/look-mechanics.md",
+            "directions": [label for label, _direction in LOOK_CARDINALS],
+            "packaging_eligible": False,
+            "parallelizable_after": standard_job_ids,
+            "derivation_policy": {
+                "may_derive": False,
+                "reason": "cardinal directions require grounded pet-specific generation",
+            },
+        }
+    )
+    for state, row, directions, _purpose in LOOK_ROWS:
+        depends_on = ["look-cardinals"] if row == 9 else ["look-cardinals", "look-row-9"]
+        continuity_inputs = (
+            []
+            if row == 9
+            else [
+                {
+                    "path": "decoded/look-row-9.png",
+                    "role": "completed first half of the clockwise look loop for row 10 continuity",
+                }
+            ]
+        )
+        jobs.append(
+            {
+                "id": state,
+                "kind": "look-row-strip",
+                "status": "pending",
+                "prompt_file": f"prompts/rows/{state}.md",
+                "retry_prompt_file": f"prompts/row-retries/{state}.md",
+                "input_images": [
+                    *reference_inputs,
+                    {
+                        "path": f"{LAYOUT_GUIDE_DIR}/{state}.png",
+                        "role": "layout guide for 8 direction slots; use for spacing only, do not copy guide lines",
+                    },
+                    {
+                        "path": CANONICAL_BASE_PATH,
+                        "role": "canonical identity reference",
+                    },
+                    {
+                        "path": "qa/contact-sheet.png",
+                        "role": "approved standard-row identity, scale, and baseline reference",
+                    },
+                    {
+                        "path": "decoded/look-anchors-approved.png",
+                        "role": "approved cardinal reference strip in order 000 up, 090 screen-right, 180 down, 270 screen-left; interpolate intermediate directions evenly",
+                    },
+                    *continuity_inputs,
+                ],
+                "output_path": f"decoded/{state}.png",
+                "depends_on": depends_on,
+                "generation_skill": "$imagegen",
+                "requires_grounded_generation": True,
+                "allow_prompt_only_generation": False,
+                "identity_reference_paths": identity_reference_paths,
+                "look_mechanics_file": "qa/look-mechanics.md",
+                "directions": directions,
+                "parallelizable_after": depends_on,
+                "derivation_policy": {
+                    "may_derive": False,
+                    "reason": "look directions require grounded pet-specific generation",
+                },
+                "coherent_synthesis_required": True,
+                "individual_cell_packaging_allowed": False,
+                "packaging_eligible": True,
+            }
+        )
     return jobs
 
 
@@ -684,9 +994,7 @@ def main() -> None:
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
-    raw_reference_paths = [
-        Path(raw_path).expanduser().resolve() for raw_path in args.reference
-    ]
+    raw_reference_paths = [Path(raw_path).expanduser().resolve() for raw_path in args.reference]
     raw_brand_discovery_path = (
         Path(args.brand_discovery_file).expanduser().resolve()
         if args.brand_discovery_file.strip()
@@ -702,9 +1010,7 @@ def main() -> None:
     args.style_contract = resolved_style_contract(args.style_preset, args.style_notes)
     args.brand_name = compact(args.brand_name)
     args.brand_brief = compact(args.brand_brief)
-    args.brand_source = [
-        compact(source) for source in args.brand_source if compact(source)
-    ]
+    args.brand_source = [compact(source) for source in args.brand_source if compact(source)]
     if not args.pet_id:
         raise SystemExit("pet id must contain at least one letter or digit")
 
@@ -714,20 +1020,20 @@ def main() -> None:
         else default_output_dir(args.pet_id).resolve()
     )
     if run_dir.exists() and any(run_dir.iterdir()) and not args.force:
-        raise SystemExit(
-            f"{run_dir} already exists and is not empty; pass --force to reuse it"
-        )
+        raise SystemExit(f"{run_dir} already exists and is not empty; pass --force to reuse it")
     run_dir.mkdir(parents=True, exist_ok=True)
 
     ref_dir = run_dir / "references"
     prompt_dir = run_dir / "prompts"
     row_prompt_dir = prompt_dir / "rows"
     row_retry_prompt_dir = prompt_dir / "row-retries"
+    look_anchor_repair_prompt_dir = prompt_dir / "look-anchor-repairs"
     for directory in [
         ref_dir,
         prompt_dir,
         row_prompt_dir,
         row_retry_prompt_dir,
+        look_anchor_repair_prompt_dir,
         run_dir / "decoded",
         run_dir / "qa",
     ]:
@@ -763,14 +1069,24 @@ def main() -> None:
         "display_name": args.display_name,
         "description": args.description,
         "created_at": datetime.now(timezone.utc).isoformat(),
+        "sprite_version_number": 2,
         "atlas": ATLAS,
         "rows": [
             {"state": state, "row": row, "frames": frames, "purpose": purpose}
             for state, row, frames, purpose in ROWS
+        ]
+        + [
+            {
+                "state": state,
+                "row": row,
+                "frames": len(directions),
+                "directions": directions,
+                "purpose": purpose,
+            }
+            for state, row, directions, purpose in LOOK_ROWS
         ],
         "layout_guides": [
-            {**guide, "path": rel(Path(str(guide["path"])), run_dir)}
-            for guide in layout_guides
+            {**guide, "path": rel(Path(str(guide["path"])), run_dir)} for guide in layout_guides
         ],
         "references": copied_refs,
         "chroma_key": args.chroma_key,
@@ -800,7 +1116,21 @@ def main() -> None:
             row_retry_prompt_dir / f"{state}.md",
             retry_row_prompt(args, state, row, frames, purpose),
         )
-
+    for state, row, directions, _purpose in LOOK_ROWS:
+        write_text(
+            row_prompt_dir / f"{state}.md",
+            look_row_prompt(args, row, directions),
+        )
+        write_text(
+            row_retry_prompt_dir / f"{state}.md",
+            retry_look_row_prompt(args, row, directions),
+        )
+    write_text(prompt_dir / "look-cardinals.md", look_cardinal_prompt(args))
+    for label, expected_direction in LOOK_CARDINALS:
+        write_text(
+            look_anchor_repair_prompt_dir / f"{label}.md",
+            look_cardinal_repair_prompt(args, label, expected_direction),
+        )
     jobs = {
         "schema_version": 1,
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -808,9 +1138,7 @@ def main() -> None:
         "primary_generation_skill": "$imagegen",
         "jobs": make_jobs(run_dir, copied_refs),
     }
-    (run_dir / "imagegen-jobs.json").write_text(
-        json.dumps(jobs, indent=2) + "\n", encoding="utf-8"
-    )
+    (run_dir / "imagegen-jobs.json").write_text(json.dumps(jobs, indent=2) + "\n", encoding="utf-8")
 
     print(
         json.dumps(

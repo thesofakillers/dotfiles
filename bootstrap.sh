@@ -536,8 +536,12 @@ setup_links() {
   mkdir -p "$HOME/.claude"
   link_path "$REPO_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
   # Claude Code reads ~/.claude/CLAUDE.md as user-level instructions; it imports
-  # ~/.codex/AGENTS.md so both agents share the same shared instructions.
+  # ~/.codex/AGENTS.md so both agents share the same instructions.
   link_path "$REPO_DIR/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+  # Claude Code reads user skills only from ~/.claude/skills. Point it at the
+  # shared skills directory so every skill in ~/.agents/skills is visible
+  # without per-skill links; the Skills CLI treats the two as one directory.
+  link_path "$REPO_DIR/.agents/skills" "$HOME/.claude/skills"
   link_path "$REPO_DIR/.vim" "$HOME/.vim"
 
   link_config_entries

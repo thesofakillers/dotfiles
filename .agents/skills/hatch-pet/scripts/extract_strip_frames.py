@@ -294,8 +294,7 @@ def extract_stable_slot_frames(strip: Image.Image, frame_count: int) -> list[Ima
     bbox = strip.getbbox()
     if bbox is None:
         return [
-            Image.new("RGBA", (CELL_WIDTH, CELL_HEIGHT), (0, 0, 0, 0))
-            for _ in range(frame_count)
+            Image.new("RGBA", (CELL_WIDTH, CELL_HEIGHT), (0, 0, 0, 0)) for _ in range(frame_count)
         ]
 
     shared_top = max(0, bbox[1] - padding)
