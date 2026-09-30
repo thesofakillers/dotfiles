@@ -1,4 +1,6 @@
 # {{{ sourcing
+# Environment shared with non-interactive shells
+[[ -f "$HOME/.bash_env" ]] && source "$HOME/.bash_env"
 # Homebrew
 if [[ -f "$HOME/.scripts/lib/homebrew-shellenv.sh" ]]; then
   source "$HOME/.scripts/lib/homebrew-shellenv.sh"

@@ -519,6 +519,7 @@ setup_links() {
   link_path "$REPO_DIR/.bash_prompt" "$HOME/.bash_prompt"
   link_path "$REPO_DIR/.bash_scripts" "$HOME/.bash_scripts"
   link_path "$REPO_DIR/.bashrc" "$HOME/.bashrc"
+  link_path "$REPO_DIR/.bash_env" "$HOME/.bash_env"
   link_path "$REPO_DIR/.installs" "$HOME/.installs"
   link_path "$REPO_DIR/.tmux.conf" "$HOME/.tmux.conf"
   link_path "$REPO_DIR/.scripts" "$HOME/.scripts"

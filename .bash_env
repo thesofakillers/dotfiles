@@ -1,0 +1,21 @@
+# Environment for every Bash startup path: login shells (.bash_profile),
+# interactive shells and ssh exec commands (.bashrc, above its interactivity
+# guard). Both source this first, so keep it cheap and idempotent.
+
+# PATH entries needed even by non-interactive shells, so git hooks/filters
+# (git-lfs) and ssh exec commands find user-local tools.
+for _dir in "$HOME/.local/bin" /home/linuxbrew/.linuxbrew/bin /home/linuxbrew/.linuxbrew/sbin; do
+  [[ -d "$_dir" && ":$PATH:" != *":$_dir:"* ]] && PATH="$_dir:$PATH"
+done
+unset _dir
+export PATH
+
+# Codex's remote app server can outlive its forwarded SSH-agent proxy. Do not
+# pass that dead socket to child shells; regular SSH configuration still
+# applies normally.
+if [[ "${SSH_AUTH_SOCK:-}" == "$HOME/.codex/app-server-control/forwarded-ssh-agent.sock" && ! -S "$SSH_AUTH_SOCK" ]]; then
+  unset SSH_AUTH_SOCK
+fi
+
+# macOS launchd defaults to 256 open files; Codex can legitimately exceed that.
+ulimit -n 65536 2>/dev/null || true
