@@ -77,6 +77,8 @@
 .agents/skills/motion-graphics/
 .agents/skills/.flywheel-installed-by-codex
 .agents/skills/.flywheel-installed-by-claude
+# Claude Code's claude.ai skill sync cache (via the ~/.claude/skills link).
+.agents/skills/synced/
 # OpenCode already reads ~/.agents/skills; ignore Skills CLI links here.
 .config/opencode/skills/
 .config/flywheel-cli/
