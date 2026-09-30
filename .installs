@@ -50,6 +50,14 @@ if [[ "$OS_NAME" == "Darwin" ]]; then
 fi
 # }}}
 
+# {{{ pnpm and cargo
+for _dir in "$HOME/Library/pnpm" "$HOME/.cargo/bin"; do
+  [[ -d "$_dir" ]] && PATH="$_dir:$PATH"
+done
+unset _dir
+export PATH
+# }}}
+
 # {{{ go
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
