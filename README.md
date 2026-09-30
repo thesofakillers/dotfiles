@@ -32,10 +32,10 @@ What `bootstrap.sh` does:
   Code follows the same user-level instructions as Codex
 - backs up any replaced files to `~/.dotfiles-backups/<timestamp>/...`
 - creates a local-only git template at `~/.config/git/config.secret`
-- on macOS, configures new Apple Terminal windows and the account login shell
-  to use Bash, so both Apple Terminal and Codex's integrated terminal load the
-  managed prompt and shell setup (changing the login shell may request
-  authentication)
+- sets the account login shell to Bash on every OS (these dotfiles only
+  configure Bash; changing it may request authentication), pins tmux's
+  `default-shell` to Bash, and on macOS configures new Apple Terminal windows
+  to start Bash
 - sets up Neovim Python host in `~/.local/share/nvim-py3` with `pynvim`
   - on Debian/Ubuntu, bootstrap auto-installs missing `python3-venv` support
     when needed

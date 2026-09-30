@@ -588,46 +588,50 @@ configure_macos_terminal() {
   log "Configured new Apple Terminal windows to start Bash."
 }
 
-configure_macos_login_shell() {
-  local account_name current_shell
+current_login_shell() {
+  if [[ "$OS_NAME" == "Darwin" ]]; then
+    dscl . -read "/Users/$(id -un)" UserShell 2>/dev/null | awk '$1 == "UserShell:" { print $2 }'
+  else
+    getent passwd "$(id -un)" 2>/dev/null | cut -d: -f7
+  fi
+}
+
+configure_login_shell() {
+  local current_shell
   local desired_shell="/bin/bash"
 
-  if [[ "$OS_NAME" != "Darwin" ]]; then
-    return
-  fi
-
   if [[ "${EUID}" -eq 0 ]]; then
-    log "Skipping macOS login shell setup for the root account."
+    log "Skipping login shell setup for the root account."
     return
   fi
 
   if [[ ! -x "$desired_shell" ]] || ! grep -Fxq "$desired_shell" /etc/shells; then
-    log "Skipping macOS login shell setup ($desired_shell is unavailable or not listed in /etc/shells)."
+    log "Skipping login shell setup ($desired_shell is unavailable or not listed in /etc/shells)."
     return
   fi
 
-  account_name="$(id -un)"
-  current_shell="$(dscl . -read "/Users/$account_name" UserShell 2>/dev/null | awk '$1 == "UserShell:" { print $2 }')"
+  current_shell="$(current_login_shell)"
   if [[ "$current_shell" == "$desired_shell" ]]; then
-    log "macOS login shell already set to Bash."
+    log "Login shell already set to Bash."
     return
   fi
 
   if [[ "$INTERACTIVE" -ne 1 ]] || [[ ! -t 0 ]]; then
-    log "macOS login shell remains ${current_shell:-unknown}; change it interactively with: chsh -s $desired_shell"
+    printf '[bootstrap] WARNING: login shell is %s, not Bash; these dotfiles only configure Bash. Run: chsh -s %s\n' \
+      "${current_shell:-unknown}" "$desired_shell" >&2
     return
   fi
 
-  log "Changing the macOS login shell to Bash (authentication may be requested)."
+  log "Changing the login shell to Bash (authentication may be requested)."
   chsh -s "$desired_shell"
 
-  current_shell="$(dscl . -read "/Users/$account_name" UserShell 2>/dev/null | awk '$1 == "UserShell:" { print $2 }')"
+  current_shell="$(current_login_shell)"
   if [[ "$current_shell" != "$desired_shell" ]]; then
-    printf '[bootstrap] Failed to set the macOS login shell to Bash.\n' >&2
+    printf '[bootstrap] Failed to set the login shell to Bash.\n' >&2
     return 1
   fi
 
-  log "Set the macOS login shell to Bash for Apple Terminal and the Codex integrated terminal."
+  log "Set the login shell to Bash."
 }
 
 setup_tpm() {
@@ -726,8 +730,8 @@ print_plan() {
   printf '  - Create local templates: yes\n'
   if [[ "$OS_NAME" == "Darwin" ]]; then
     printf '  - Configure Apple Terminal to start Bash: yes\n'
-    printf '  - Use Bash as the macOS login shell: yes (authentication may be requested)\n'
   fi
+  printf '  - Use Bash as the login shell: yes (authentication may be requested)\n'
   printf '  - Install Homebrew if missing: %s\n' "$(bool_word "$INSTALL_HOMEBREW")"
   printf '  - Install baseline packages: %s' "$(bool_word "$INSTALL_PACKAGES")"
   if [[ "$INSTALL_PACKAGES" -eq 1 ]]; then
@@ -848,7 +852,7 @@ main() {
   setup_links
   setup_local_files
   configure_macos_terminal
-  configure_macos_login_shell
+  configure_login_shell
   setup_nvim_python_host
 
   if [[ "$INSTALL_TPM" -eq 1 ]]; then
