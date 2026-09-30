@@ -12,10 +12,13 @@ Required layout:
   ~/.codex/<tracked>  Individual links to <dotfiles>/.codex/<tracked>
   <dotfiles>/.agents/ Git-tracked skills and skill lock source
   ~/.agents/          Link to <dotfiles>/.agents
+  filter.codex-home   Git filter storing __HOME__ in place of $HOME in
+                      .codex/config.toml (per-clone git config)
 
 Modes:
   --check  Verify the boundary without changing anything. This is the default.
-  --apply  Create or repair only the managed configuration links.
+  --apply  Create or repair only the managed configuration links and register
+           the codex-home Git filter.
 
 This helper never reads, moves, or edits Codex databases, sessions, rollouts,
 plugins, caches, or worktrees. It refuses a whole-directory ~/.codex symlink
@@ -74,6 +77,15 @@ done < <(git -C "$repo_root" ls-files -z -- .codex)
 
 [[ ${#managed_files[@]} -gt 0 ]] || die "no Git-tracked .codex files found"
 
+filter_clean_cmd=".scripts/codex-config-filter clean"
+filter_smudge_cmd=".scripts/codex-config-filter smudge"
+
+filter_is_registered() {
+  [[ "$(git -C "$repo_root" config --get filter.codex-home.clean || true)" == "$filter_clean_cmd" ]] &&
+    [[ "$(git -C "$repo_root" config --get filter.codex-home.smudge || true)" == "$filter_smudge_cmd" ]] &&
+    [[ "$(git -C "$repo_root" config --get filter.codex-home.required || true)" == "true" ]]
+}
+
 is_expected_link() {
   local destination="$1"
   local source="$2"
@@ -129,6 +141,11 @@ check_layout() {
     failures=$((failures + 1))
   fi
 
+  if ! filter_is_registered; then
+    log "codex-home Git filter is not registered; run: .scripts/setup-codex-home --apply"
+    failures=$((failures + 1))
+  fi
+
   ignored_count="$(git -C "$repo_root" ls-files --others --ignored --exclude-standard -- .codex | wc -l | tr -d ' ')"
   untracked_count="$(git -C "$repo_root" ls-files --others --exclude-standard -- .codex | wc -l | tr -d ' ')"
   if [[ "$ignored_count" -ne 0 || "$untracked_count" -ne 0 ]]; then
@@ -146,6 +163,7 @@ check_layout() {
   log "configuration source: $repo_codex"
   log "runtime home: $codex_home_path"
   log "global skills root: $agents_home_path -> $repo_agents"
+  log "codex-home Git filter: registered"
   log "layout is healthy: ${#managed_files[@]} managed configuration links and $global_skill_count global skills"
 }
 
@@ -159,6 +177,13 @@ if [[ -L "$codex_home_path" ]]; then
 fi
 if [[ -e "$codex_home_path" && ! -d "$codex_home_path" ]]; then
   die "$codex_home_path exists but is not a directory"
+fi
+
+if ! filter_is_registered; then
+  git -C "$repo_root" config filter.codex-home.clean "$filter_clean_cmd"
+  git -C "$repo_root" config filter.codex-home.smudge "$filter_smudge_cmd"
+  git -C "$repo_root" config filter.codex-home.required true
+  log "registered the codex-home Git filter"
 fi
 
 backup_root="$HOME/.dotfiles-backups/$(date +%Y%m%d-%H%M%S)-codex-links"

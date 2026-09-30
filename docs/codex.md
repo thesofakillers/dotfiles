@@ -81,18 +81,38 @@ or skill change.
 - `~/.agents` resolves to `<dotfiles>/.agents`;
 - authored skills are not stored in either legacy `.codex/skills` location;
 - the repository `.codex` directory contains no ignored or untracked runtime
-  files.
+  files;
+- the `codex-home` Git filter is registered in this clone.
 
 `.scripts/setup-codex-home --apply` only:
 
 - creates the real `~/.codex` directory when missing;
 - links tracked configuration files individually;
 - links `~/.agents` to the repository `.agents` directory;
-- backs up a conflicting link destination under `~/.dotfiles-backups/`.
+- backs up a conflicting link destination under `~/.dotfiles-backups/`;
+- registers the `codex-home` Git filter in this clone's Git config.
 
 It deliberately does not inspect, edit, move, or repair databases, sessions,
 rollouts, plugins, caches, or worktrees. Those are Codex runtime state, not a
 dotfiles concern.
+
+## Home Paths in `config.toml`
+
+Codex writes absolute paths into `config.toml` (`notify`, plugin sources,
+project trust entries) and does not expand `$HOME` or `~`. The `codex-home`
+Git filter (`.gitattributes`, `.scripts/codex-config-filter`) keeps them
+portable: on commit, `clean` replaces `$HOME` with `__HOME__`; on checkout,
+`smudge` turns `__HOME__` back into the local `$HOME`. The working file always
+has real paths, and the repository never has a username.
+
+The filter is per-clone Git config. A clone without it sees literal
+`__HOME__` and would commit raw paths, so `--check` reports it as missing.
+Register it with `.scripts/setup-codex-home --apply` (bootstrap runs this),
+then refresh the working file:
+
+```bash
+rm .codex/config.toml && git checkout -- .codex/config.toml
+```
 
 ## Unsafe Legacy Layouts
 

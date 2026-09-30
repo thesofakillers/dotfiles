@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Git clean/smudge filter for .codex/config.toml. Codex writes absolute paths
+# into its config, so the repository stores __HOME__ in place of $HOME.
+# Registered by .scripts/setup-codex-home --apply; see docs/codex.md.
+
+set -euo pipefail
+
+[[ -n "${HOME:-}" ]] || { printf 'codex-config-filter: HOME is not set\n' >&2; exit 1; }
+
+case "${1:-}" in
+  clean)
+    exec perl -pe 's/\Q$ENV{HOME}\E(?=[\/"\x27])/__HOME__/g'
+    ;;
+  smudge)
+    exec perl -pe 's/__HOME__/$ENV{HOME}/g'
+    ;;
+  *)
+    printf 'Usage: codex-config-filter clean|smudge\n' >&2
+    exit 2
+    ;;
+esac
