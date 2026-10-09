@@ -24,14 +24,25 @@
     "frontend-design@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
     "linear@inline": false,
-    "slack@inline": false
+    "slack@inline": false,
+    "overleaf-mcp-rt@overleaf-mcp-rt": true
+  },
+  "extraKnownMarketplaces": {
+    "overleaf-mcp-rt": {
+      "source": {
+        "source": "github",
+        "repo": "DanielHou315/overleaf-mcp-rt"
+      }
+    }
   },
   "outputStyle": "Concise",
   "syntaxHighlightingDisabled": false,
   "alwaysThinkingEnabled": true,
   "autoCompactWindow": 400000,
   "autoUpdatesChannel": "stable",
+  "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "theme": "auto",
-  "tui": "fullscreen"
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true
 }
