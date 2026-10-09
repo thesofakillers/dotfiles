@@ -77,8 +77,12 @@ done < <(git -C "$repo_root" ls-files -z -- .codex)
 
 [[ ${#managed_files[@]} -gt 0 ]] || die "no Git-tracked .codex files found"
 
-filter_clean_cmd=".scripts/codex-config-filter clean"
-filter_smudge_cmd=".scripts/codex-config-filter smudge"
+# Absolute path into the main checkout: a relative path breaks checkouts of
+# linked worktrees, where the filter runs before the script is checked out.
+main_root="$(dirname -- "$(git -C "$repo_root" rev-parse --path-format=absolute --git-common-dir)")"
+filter_cmd="$main_root/.scripts/codex-config-filter"
+filter_clean_cmd="'$filter_cmd' clean"
+filter_smudge_cmd="'$filter_cmd' smudge"
 
 filter_is_registered() {
   [[ "$(git -C "$repo_root" config --get filter.codex-home.clean || true)" == "$filter_clean_cmd" ]] &&
