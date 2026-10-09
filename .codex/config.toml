@@ -8,6 +8,8 @@ personality = "pragmatic"
 plan_mode_reasoning_effort = "xhigh"
 approvals_reviewer = "user"
 
+service_tier = "priority"
+
 
 notify = ["__HOME__/.codex/computer-use/Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient", "turn-ended"]
 
@@ -379,8 +381,8 @@ NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
 NODE_REPL_INSTRUCTIONS_USE_CASE_COMPUTER_USE = ""
 BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
-BROWSER_USE_CODEX_APP_VERSION = "26.928.21956"
-NODE_REPL_TRUSTED_SERVICES = '{"browser":"__HOME__/.codex/plugins/cache/openai-bundled/browser/26.928.21956/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
+BROWSER_USE_CODEX_APP_VERSION = "26.1002.52244"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"__HOME__/.codex/plugins/cache/openai-bundled/browser/26.1002.52244/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "__HOME__/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
 
@@ -416,7 +418,7 @@ show-ultra-in-model-picker-slider = false
 show-context-window-usage = true
 realtimeVoiceScreenContextEnabled = true
 computerUseAlwaysHidePictureInPicture = true
-selected-avatar-id = "custom:alex-fazio"
+selected-avatar-id = "pet_6abbf0fe96a8819198fca73e7ccbacec"
 
 [shell_environment_policy.set]
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "9230e2bd8b24b7ac7a0ba6774c64bf0d78ecdabbdd91d0ed627b02a587bae2df"
@@ -495,11 +497,18 @@ enabled = true
 [plugins."computer-use@openai-bundled"]
 enabled = true
 
+[plugins."overleaf-mcp-rt@overleaf-mcp-rt"]
+enabled = true
+
 [marketplaces.ponytail]
 last_updated = "2026-08-07T22:14:40Z"
 last_revision = "2ed6c52c9d7e5e56942508591085fd45dea277d3"
 source_type = "git"
 source = "https://github.com/DietrichGebert/ponytail.git"
+
+[marketplaces.overleaf-mcp-rt]
+source_type = "git"
+source = "https://github.com/DanielHou315/overleaf-mcp-rt.git"
 
 [hooks.state]
 
