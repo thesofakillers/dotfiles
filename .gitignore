@@ -75,6 +75,8 @@
 .agents/skills/hyperframes-studio/
 .agents/skills/media-use/
 .agents/skills/1pass-op-session/
+.agents/skills/gog/
+.agents/skills/gog-*/
 .agents/skills/motion-graphics/
 .agents/skills/.flywheel-installed-by-codex
 .agents/skills/.flywheel-installed-by-claude

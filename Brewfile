@@ -27,3 +27,4 @@ brew "watchman"           # Watch files and take action when they change
 brew "pv"                 # monitor progress of data through a pipe
 brew "ctags"              # exuberant ctags, use for vim tagbar
 
+brew "openclaw/tap/gogcli" # gog: Google Workspace CLI for agents
