@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Start Claude Code Remote Control servers in a detached tmux session, one
+# window per repo, so new sessions can be spawned from the Claude mobile app or
+# claude.ai/code. Idempotent: existing windows are left running.
+#
+# Usage: claude-rc [repo-dir ...]   (default: ~/repos/paradigma ~/repos/dotfiles)
+# Attach: tmux attach -t claude
+
+set -euo pipefail
+
+session="${CLAUDE_RC_SESSION:-claude}"
+if (($# == 0)); then
+  set -- "$HOME/repos/paradigma" "$HOME/repos/dotfiles"
+fi
+cmd="claude --dangerously-skip-permissions rc --spawn=worktree"
+
+for dir in "$@"; do
+  [[ -d "$dir" ]] || { printf 'claude-rc: skipping missing %s\n' "$dir" >&2; continue; }
+  name="$(basename "$dir")"
+  if ! tmux has-session -t "=$session" 2>/dev/null; then
+    tmux new-session -d -s "$session" -n "$name" -c "$dir" "bash -lc '$cmd; exec bash -l'"
+  elif ! tmux list-windows -t "=$session" -F '#{window_name}' | grep -qx "$name"; then
+    tmux new-window -d -t "=$session:" -n "$name" -c "$dir" "bash -lc '$cmd; exec bash -l'"
+  else
+    printf 'claude-rc: %s:%s already running\n' "$session" "$name"
+  fi
+done
+
+tmux list-windows -t "=$session" -F "$session:#{window_index} #{window_name} #{pane_current_path}"
