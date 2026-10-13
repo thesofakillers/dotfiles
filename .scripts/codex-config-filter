@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Git clean/smudge filter for .codex/config.toml. Codex writes absolute paths
 # into its config, so the repository stores __HOME__ in place of $HOME.
+# It also writes the installed Codex app version (which differs per machine)
+# into the browser plugin settings; the repository stores
+# __CODEX_APP_VERSION__ there, and smudge fills in the newest version found
+# under ~/.codex/plugins/cache/openai-bundled/browser/.
 # Registered by .scripts/setup-codex-home --apply; see docs/codex.md.
 
 set -euo pipefail
@@ -9,10 +13,14 @@ set -euo pipefail
 
 case "${1:-}" in
   clean)
-    exec perl -pe 's/\Q$ENV{HOME}\E(?=[\/"\x27])/__HOME__/g'
+    exec perl -pe 's/\Q$ENV{HOME}\E(?=[\/"\x27])/__HOME__/g;
+      s/^(BROWSER_USE_CODEX_APP_VERSION = ")[^"]+"/$1__CODEX_APP_VERSION__"/;
+      s{(/openai-bundled/browser/)[0-9][0-9.]*(?=/)}{$1__CODEX_APP_VERSION__}g'
     ;;
   smudge)
-    exec perl -pe 's/__HOME__/$ENV{HOME}/g'
+    version="$(ls "$HOME/.codex/plugins/cache/openai-bundled/browser" 2>/dev/null | sort -t. -k1,1n -k2,2n -k3,3n | tail -n 1)"
+    CODEX_APP_VERSION="${version:-__CODEX_APP_VERSION__}" \
+      exec perl -pe 's/__HOME__/$ENV{HOME}/g; s/__CODEX_APP_VERSION__/$ENV{CODEX_APP_VERSION}/g'
     ;;
   *)
     printf 'Usage: codex-config-filter clean|smudge\n' >&2

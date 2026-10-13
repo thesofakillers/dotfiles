@@ -105,6 +105,13 @@ portable: on commit, `clean` replaces `$HOME` with `__HOME__`; on checkout,
 `smudge` turns `__HOME__` back into the local `$HOME`. The working file always
 has real paths, and the repository never has a username.
 
+The same filter handles the Codex app version that Codex writes into the
+browser plugin settings (`BROWSER_USE_CODEX_APP_VERSION` and the browser path
+in `NODE_REPL_TRUSTED_SERVICES`). It differs per machine, so `clean` stores
+`__CODEX_APP_VERSION__` and `smudge` fills in the newest version under
+`~/.codex/plugins/cache/openai-bundled/browser/`. App updates therefore no
+longer show up as local changes.
+
 The filter is per-clone Git config. A clone without it sees literal
 `__HOME__` and would commit raw paths, so `--check` reports it as missing.
 Register it with `.scripts/setup-codex-home --apply` (bootstrap runs this),
