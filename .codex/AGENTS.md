@@ -124,3 +124,13 @@ can help or get in the way of developing. Be aware of it when working.
 ## Email Defaults
 
 - Do not send emails unless the user explicitly asks you to send that specific email.
+
+## Google Workspace
+
+- Use the `gog` CLI (see the `gog` skills) for Gmail, Calendar, Drive, Docs,
+  Sheets, and other Google work. The claude.ai Google connectors are
+  deliberately disabled for local coding agents.
+- Always pass `--account work` (giulio@paradigma.inc) or `--account personal`
+  (giulio.starace@gmail.com) explicitly; never rely on the default account.
+- Default to `--readonly --gmail-no-send --wrap-untrusted`; drop them only for
+  the exact write the user asked for.

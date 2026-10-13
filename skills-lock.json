@@ -7,6 +7,78 @@
       "skillPath": "skills/general-video/SKILL.md",
       "computedHash": "4f0c6cac18a6ef22765713e59e083af80916b423d3cb5b7f588b49fd0dfb65c8"
     },
+    "gog": {
+      "source": "openclaw/gogcli",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gog/SKILL.md",
+      "computedHash": "e960122089dcf3a9a3781b6713740cea920dbcc58f8ebf4cc5a2e04354392526"
+    },
+    "gog-calendar": {
+      "source": "openclaw/gogcli",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gog-calendar/SKILL.md",
+      "computedHash": "aa8ed848f3722c9b01a6cc55c661fd47a0791ed8d40c98079423c6a5f8c67f63"
+    },
+    "gog-contacts": {
+      "source": "openclaw/gogcli",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gog-contacts/SKILL.md",
+      "computedHash": "6c354bfdc8b7b0bb8399c4efa2640f9e45c096ab3b9a50c76e684f9dbf40f9b6"
+    },
+    "gog-docs": {
+      "source": "openclaw/gogcli",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gog-docs/SKILL.md",
+      "computedHash": "7f078ac201a329df6750a331ceb77a8f25e05a059e24aa1f68ebe1d1d286cd2c"
+    },
+    "gog-drive": {
+      "source": "openclaw/gogcli",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gog-drive/SKILL.md",
+      "computedHash": "c27154ada7569904ab7c85d3531d3ddc6fc6a21037fa9a2189dc3235ae41bc2a"
+    },
+    "gog-forms": {
+      "source": "openclaw/gogcli",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gog-forms/SKILL.md",
+      "computedHash": "ba965165974156695ec92cd667234b5324f077a21eac401e770e4c32a9d71352"
+    },
+    "gog-gmail": {
+      "source": "openclaw/gogcli",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gog-gmail/SKILL.md",
+      "computedHash": "676f8ee5a84e4b5cce9c721cabcefd1d8c4bbe80d2e086d53d679b8544c1dbff"
+    },
+    "gog-meet": {
+      "source": "openclaw/gogcli",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gog-meet/SKILL.md",
+      "computedHash": "037d5078d1c03a057e255f699eed3ab3d410bbc3cf5a46b884b3cc8dbe170d24"
+    },
+    "gog-people": {
+      "source": "openclaw/gogcli",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gog-people/SKILL.md",
+      "computedHash": "5b421df6b9c2336a004bf623f14c2df7e1339ee8af5fa3df8a09ba0ce458bcf1"
+    },
+    "gog-sheets": {
+      "source": "openclaw/gogcli",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gog-sheets/SKILL.md",
+      "computedHash": "c4fcce584114e175a6022047f7c402c30a5f2dd644f07738a64e1b314972ffd9"
+    },
+    "gog-slides": {
+      "source": "openclaw/gogcli",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gog-slides/SKILL.md",
+      "computedHash": "8326e02803504348cb4be83a022bb15947288575b521fd882d13521dde252f6e"
+    },
+    "gog-tasks": {
+      "source": "openclaw/gogcli",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gog-tasks/SKILL.md",
+      "computedHash": "057d1ae6c6d56ce3fc41aeb178b44299fb07947f148bbbb7e5cfc64f094cbb62"
+    },
     "humanizer": {
       "source": "blader/humanizer",
       "sourceType": "github",
