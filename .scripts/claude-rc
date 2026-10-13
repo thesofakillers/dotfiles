@@ -12,7 +12,9 @@ session="${CLAUDE_RC_SESSION:-claude}"
 if (($# == 0)); then
   set -- "$HOME/repos/paradigma" "$HOME/repos/dotfiles"
 fi
-cmd="claude --dangerously-skip-permissions rc --spawn=worktree"
+# ~/.secrets exports ANTHROPIC_API_KEY, which would take precedence over the
+# claude.ai login; Remote Control (and its spawned sessions) need the latter.
+cmd="env -u ANTHROPIC_API_KEY claude --dangerously-skip-permissions rc --spawn=worktree"
 
 for dir in "$@"; do
   [[ -d "$dir" ]] || { printf 'claude-rc: skipping missing %s\n' "$dir" >&2; continue; }
