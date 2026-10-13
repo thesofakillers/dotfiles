@@ -444,10 +444,10 @@ enabled = true
 enabled = true
 
 [plugins."google-drive@openai-curated"]
-enabled = true
+enabled = false
 
 [plugins."google-calendar@openai-curated"]
-enabled = true
+enabled = false
 
 [plugins."documents@openai-primary-runtime"]
 enabled = true
@@ -456,7 +456,7 @@ enabled = true
 enabled = true
 
 [plugins."gmail@openai-curated"]
-enabled = true
+enabled = false
 
 [plugins."figma@openai-curated"]
 enabled = true
