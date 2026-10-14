@@ -20,7 +20,8 @@ What `bootstrap.sh` does:
 - installs baseline packages via manifests:
   - `apt`: `manifests/apt-packages.txt`
   - Homebrew: `Brewfile` (with fallback `manifests/brew-packages.txt`)
-- optionally installs developer runtimes (`uv`, `bun`, and `node` via `n`)
+- optionally installs developer runtimes (`uv`, `bun`, `node` via `n`, and
+  Claude Code via its self-updating native installer)
 - symlinks the main dotfiles and managed directories (`.vim`, `.agents`, and
   top-level entries under `.config`)
 - keeps `~/.codex` as a real runtime directory and links only Git-tracked Codex

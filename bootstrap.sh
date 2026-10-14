@@ -64,7 +64,7 @@ Options:
   --with-homebrew | --without-homebrew
       Enable/disable Homebrew installation when missing.
   --with-runtimes | --without-runtimes
-      Enable/disable installing developer runtimes (uv, bun, node via n).
+      Enable/disable installing developer runtimes (uv, bun, node via n, Claude Code).
   --with-nvim-plugins | --without-nvim-plugins
       Enable/disable running Vim/Neovim plugin installation.
 
@@ -431,6 +431,34 @@ install_node_if_missing() {
   fi
 }
 
+install_claude_if_missing() {
+  local claude_bin="$HOME/.local/bin/claude"
+
+  # Use the native installer: it self-updates in the background, unlike npm or
+  # Homebrew installs. The Claude desktop app ships its own separate copy.
+  if [[ -L "$claude_bin" && "$(readlink "$claude_bin")" == *"/share/claude/versions/"* ]]; then
+    log "Claude Code (native) already installed."
+    return
+  fi
+  if [[ -e "$claude_bin" ]] || command -v claude > /dev/null 2>&1; then
+    log "Claude Code found but not a native install; migrate with:"
+    log "  npm uninstall -g @anthropic-ai/claude-code && curl -fsSL https://claude.ai/install.sh | bash -s stable"
+    return
+  fi
+
+  if ! command -v curl > /dev/null 2>&1; then
+    log "Skipping Claude Code install (curl not found)."
+    return
+  fi
+
+  log "Installing Claude Code (native, stable channel)."
+  if ! curl -fsSL https://claude.ai/install.sh | bash -s stable; then
+    log "Claude Code install failed; continuing."
+    return
+  fi
+  log "Claude Code installation complete."
+}
+
 install_runtimes_if_requested() {
   if [[ "$INSTALL_RUNTIMES" -ne 1 ]]; then
     return
@@ -439,6 +467,7 @@ install_runtimes_if_requested() {
   install_uv_if_missing
   install_bun_if_missing
   install_node_if_missing
+  install_claude_if_missing
 }
 
 ensure_python_venv_support() {
@@ -714,7 +743,7 @@ configure_interactive() {
   fi
 
   if [[ "$INSTALL_RUNTIMES_SET" -eq 0 ]]; then
-    prompt_yes_no "Install developer runtimes (uv, bun, node via n)?" 1 INSTALL_RUNTIMES
+    prompt_yes_no "Install developer runtimes (uv, bun, node via n, Claude Code)?" 1 INSTALL_RUNTIMES
   fi
 
   if [[ "$INSTALL_NVIM_PLUGINS_SET" -eq 0 ]]; then
@@ -740,7 +769,7 @@ print_plan() {
   fi
   printf '\n'
   printf '  - Install tmux TPM: %s\n' "$(bool_word "$INSTALL_TPM")"
-  printf '  - Install runtimes (uv, bun, node): %s\n' "$(bool_word "$INSTALL_RUNTIMES")"
+  printf '  - Install runtimes (uv, bun, node, claude): %s\n' "$(bool_word "$INSTALL_RUNTIMES")"
   printf '  - Set up Neovim Python host: yes\n'
   printf '  - Install Vim/Neovim plugins now: %s\n\n' "$(bool_word "$INSTALL_NVIM_PLUGINS")"
 }
