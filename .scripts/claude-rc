@@ -1,24 +1,44 @@
 #!/usr/bin/env bash
 # Start Claude Code Remote Control servers in a detached tmux session, one
 # window per repo, so new sessions can be spawned from the Claude mobile app or
-# claude.ai/code. Idempotent: existing windows are left running.
+# claude.ai/code. Idempotent: existing windows are left running unless
+# --restart is given (use it after a CLI update; running servers keep the old
+# binary until restarted).
 #
-# Usage: claude-rc [repo-dir ...]   (default: ~/repos/paradigma ~/repos/dotfiles)
+# Usage: claude-rc [--restart] [repo-dir ...]
+#        (default: ~/repos/paradigma ~/repos/dotfiles)
 # Attach: tmux attach -t claude
 
 set -euo pipefail
 
 session="${CLAUDE_RC_SESSION:-claude}"
+restart=0
+if [[ "${1:-}" == "--restart" ]]; then
+  restart=1
+  shift
+fi
 if (($# == 0)); then
   set -- "$HOME/repos/paradigma" "$HOME/repos/dotfiles"
 fi
-# ~/.secrets exports ANTHROPIC_API_KEY, which would take precedence over the
-# claude.ai login; Remote Control (and its spawned sessions) need the latter.
-cmd="env -u ANTHROPIC_API_KEY claude --dangerously-skip-permissions rc --spawn=worktree"
+
+# Drop state inherited from whatever launched us. When run from inside a Claude
+# Code session (e.g. the desktop app) the env carries that session's IDs, a
+# local ANTHROPIC_BASE_URL proxy and DISABLE_AUTOUPDATER, which a new tmux
+# server would otherwise bake into its global environment. ~/.secrets exports
+# ANTHROPIC_API_KEY, which would take precedence over the claude.ai login that
+# Remote Control (and its spawned sessions) need; the login shell re-sources it,
+# so scrub again inside the window.
+scrub='unset DISABLE_AUTOUPDATER ${!CLAUDE@} ${!ANTHROPIC_@}'
+eval "$scrub"
+cmd="$scrub; claude --dangerously-skip-permissions rc --spawn=worktree"
 
 for dir in "$@"; do
   [[ -d "$dir" ]] || { printf 'claude-rc: skipping missing %s\n' "$dir" >&2; continue; }
   name="$(basename "$dir")"
+  if ((restart)) && tmux list-windows -t "=$session" -F '#{window_name}' 2>/dev/null | grep -qx "$name"; then
+    tmux kill-window -t "=$session:=$name"
+    printf 'claude-rc: restarting %s:%s\n' "$session" "$name"
+  fi
   if ! tmux has-session -t "=$session" 2>/dev/null; then
     tmux new-session -d -s "$session" -n "$name" -c "$dir" "bash -lc '$cmd; exec bash -l'"
   elif ! tmux list-windows -t "=$session" -F '#{window_name}' | grep -qx "$name"; then
