@@ -38,7 +38,10 @@
   "deniedMcpServers": [
     { "serverName": "claude.ai Gmail" },
     { "serverName": "claude.ai Google Calendar" },
-    { "serverName": "claude.ai Google Drive" }
+    { "serverName": "claude.ai Google Drive" },
+    { "serverName": "Gmail" },
+    { "serverName": "Google Calendar" },
+    { "serverName": "Google Drive" }
   ],
   "outputStyle": "Concise",
   "syntaxHighlightingDisabled": false,
