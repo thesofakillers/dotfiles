@@ -30,7 +30,11 @@ fi
 # so scrub again inside the window.
 scrub='unset DISABLE_AUTOUPDATER ${!CLAUDE@} ${!ANTHROPIC_@}'
 eval "$scrub"
-cmd="$scrub; claude --dangerously-skip-permissions rc --spawn=worktree"
+# Spawned sessions ignore Chrome's "Enabled by default" setting; they connect
+# Claude in Chrome only when the server itself starts with CLAUDE_CODE_ENABLE_CFC=1.
+# The server gives up after ~10 minutes without the network (e.g. laptop sleep),
+# so keep relaunching it; Ctrl-C during the pause (or kill the window) stops it.
+cmd="$scrub; export CLAUDE_CODE_ENABLE_CFC=1; while :; do claude --dangerously-skip-permissions rc --spawn=worktree; echo \"claude-rc: server exited (\$?), restarting in 30s\"; sleep 30 || break; done"
 
 for dir in "$@"; do
   [[ -d "$dir" ]] || { printf 'claude-rc: skipping missing %s\n' "$dir" >&2; continue; }
@@ -40,9 +44,9 @@ for dir in "$@"; do
     printf 'claude-rc: restarting %s:%s\n' "$session" "$name"
   fi
   if ! tmux has-session -t "=$session" 2>/dev/null; then
-    tmux new-session -d -s "$session" -n "$name" -c "$dir" "bash -lc '$cmd; exec bash -l'"
+    tmux new-session -d -s "$session" -n "$name" -c "$dir" "bash -lc '$cmd'"
   elif ! tmux list-windows -t "=$session" -F '#{window_name}' | grep -qx "$name"; then
-    tmux new-window -d -t "=$session:" -n "$name" -c "$dir" "bash -lc '$cmd; exec bash -l'"
+    tmux new-window -d -t "=$session:" -n "$name" -c "$dir" "bash -lc '$cmd'"
   else
     printf 'claude-rc: %s:%s already running\n' "$session" "$name"
   fi
