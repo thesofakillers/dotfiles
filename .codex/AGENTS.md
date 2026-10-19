@@ -124,6 +124,9 @@ can help or get in the way of developing. Be aware of it when working.
 ## Email Defaults
 
 - Do not send emails unless the user explicitly asks you to send that specific email.
+- Never hard-wrap email bodies. Write each paragraph as one unbroken line and
+  separate paragraphs with a blank line; let the mail client wrap. This applies
+  to bodies passed through files or heredocs too.
 
 ## Google Workspace
 

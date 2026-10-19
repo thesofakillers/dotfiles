@@ -5,7 +5,11 @@
   },
   "includeCoAuthoredBy": false,
   "permissions": {
-    "allow": [],
+    "allow": [
+      "mcp__claude-in-chrome__javascript_tool",
+      "Bash(nebius compute instance start *)",
+      "Bash(nebius compute instance stop *)"
+    ],
     "defaultMode": "bypassPermissions"
   },
   "hooks": {
@@ -37,12 +41,24 @@
     }
   },
   "deniedMcpServers": [
-    { "serverName": "claude.ai Gmail" },
-    { "serverName": "claude.ai Google Calendar" },
-    { "serverName": "claude.ai Google Drive" },
-    { "serverName": "Gmail" },
-    { "serverName": "Google Calendar" },
-    { "serverName": "Google Drive" }
+    {
+      "serverName": "claude.ai Gmail"
+    },
+    {
+      "serverName": "claude.ai Google Calendar"
+    },
+    {
+      "serverName": "claude.ai Google Drive"
+    },
+    {
+      "serverName": "Gmail"
+    },
+    {
+      "serverName": "Google Calendar"
+    },
+    {
+      "serverName": "Google Drive"
+    }
   ],
   "outputStyle": "Concise",
   "syntaxHighlightingDisabled": false,
