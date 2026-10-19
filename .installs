@@ -81,13 +81,18 @@ load_brew_shellenv
 if command -v brew > /dev/null 2>&1; then
   export HOMEBREW_NO_AUTO_UPDATE=1
 
-  if ! command -v python > /dev/null 2>&1 && command -v python3 > /dev/null 2>&1; then
-    ln -sf "$(command -v python3)" "$HOME/bin/python"
-  fi
-
-  if ! command -v pip > /dev/null 2>&1 && command -v pip3 > /dev/null 2>&1; then
-    ln -sf "$(command -v pip3)" "$HOME/bin/pip"
-  fi
+  # Link python/pip to Homebrew's python3/pip3, never to /usr/bin's
+  # xcode-select stubs: run as "python" or "pip", a stub looks for a developer
+  # tool by that name, finds none and pops up the "install the command line
+  # developer tools" dialog. Also repairs links made that way earlier.
+  for _tool in python pip; do
+    _target="${HOMEBREW_PREFIX:-/opt/homebrew}/bin/${_tool}3"
+    if [ -x "$_target" ] && { [ "$(readlink "$HOME/bin/$_tool" 2>/dev/null)" = "/usr/bin/${_tool}3" ] ||
+      ! command -v "$_tool" > /dev/null 2>&1; }; then
+      ln -sf "$_target" "$HOME/bin/$_tool"
+    fi
+  done
+  unset _tool _target
 fi
 # }}}
 
