@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# Resume an existing Claude Code session in a window of the claude-rc tmux
+# session with Remote Control on, so it stays reachable from the Claude mobile
+# app or claude.ai/code without the machine that started it. Desktop-app SSH
+# sessions keep running on this host when the laptop sleeps, but their Remote
+# Control link lives in the laptop's app; this moves a session onto a link
+# owned by this host.
+#
+# Stop using the session from its original client afterwards (or archive it
+# there): two clients writing the same session fork the conversation. Only move
+# a session that is idle.
+#
+# Usage: claude-rc-resume <session-id> <window-name> [title]
+#        (title defaults to the window name; "(<host>)" is appended)
+# Attach: tmux attach -t claude
+
+set -euo pipefail
+
+if (($# < 2)); then
+  sed -n 's/^# \{0,1\}//; /^Usage:/,/^Attach:/p' "$0" >&2
+  exit 2
+fi
+
+id="$1"
+name="$2"
+title="${3:-$name} ($(hostname -s))"
+session="${CLAUDE_RC_SESSION:-claude}"
+
+shopt -s nullglob
+transcripts=("$HOME"/.claude/projects/*/"$id".jsonl)
+((${#transcripts[@]})) || { printf 'claude-rc-resume: no transcript for %s\n' "$id" >&2; exit 1; }
+# --resume only finds a session from the directory it ran in.
+dir="$(grep -m1 -o '"cwd":"[^"]*"' "${transcripts[0]}" | cut -d'"' -f4)"
+[[ -d "$dir" ]] || { printf 'claude-rc-resume: missing cwd %s\n' "$dir" >&2; exit 1; }
+
+if tmux list-windows -t "=$session" -F '#{window_name}' 2>/dev/null | grep -qx "$name"; then
+  printf 'claude-rc-resume: %s:%s already exists\n' "$session" "$name" >&2
+  exit 1
+fi
+
+# Same env scrub as claude-rc; see the comment there.
+scrub='unset DISABLE_AUTOUPDATER ${!CLAUDE@} ${!ANTHROPIC_@}'
+eval "$scrub"
+cmd="$scrub; export CLAUDE_CODE_ENABLE_CFC=1; claude --dangerously-skip-permissions --resume $(printf %q "$id") --remote-control $(printf %q "$title")"
+
+if tmux has-session -t "=$session" 2>/dev/null; then
+  tmux new-window -d -t "=$session:" -n "$name" -c "$dir" "bash -lc $(printf %q "$cmd")"
+else
+  tmux new-session -d -s "$session" -n "$name" -c "$dir" "bash -lc $(printf %q "$cmd")"
+fi
+printf 'claude-rc-resume: %s -> %s:%s in %s\n' "$id" "$session" "$name" "$dir"
