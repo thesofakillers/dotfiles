@@ -120,6 +120,7 @@ can help or get in the way of developing. Be aware of it when working.
 - Avoid rebases unless the user explicitly asks for a rebase.
 - Avoid force pushes (including `--force-with-lease`) unless the user explicitly asks for one.
 - When bringing target branch updates into a feature branch, prefer merge (for example: merge `staging` into the current branch) instead of rebasing.
+- Start work from the latest remote base branch. Some harnesses create worktrees from a stale base without fetching. Before changing anything, run `git fetch origin` and check how far the branch is behind its base (for example `git rev-list --count HEAD..origin/staging`); if it is behind, merge the base in first. Until then, read workflows, docs and config from `origin/<base>` (for example `git show origin/staging:<path>`), not from the checkout.
 
 ## Email Defaults
 
