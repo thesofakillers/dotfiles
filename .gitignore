@@ -75,6 +75,8 @@
 .agents/skills/hyperframes-studio/
 .agents/skills/media-use/
 .agents/skills/1pass-op-session/
+.agents/skills/self-login/
+.agents/skills/paradigma-data/
 .agents/skills/gog/
 .agents/skills/gog-*/
 .agents/skills/motion-graphics/
