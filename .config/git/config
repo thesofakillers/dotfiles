@@ -13,6 +13,10 @@
 [lfs "ssh"]
 	; https://github.com/git-lfs/git-lfs/issues/5784#issuecomment-2239826183
 	autoMultiplex = false
+[hook "lfs-prefetch"]
+	; a plain fetch skips LFS, so worktrees cut from origin/* got pointer files
+	event = reference-transaction
+	command = ~/.scripts/git-lfs-prefetch
 [merge]
 	tool = nvim
 [diff]

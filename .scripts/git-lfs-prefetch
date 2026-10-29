@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# reference-transaction hook (wired in ~/.config/git/config): after a fetch
+# moves remote-tracking branches, download their LFS objects in the background.
+# A plain `git fetch` never does this, so worktrees created from origin/<branch>
+# would otherwise check out pointer files for anything newer than the local
+# checkout.
+#
+# Only acts in repos that already have an LFS store, and only for the remote's
+# default branch and branches some local branch tracks.
+
+[ "$1" = committed ] || exit 0
+
+updated=()
+while read -r _old new ref; do
+  case "$ref" in
+    refs/remotes/*/HEAD) ;;
+    refs/remotes/*) [ "$new" = 0000000000000000000000000000000000000000 ] || updated+=("$ref") ;;
+  esac
+done
+[ ${#updated[@]} -gt 0 ] || exit 0
+
+common_dir=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null) || exit 0
+[ -d "$common_dir/lfs" ] || exit 0
+command -v git-lfs >/dev/null || exit 0
+
+wanted=$(
+  git for-each-ref --format='%(upstream)' refs/heads
+  git for-each-ref --format='%(symref)' 'refs/remotes/*/HEAD'
+)
+
+# "<remote> <ref>" per line; bash 3.2 (macOS) has no associative arrays.
+targets=$(
+  for ref in "${updated[@]}"; do
+    grep -qxF "$ref" <<<"$wanted" || continue
+    rest=${ref#refs/remotes/}
+    echo "${rest%%/*} $ref"
+  done
+)
+[ -n "$targets" ] || exit 0
+
+lock="$common_dir/lfs/prefetch.lock"
+mkdir "$lock" 2>/dev/null || exit 0
+
+(
+  trap 'rmdir "$lock"' EXIT
+  for remote in $(cut -d' ' -f1 <<<"$targets" | sort -u); do
+    # shellcheck disable=SC2046
+    git lfs fetch "$remote" $(awk -v r="$remote" '$1 == r { print $2 }' <<<"$targets")
+  done
+) </dev/null >"$common_dir/lfs/prefetch.log" 2>&1 &
+disown
