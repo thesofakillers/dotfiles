@@ -17,6 +17,10 @@
 	; a plain fetch skips LFS, so worktrees cut from origin/* got pointer files
 	event = reference-transaction
 	command = ~/.scripts/git-lfs-prefetch
+[hook "fresh-base"]
+	; agent harnesses cut worktrees from a stale base without fetching
+	event = post-checkout
+	command = ~/.scripts/git-fresh-base
 [merge]
 	tool = nvim
 [diff]

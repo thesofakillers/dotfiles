@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+#
+# post-checkout hook: start new worktrees from the latest remote base branch.
+#
+# Some agent harnesses create worktrees from a stale base without fetching.
+# When `git worktree add` has just created a worktree, this fetches the remote
+# default branch (origin/HEAD, e.g. origin/staging) and moves the new worktree
+# to its tip. It acts only when the worktree starts exactly at the stale base,
+# either the cached origin/<base> or the local <base> branch, and, for a
+# branch, only when that branch was created by this checkout. Anything else,
+# such as an existing branch or a deliberately chosen commit, is left alone.
+#
+# Registered as a config hook in ~/.config/git/config (needs git >= 2.54).
+#
+# Git passes: <previous HEAD> <new HEAD> <1 if branch checkout>.
+
+prev=$1
+flag=$3
+
+# A new worktree (or a clone) checks out from the null commit.
+[ "$flag" = 1 ] || exit 0
+case "$prev" in *[!0]*) exit 0 ;; esac
+
+# Only linked worktrees; a fresh clone is already current.
+[ "$(git rev-parse --path-format=absolute --git-dir)" != \
+  "$(git rev-parse --path-format=absolute --git-common-dir)" ] || exit 0
+
+remote_head=$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD) || exit 0
+base=${remote_head#origin/}
+
+head=$(git rev-parse HEAD)
+stale_remote=$(git rev-parse --quiet --verify "refs/remotes/origin/$base") || stale_remote=
+stale_local=$(git rev-parse --quiet --verify "refs/heads/$base") || stale_local=
+[ "$head" = "$stale_remote" ] || [ "$head" = "$stale_local" ] || exit 0
+
+branch=$(git symbolic-ref --quiet --short HEAD) || branch=
+if [ -n "$branch" ]; then
+  # Never move a branch that existed before this checkout: it must have a
+  # single reflog entry, written moments ago (`git branch x` then
+  # `git worktree add <dir> x` would otherwise look identical).
+  created=$(git reflog show --date=unix --format=%gd "refs/heads/$branch" -- 2>/dev/null)
+  case "$created" in *$'\n'*|'') exit 0 ;; esac
+  created=${created##*@\{}
+  created=${created%\}}
+  [ $(($(date +%s) - created)) -le 60 ] || exit 0
+fi
+
+if ! git fetch --quiet origin "$base" 2>/dev/null; then
+  echo "git-fresh-base: could not fetch origin/$base; worktree left at ${head:0:9}" >&2
+  exit 0
+fi
+
+fresh=$(git rev-parse "refs/remotes/origin/$base")
+[ "$fresh" != "$head" ] || exit 0
+# A local <base> with unpushed commits is not stale; keep them.
+git merge-base --is-ancestor "$head" "$fresh" || exit 0
+behind=$(git rev-list --count "$head..$fresh")
+
+if [ -n "$branch" ]; then
+  git merge --quiet --ff-only "$fresh" || exit 0
+else
+  git checkout --quiet --detach "$fresh" || exit 0
+fi
+echo "git-fresh-base: moved new worktree from ${head:0:9} to origin/$base (${fresh:0:9}, $behind commits newer)" >&2
