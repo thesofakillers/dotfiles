@@ -64,6 +64,7 @@
   "syntaxHighlightingDisabled": false,
   "alwaysThinkingEnabled": true,
   "autoCompactWindow": 400000,
+  "idleCompaction": false,
   "autoUpdatesChannel": "stable",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
