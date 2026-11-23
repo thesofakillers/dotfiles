@@ -10,9 +10,11 @@ Keep portable configuration separate from mutable runtime state:
 ```text
 <dotfiles>/.codex/                 ~/.codex/
 ├── AGENTS.md  ------------------> AGENTS.md
+│     (links to ../.agents/AGENTS.md)
 └── config.toml -----------------> config.toml
 
 <dotfiles>/.agents/ <------------ ~/.agents
+├── AGENTS.md
 └── skills/
 
                                   ~/.codex/auth.json
@@ -30,6 +32,11 @@ In short:
 - `~/.codex` is `CODEX_HOME` and contains Codex-owned runtime state.
 - `<dotfiles>/.agents` contains portable skills and skill metadata.
 - `~/.agents` links to `<dotfiles>/.agents` for user-wide skill discovery.
+- `<dotfiles>/.agents/AGENTS.md` is the one set of user-level instructions for
+  every agent. `.codex/AGENTS.md` is a tracked link to it, Claude Code imports
+  it from `~/.claude/CLAUDE.md`, and OpenCode lists it under `instructions` in
+  `.config/opencode/opencode.json`. Edit `.agents/AGENTS.md`; keep Claude-only
+  rules in `.claude/CLAUDE.md` below the import.
 
 Never point `CODEX_HOME` at `<dotfiles>/.codex`, and never symlink the entire
 `~/.codex` directory into the repository.
@@ -39,6 +46,7 @@ Never point `CODEX_HOME` at `<dotfiles>/.codex`, and never symlink the entire
 | Content | Location | Tracked? |
 | --- | --- | --- |
 | Personal Codex config source | `<dotfiles>/.codex/` | Yes |
+| Shared user-level agent instructions | `<dotfiles>/.agents/AGENTS.md` | Yes |
 | Authored personal skills | `<dotfiles>/.agents/skills/` | Yes |
 | Third-party skill versions | `<dotfiles>/skills-lock.json` | Yes |
 | Generated third-party skill copies | `<dotfiles>/.agents/skills/` | No |

@@ -566,7 +566,7 @@ setup_links() {
   mkdir -p "$HOME/.claude"
   link_path "$REPO_DIR/.claude/settings.json" "$HOME/.claude/settings.json"
   # Claude Code reads ~/.claude/CLAUDE.md as user-level instructions; it imports
-  # ~/.codex/AGENTS.md so both agents share the same instructions.
+  # the shared ~/.agents/AGENTS.md, which Codex and OpenCode also read.
   link_path "$REPO_DIR/.claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
   # Claude Code reads user skills only from ~/.claude/skills. Point it at the
   # shared skills directory so every skill in ~/.agents/skills is visible

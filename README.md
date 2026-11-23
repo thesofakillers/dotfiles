@@ -29,8 +29,11 @@ What `bootstrap.sh` does:
   `~/.agents/skills`
 - links `~/.claude/skills` to `~/.agents/skills` so Claude Code sees the same
   skills as Codex and OpenCode (see [Agent Skills](#agent-skills))
-- links `~/.claude/CLAUDE.md`, which imports `~/.codex/AGENTS.md` so Claude
-  Code follows the same user-level instructions as Codex
+- shares one set of user-level agent instructions, `.agents/AGENTS.md`
+  (`~/.agents/AGENTS.md`), between every agent: Codex reads it through
+  `~/.codex/AGENTS.md` (a link to it), Claude Code through the import in
+  `~/.claude/CLAUDE.md`, and OpenCode through `instructions` in its
+  `opencode.json`
 - backs up any replaced files to `~/.dotfiles-backups/<timestamp>/...`
 - creates a local-only git template at `~/.config/git/config.secret`
 - sets the account login shell to Bash on every OS (these dotfiles only
@@ -144,7 +147,8 @@ The required layout is:
 ~/.codex/           = real, mutable Codex runtime directory
 ```
 
-Tracked files such as `config.toml` and `AGENTS.md` are symlinked individually
+Tracked files such as `config.toml` and `AGENTS.md` (itself a link to the shared
+`.agents/AGENTS.md`) are symlinked individually
 from `~/.codex` back into this repository. The `~/.codex` directory itself must
 never be a symlink, and `CODEX_HOME` must never point at this repository.
 

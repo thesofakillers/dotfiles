@@ -1,4 +1,4 @@
-@~/.codex/AGENTS.md
+@~/.agents/AGENTS.md
 
 # Connectors and MCP servers
 
