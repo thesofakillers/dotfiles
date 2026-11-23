@@ -80,6 +80,8 @@
 .agents/skills/gog/
 .agents/skills/gog-*/
 .agents/skills/motion-graphics/
+.agents/skills/raea/
+.agents/skills/raea-bevy/
 .agents/skills/.flywheel-installed-by-codex
 .agents/skills/.flywheel-installed-by-claude
 # Claude Code's claude.ai skill sync cache (via the ~/.claude/skills link).
