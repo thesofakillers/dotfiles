@@ -22,6 +22,7 @@ screen_reader_detection_done = true
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 gpt-6-astra = 4
+"gpt-6.1-sol" = 2
 
 [projects."__HOME__/Documents/Codex/2026-08-01/new-realtime-voice-chat"]
 trust_level = "trusted"
@@ -323,12 +324,6 @@ trust_level = "trusted"
 [projects."__HOME__/GitHub/paradigma/tasks/staging/cmp-42"]
 trust_level = "trusted"
 
-[projects."/private/tmp/res-899-stack/res907-review.sM7gxf/repo"]
-trust_level = "trusted"
-
-[projects."/private/tmp/res907-final-head-review.SUkwRU/repo"]
-trust_level = "trusted"
-
 [projects."__HOME__/Documents/Codex/2026-09-21/can-you-take-https-paradigma-inc"]
 trust_level = "trusted"
 
@@ -364,9 +359,23 @@ args = ["-y", "@upstash/context7-mcp"]
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
 
+[mcp_servers.simplenote]
+command = "npx"
+args = ["-y", "@automattic/simplenote-mcp"]
+
+[mcp_servers.computer-use]
+command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
+args = ["mcp"]
+cwd = "."
+enabled = false
+
+[mcp_servers.1password]
+command = "/Applications/1Password.app/Contents/MacOS/1password-mcp"
+
 [mcp_servers.node_repl]
 args = []
 command = "/Applications/ChatGPT.app/Contents/Resources/cua_node/bin/node_repl"
+env_vars = ["BROWSER_USE_ACCESS_EXECUTOR_ID", "BROWSER_USE_ACCESS_PIPE_PATH", "BROWSER_USE_ACCESS_VERIFYING_IDENTITY"]
 startup_timeout_sec = 120
 
 [mcp_servers.node_repl.env]
@@ -385,19 +394,6 @@ BROWSER_USE_CODEX_APP_VERSION = "__CODEX_APP_VERSION__"
 NODE_REPL_TRUSTED_SERVICES = '{"browser":"__HOME__/.codex/plugins/cache/openai-bundled/browser/__CODEX_APP_VERSION__/scripts/browser-service.mjs","sky":"@oai/sky/service"}'
 SKY_CUA_SERVICE_PATH = "__HOME__/.codex/computer-use/Codex Computer Use.app"
 CODEX_CLI_PATH = "/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
-
-[mcp_servers.simplenote]
-command = "npx"
-args = ["-y", "@automattic/simplenote-mcp"]
-
-[mcp_servers.computer-use]
-command = "./Codex Computer Use.app/Contents/SharedSupport/SkyComputerUseClient.app/Contents/MacOS/SkyComputerUseClient"
-args = ["mcp"]
-cwd = "."
-enabled = false
-
-[mcp_servers.1password]
-command = "/Applications/1Password.app/Contents/MacOS/1password-mcp"
 
 [plugins."github@openai-curated"]
 enabled = true
@@ -418,7 +414,8 @@ show-ultra-in-model-picker-slider = false
 show-context-window-usage = true
 realtimeVoiceScreenContextEnabled = true
 computerUseAlwaysHidePictureInPicture = true
-selected-avatar-id = "custom:alex-fazio"
+selected-avatar-id = "pet_6abbf0fe96a8819198fca73e7ccbacec"
+avatar-overlay-pet-visible = true
 
 [shell_environment_policy.set]
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "9230e2bd8b24b7ac7a0ba6774c64bf0d78ecdabbdd91d0ed627b02a587bae2df"
@@ -473,31 +470,28 @@ enabled = true
 [plugins."template-creator@openai-primary-runtime"]
 enabled = true
 
-[plugins."browser@openai-bundled"]
-enabled = true
-
 [plugins."visualize@openai-bundled"]
 enabled = true
 
 [plugins."spreadsheets@openai-primary-runtime"]
 enabled = true
 
-[plugins."chrome@openai-bundled"]
+[plugins."codex-app-tools@openai-bundled"]
 enabled = true
 
-[plugins."codex-app-tools@openai-bundled"]
+[plugins."overleaf-mcp-rt@overleaf-mcp-rt"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
 enabled = true
 
 [plugins."unified-computer-use@openai-bundled"]
 enabled = true
 
-[plugins."code-review@openai-bundled"]
+[plugins."chrome@openai-bundled"]
 enabled = true
 
 [plugins."computer-use@openai-bundled"]
-enabled = true
-
-[plugins."overleaf-mcp-rt@overleaf-mcp-rt"]
 enabled = true
 
 [marketplaces.ponytail]
