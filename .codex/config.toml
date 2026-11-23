@@ -330,6 +330,12 @@ trust_level = "trusted"
 [projects."__HOME__/GitHub/paradigma/tasks/staging/out-9"]
 trust_level = "trusted"
 
+[projects."__HOME__/repos/submitqueue"]
+trust_level = "trusted"
+
+[projects."__HOME__/repos/submitqueue-cicd-517/submitqueue"]
+trust_level = "trusted"
+
 [notice]
 hide_full_access_warning = true
 hide_gpt5_1_migration_prompt = true
