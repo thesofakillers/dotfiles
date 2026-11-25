@@ -1,0 +1,4 @@
+interface:
+  display_name: "LUMI Access"
+  short_description: "Set up and use LUMI (EuroHPC) SSH access"
+  default_prompt: "Use $lumi to renew, diagnose, or use my LUMI SSH access."
