@@ -19,3 +19,7 @@ fi
 
 # macOS launchd defaults to 256 open files; Codex can legitimately exceed that.
 ulimit -n 65536 2>/dev/null || true
+
+# Machine-local environment, not committed (.gitignore): PATH entries and other
+# exports this machine needs in every Bash, ssh exec commands included.
+[[ -f "$HOME/.bash_env_local" ]] && source "$HOME/.bash_env_local"

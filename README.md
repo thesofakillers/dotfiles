@@ -219,3 +219,14 @@ For installing tmux without needing root access, please refer to
 
 Use `~/.config/git/config.secret` for machine-specific git settings you do not
 want to commit.
+
+### Local-only shell config
+
+Two untracked files hold settings for one machine only (both are in
+`.gitignore`):
+
+- `~/.bash_env_local`: sourced by `.bash_env`, so every Bash reads it,
+  including non-interactive `ssh host command` runs. Keep it to cheap,
+  idempotent exports such as PATH entries.
+- `~/.bash_local`: sourced at the end of `.bash_profile`, so only interactive
+  and login shells read it. Use it for aliases, prompts and functions.

@@ -92,6 +92,7 @@
 # Local Flywheel repository data.
 .flywheel/
 .bash_local
+.bash_env_local
 .codex/logs_*
 
 .mypy_cache/
